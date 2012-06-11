@@ -1,0 +1,28 @@
+@import "deco-gs";
+@include deco-gs(16, 0px, 10px, "dt");
+
+div.dt-row {
+    @include deco-row;
+    border-style: dotted;
+    border-width: 0 0 1px 0;
+}
+
+div.dt-cell {
+    @include deco-cell;
+    border-style: dotted;
+    border-width: 0 1px 0 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+div.dt-row-only-one {
+    @include deco-row;
+    border-style: dotted;
+    border-width: 1px;
+}
+
+div.dt-row-group {
+    @include deco-row;
+    border-style: dotted;
+    border-width: 1px 0 0 1px;
+}
