@@ -1,0 +1,236 @@
+
+// VARIABLES
+// ================================================================
+
+$width: 960px;
+
+// COLORS
+$blue: #4C71A1;        // menus, headers
+$medium-blue: #00377b; // begining of titles
+$dark-blue: #0d2651;
+
+$footer-blue: #25528c; // used only in the footer
+
+// IMPORTS
+// ================================================================
+
+@import "dotted-deco";
+@import "footer";
+@import "carousel";
+@import "editable-box";
+
+// GENERAL
+// ================================================================
+
+body {
+    font-family: Mako, sans-serif;
+    font-size: 12px; //TODO rever este tamanho
+    background-image:url('../images/net-background.png');
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Mako, sans-serif;
+}
+
+// NOTE: we convention that __<name> classes should not be used in the markup:
+// they are ment just to compose other classes via sass @extend
+.__white-font {
+    color: white;
+    a:link, a:visited {
+        color: white;
+    }
+}
+
+#top-bar {
+    @extend .__white-font;
+    background: url(../images/top-bar.png) repeat-x scroll 0 0 #eef;
+    height: 50px;
+}
+
+div.middle-container {
+    max-width: $width;
+    margin: 0 auto;
+}
+
+// EDIT BAR
+#edit-bar {
+    margin-top: 10px;
+    font-size: 100%;
+    #contentActionMenus {
+        right: -3px;
+    }
+}
+
+#portal-columns {
+    background: white;
+}
+
+// HEADER
+// ================================================================
+
+#portal-personaltools {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin: -14px 0 0 0;
+    #personaltools-login, #user-name {
+        background: url("../images/icons/person.png") no-repeat right top transparent;
+        padding: 9px 25px 0 0;
+        margin: 0;
+        color: black;
+    }
+    dt.actionMenuHeader a:after {
+        content: none;
+    }
+    #anon-personalbar, #actionMenuHeader {
+        margin: 0;
+        a {
+            margin: 0;
+        }
+    }
+    &.deactivated dt {
+        margin: 0;
+    }
+    &.activated dd {
+        border-radius: 0;
+    }
+}
+
+// BUSCA
+#portal-searchbox {
+    margin: 73px 0 30px 0;
+    input {
+        border: none;
+        height: 30px;
+        &[type="text"] {
+            background: url("../images/search-open-brace.png") no-repeat left top white;
+            width: 272px;
+            padding-left: 10px;
+            font-family: Poly,serif;
+            font-style: italic;
+        }
+        &.searchButton {
+            background: url("../images/search-button.png") no-repeat left top white;
+            text-indent: -3000px;                 /* sends the text off-screen */
+            width: 41px;
+            height: 30px;
+        }
+    }
+}
+
+#LSResult {
+    background: transparent;
+    margin-top: -4px;
+    .livesearchContainer {
+        background: white;
+    }
+}
+
+// SITE ACTIONS
+
+#header-actions {
+    font-size: 11px;
+    margin: 8px 0 0 0;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
+    li {
+        margin-right: 10px;
+    }
+    a {
+        color: #a4a19c;
+    }
+}
+
+#portal-logo {
+    margin: 30px 0 25px 0;
+}
+
+#portal-globalnav {
+    background: white;
+    font-size: 10px;
+    margin: 0;
+    border-style: dotted;
+    border-width: 1px 1px 0 1px;
+    padding: 10px 8px 10px 0px;
+    width: $width - 8px;
+
+    li {
+        display: inline-block;
+        width: $width/6 - 13px; //TODO rever isso
+        margin:  0 0 0 10px;
+        padding: 0;
+        &#portaltab-index_html {
+            margin-left: 8px;
+        }
+        a {
+            color: white;
+            background: $blue;
+            text-transform: uppercase;
+            line-height: 72px;
+            height: 48px;
+            width: 100%;
+            margin:  0;
+            padding: 0 0 0 8px;
+        }
+        a:visited {
+            color: white;
+        }
+    }
+    li.selected a, li.selected a:hover, li a:hover {
+        color: white;
+        background: $dark-blue;
+    }
+}
+
+// boxes
+// ================================================================
+@mixin box-header {
+    font-size: 12px; //TODO rever este tamanho
+    color: white;
+    background: $blue;
+    text-transform: uppercase;
+    height: 24px;
+    line-height: 26px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+// uso de "b": vide http://html5doctor.com/i-b-em-strong-element/
+@mixin superlink {
+    padding-left: 45px;
+    margin-bottom: 5px;
+    a, a:visited {
+        b {
+            color: $medium-blue;
+            display: block;
+            margin-bottom: -9px;
+        }
+        color: $blue;
+    }
+}
+
+.simple-box {
+    margin-left: 20px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+    h2 {
+        @include box-header;
+        margin-left: -20px;
+        margin-right: -10px;
+    }
+    h3 {
+        @include superlink;
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+}
+
+.box-header {@include box-header;}
+
+@each $type in news, cases, contact {
+    .icon-#{$type} {
+        background: url("../images/icons/#{$type}.png") left no-repeat;
+    }
+}
+

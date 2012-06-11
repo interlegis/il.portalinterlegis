@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    css:if-content="#visual-portal-wrapper">
+
+    <theme href="index.html" />
+    <notheme if-path="presentation_view"/>
+    <notheme if-path="source_editor.htm"/>
+    <notheme if-path="ploneimage.htm"/>
+    <notheme if-path="anchor.htm"/>
+    <notheme if-path="table.htm"/>
+    <notheme if-path="attributes.htm"/>
+
+    <before theme-children='/html/head' content-children='/html/head'/>
+
+    <copy attributes="*" theme="/html" content="/html"/>
+    <copy attributes="*" theme="/html/body" content="/html/body"/>
+
+    <!-- HEADER -->
+
+    <drop attributes="id" css:content="#siteaction-accessibility"/>
+    <replace css:theme="#header-actions-accessibility" css:content="#siteaction-accessibility"/>
+
+    <replace css:theme='#portal-personaltools-wrapper' css:content='#portal-personaltools-wrapper'/>
+
+    <copy attributes="*" css:theme="#portal-logo" css:content="#portal-logo"/>
+
+    <!-- search -->
+    <replace css:theme='#portal-searchbox' css:content='#portal-searchbox'/>
+    <drop css:content="#portal-searchbox .searchSection"/>
+    <xsl:template match="//input[@id='searchGadget']/@placeholder">
+        <xsl:attribute name="placeholder">O que você procura?</xsl:attribute>
+    </xsl:template> 
+
+    <!-- MENU - TABS -->
+    <replace css:theme="#portal-globalnav" css:content="#portal-globalnav" />
+
+    <!-- CONTEUDO -->
+    <rules css:if-content="#bigbox">
+      <copy attributes="class" css:theme="#portal-columns" css:content="#bigbox"/>
+      <!-- Isto aqui foi simplesmente para que mudar o atributo class de portal-columns. Deveria ser mais direto -->
+      <replace css:theme-children="#portal-columns" css:content-children="#bigbox"/>
+    </rules>
+
+    <replace css:theme-children="#portal-columns" css:content-children="#portal-columns" css:if-not-content="#bigbox"/>
+
+    <drop css:content="#viewlet-above-content"/>
+
+    <!-- CARROSSEL -->
+    <replace css:theme="#carousel-1" css:content="#carousel-1"/>
+    
+
+    <!-- FOOTER -->
+
+    <!-- para deixar o id para o link acessibilidade no rodape, que foi tirado para o link no topo => method="raw" -->
+    <replace css:theme="#portal-siteactions" css:content="#portal-siteactions" method="raw"/>
+
+    <!-- KSS -->
+    <append theme="/html/body" content="//*[@id='kss-spinner']"/>
+
+    <!-- temp debug -->
+    <xsl:output indent="yes"/>
+
+</rules>
