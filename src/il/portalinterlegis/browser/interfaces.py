@@ -52,7 +52,7 @@ class ISimpleBox(Interface):
 @template('''
       <div id= "container">
 
-		<div class="carousel example-5">
+		<div class="carousel">
 		  <ul>
 			<li>
               <a href="">
