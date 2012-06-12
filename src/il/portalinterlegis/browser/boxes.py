@@ -1,4 +1,6 @@
 import martian
+from AccessControl import getSecurityManager
+from Products.CMFCore import permissions
 from Products.CMFCore.interfaces import IFolderish
 from five import grok
 from five.grok.components import ZopeTwoPageTemplate
@@ -10,7 +12,7 @@ from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from zope.schema.interfaces import IField
 
-from interfaces import ISimpleBox, template_dict, box_schemas
+from interfaces import template_dict, box_schemas
 
 
 class PersistentDictionaryField(datamanager.DictionaryField):
@@ -35,6 +37,8 @@ class BoxManager(object):
         class BoxEditForm(form.EditForm, grok.View):
             grok.context(IFolderish)
             grok.name(self._box_name_for_url(number))
+            grok.require('cmf.ModifyPortalContent')
+
             label = self.form_label
             fields = field.Fields(self.schema)
 
@@ -101,7 +105,10 @@ def row_spec_to_cells(context, row_spec):
     position = 0
     for (width, schema, number) in row_spec:
         boxmanager = BoxManager(schema)
-        additional_classes = 'editable-box' # TODO: calculate classes to reflect permissions on the UI
+        if getSecurityManager().checkPermission(permissions.ModifyPortalContent, context):
+            additional_classes = 'editable-box'
+        else:
+            additional_classes = ''
         yield (boxmanager._box_key(number),
                additional_classes,
                position,

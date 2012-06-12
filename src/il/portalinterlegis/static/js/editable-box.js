@@ -12,7 +12,7 @@ jQuery(function($) {
             filter: '#content',
             formselector: 'form',
             config: {
-              closeOnClick: false,
+              closeOnClick: true,
               mask: {
                 color: '#000000',
                 opacity: 0.8
