@@ -1,9 +1,8 @@
 .editable-box {
     position: relative;
-    outline: 2px dashed #e8e8e8;
     min-height: 1.5em;
     &:hover {
-        outline: 2px dashed #b8b8b8;
+        outline: 2px dashed $blue;
         .editable-box-link {
             display: block !important;
         }
@@ -11,7 +10,7 @@
 }
 
 .editable-box-link {
-    display: none !important;
+    display: block !important;
     position: absolute;
     right: 1px;
     bottom: 1px;
