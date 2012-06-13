@@ -34,6 +34,7 @@ class TestIntegracao(unittest.TestCase):
     def url(self, path=None):
         base = self.portal.absolute_url()
         if path:
+            path.strip('/')
             return '%s/%s' % (base, path)
         else:
             return base
@@ -48,7 +49,8 @@ class TestIntegracao(unittest.TestCase):
                         'package appears not to have been installed')
 
     def test_tabs_na_home(self):
-        browser = self.new_browser()
+        browser = self.layer.anonymous_browser()
+        browser.open(self.url())
         dom = self.dom(browser)
         self.assertEqual([u'O Interlegis',
                           u'Comunidade Legislativa',
@@ -77,7 +79,8 @@ class TestIntegracao(unittest.TestCase):
         boxmanager = BoxManager(ISimpleBox)
 
         def use_box_form(title, subtitle, text, num):
-            browser = self.new_browser(boxmanager._box_name_for_url(num), as_admin=True)
+            browser = self.layer.manager_browser()
+            browser.open(self.url(boxmanager._box_name_for_url(num)))
             browser.getControl(name='form.widgets.title').value = title
             browser.getControl(name='form.widgets.subtitle').value = subtitle
             browser.getControl(name='form.widgets.text').value = text
@@ -92,13 +95,16 @@ class TestIntegracao(unittest.TestCase):
 
     def test_box_forms_numbers_begin_from_1_not_zero(self):
         with self.assertRaises(NotFound):
-            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(0), as_admin=True)
+            browser = self.layer.manager_browser()
+            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(0)))
 
     def test_box_forms_are_limited(self):
         with self.assertRaises(NotFound):
-            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(1000000), as_admin=True)
+            browser = self.layer.manager_browser()
+            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(1000000)))
 
     def test_box_form_cannot_be_created_after_initialization(self):
         BoxManager(ISimpleBox).build_form(99) # try to build a box form in an arbitrary moment
         with self.assertRaises(NotFound):
-            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(99), as_admin=True)
+            browser = self.layer.manager_browser()
+            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(99)))
