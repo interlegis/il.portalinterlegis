@@ -6,6 +6,8 @@
     css:if-content="#visual-portal-wrapper">
 
     <theme href="index.html" />
+
+	<!-- as pointed out in https://dev.plone.org/ticket/11829 -->
     <notheme if-path="presentation_view"/>
     <notheme if-path="source_editor.htm"/>
     <notheme if-path="ploneimage.htm"/>
@@ -32,7 +34,7 @@
     <drop css:content="#portal-searchbox .searchSection"/>
     <xsl:template match="//input[@id='searchGadget']/@placeholder">
         <xsl:attribute name="placeholder">O que você procura?</xsl:attribute>
-    </xsl:template> 
+    </xsl:template>
 
     <!-- MENU - TABS -->
     <replace css:theme="#portal-globalnav" css:content="#portal-globalnav" />
@@ -50,7 +52,7 @@
 
     <!-- CARROSSEL -->
     <replace css:theme="#carousel-1" css:content="#carousel-1"/>
-    
+
 
     <!-- FOOTER -->
 
