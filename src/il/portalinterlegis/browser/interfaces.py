@@ -1,12 +1,25 @@
 # -*- coding: utf-8 -*-
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
+from plone.autoform.interfaces import WIDGETS_KEY
+from plone.directives import form
 from zope import schema
 from zope.interface import Interface
 
+
 # TODO: tive de mover isso pra ca (veio de boxes) por causa de um import circular
 template_dict = {}
+
+# decorator
 def template(t):
     def f(cls):
         template_dict[cls] = t
+        return cls
+    return f
+
+# decorator
+def with_widget(**kwargs):
+    def f(cls):
+        cls.setTaggedValue(WIDGETS_KEY, kwargs)
         return cls
     return f
 
@@ -36,6 +49,7 @@ class IComunicacao(Interface):
 
 # BOX INTERFACES
 
+
 @template('''
       <div class="simple-box">
         <h2>%(title)s</h2>
@@ -44,10 +58,11 @@ class IComunicacao(Interface):
           %(text)s
         </p>
       </div>''')
-class ISimpleBox(Interface):
+@with_widget(text=WysiwygFieldWidget)
+class ISimpleBox(form.Schema):
     title = schema.TextLine(title=u"Título", required=True)
     subtitle = schema.TextLine(title=u"Subtítulo", required=True)
-    text = schema.TextLine(title=u"Texto", required=True)
+    text = schema.Text(title=u"Texto", required=False)
 
 @template('''
       <div id= "container">

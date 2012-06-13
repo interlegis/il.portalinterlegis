@@ -30,7 +30,8 @@ setup(name='il.portalinterlegis',
           'Plone',
           'five.grok',
           'plone.app.theming',
-          # -*- Extra requirements: -*-
+          'z3c.form',
+          'plone.directives.form',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""

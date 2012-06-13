@@ -5,7 +5,8 @@ from Products.CMFCore.interfaces import IFolderish
 from five import grok
 from five.grok.components import ZopeTwoPageTemplate
 from persistent.dict import PersistentDict
-from z3c.form import form, field, datamanager
+from plone.autoform.form import AutoExtensibleForm
+from z3c.form import form, datamanager
 from z3c.form.interfaces import IDataManager
 from zope.annotation import IAnnotations
 from zope.component import adapts, provideAdapter
@@ -19,6 +20,7 @@ class PersistentDictionaryField(datamanager.DictionaryField):
     adapts(PersistentDict, IField)
     implements(IDataManager)
 provideAdapter(PersistentDictionaryField)
+
 
 class BoxManager(object):
 
@@ -34,16 +36,24 @@ class BoxManager(object):
         # the combination (form.EditForm, grok.View)
         # is from https://mail.zope.org/pipermail/grok-dev/2008-July/005999.html
         # (plone.directives.form.EditForm did not work well)
-        class BoxEditForm(form.EditForm, grok.View):
+        class BoxEditForm(AutoExtensibleForm, form.EditForm, grok.View):
             grok.context(IFolderish)
             grok.name(self._box_name_for_url(number))
             grok.require('cmf.ModifyPortalContent')
 
             label = self.form_label
-            fields = field.Fields(self.schema)
+            schema = self.schema
 
             def getContent(form_self):
                 return self.box_content(form_self.context, number)
+
+            def render(self):
+                # we cannot simply associtate this template in the class level
+                # because form.EditForm has a ".render()" method and grok.View
+                # assumes you cannot have both "template = ..." and ".render()".
+                # No problem, we make a method that simply renders the template
+                template = ZopeTwoPageTemplate(filename="boxform.pt")
+                return template.render(self)
 
         globals()['BoxEditForm_%s' % self._box_key(number)] = BoxEditForm
         return BoxEditForm
