@@ -2,11 +2,9 @@
 import lxml.html
 import unittest2 as unittest
 from Products.CMFCore.utils import getToolByName
-from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
-from plone.testing.z2 import Browser
 from zExceptions import NotFound
-from plone.app.testing import login, SITE_OWNER_NAME, SITE_OWNER_PASSWORD
 
+from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
 from il.portalinterlegis.browser.boxes import BoxManager
 from il.portalinterlegis.browser.interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao, \
@@ -23,13 +21,10 @@ class TestIntegracao(unittest.TestCase):
         self.qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
 
     def new_browser(self, path=None, as_admin=False):
-        browser = Browser(self.app)
-        browser.handleErrors = False
         if as_admin:
-            browser.open(self.url("login_form"))
-            browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
-            browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
-            browser.getControl(name='submit').click()
+            browser = self.layer.manager_browser()
+        else:
+            browser = self.layer.anonymous_browser()
         browser.open(self.url(path))
         return browser
 
@@ -107,4 +102,3 @@ class TestIntegracao(unittest.TestCase):
         BoxManager(ISimpleBox).build_form(99) # try to build a box form in an arbitrary moment
         with self.assertRaises(NotFound):
             browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(99), as_admin=True)
-
