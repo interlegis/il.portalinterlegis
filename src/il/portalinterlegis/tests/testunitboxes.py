@@ -38,27 +38,34 @@ class TestUnitBoxes(unittest.TestCase):
 
     def test_row(self):
         context = object()
-        with patch.object(BoxManager, 'html') as mock:
+        with patch.object(BoxManager, 'html') as mock_html:
+            with patch.object(BoxManager, '_box_key') as mock_box_key:
 
-            @return_values(mock, ['\n      %s' % s for s in ['AAA', 'BBB', 'CCC', 'DDD']])
-            def side_effect(c, n):
-                self.assertIs(context, c)
+                @return_values(mock_html, ['\n      %s' % s for s in ['AAA', 'BBB', 'CCC', 'DDD']])
+                def side_effect(c, n):
+                    self.assertIs(context, c)
 
-            self.assertEqual('''
+                from itertools import count
+                numbers = count(1)
+                @return_values(mock_box_key, [1, 2, 3, 4])
+                def side_effect(n):
+                    self.assertIs(numbers.next(), n)
+
+                self.assertEqual('''
   <div class="dt-row">
-    <div class="dt-cell dt-position-0 dt-width-1">
+    <div id="1" class=" dt-cell dt-position-0 dt-width-1">
       AAA
     </div>
-    <div class="dt-cell dt-position-1 dt-width-2">
+    <div id="2" class=" dt-cell dt-position-1 dt-width-2">
       BBB
     </div>
-    <div class="dt-cell dt-position-3 dt-width-3">
+    <div id="3" class=" dt-cell dt-position-3 dt-width-3">
       CCC
     </div>
-    <div class="dt-cell dt-position-6 dt-width-1">
+    <div id="4" class=" dt-cell dt-position-6 dt-width-1">
       DDD
     </div>
   </div>
-''', row_html(context, [(1, _, _), (2, _, _), (3, _, _), (1, _, _)] ))
+''', row_html(context, [(1, _, 1), (2, _, 2), (3, _, 3), (1, _, 4)] ))
 
 

@@ -5,6 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
 from plone.testing.z2 import Browser
 from zExceptions import NotFound
+from plone.app.testing import login, SITE_OWNER_NAME, SITE_OWNER_PASSWORD
 
 from il.portalinterlegis.browser.boxes import BoxManager
 from il.portalinterlegis.browser.interfaces import \
@@ -15,14 +16,20 @@ from il.portalinterlegis.browser.interfaces import \
 class TestIntegracao(unittest.TestCase):
 
     layer = IL_PORTALINTERLEGIS_INTEGRATION_TESTING
+
     def setUp(self):
         self.app = self.layer['app']
         self.portal = self.layer['portal']
         self.qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
 
-    def browser(self, path=None):
+    def new_browser(self, path=None, as_admin=False):
         browser = Browser(self.app)
         browser.handleErrors = False
+        if as_admin:
+            browser.open(self.url("login_form"))
+            browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+            browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+            browser.getControl(name='submit').click()
         browser.open(self.url(path))
         return browser
 
@@ -46,7 +53,7 @@ class TestIntegracao(unittest.TestCase):
                         'package appears not to have been installed')
 
     def test_tabs_na_home(self):
-        browser = self.browser()
+        browser = self.new_browser()
         dom = self.dom(browser)
         self.assertEqual([u'O Interlegis',
                           u'Comunidade Legislativa',
@@ -75,7 +82,7 @@ class TestIntegracao(unittest.TestCase):
         boxmanager = BoxManager(ISimpleBox)
 
         def use_box_form(title, subtitle, text, num):
-            browser = self.browser(boxmanager._box_name_for_url(num))
+            browser = self.new_browser(boxmanager._box_name_for_url(num), as_admin=True)
             browser.getControl(name='form.widgets.title').value = title
             browser.getControl(name='form.widgets.subtitle').value = subtitle
             browser.getControl(name='form.widgets.text').value = text
@@ -90,14 +97,14 @@ class TestIntegracao(unittest.TestCase):
 
     def test_box_forms_numbers_begin_from_1_not_zero(self):
         with self.assertRaises(NotFound):
-            browser = self.browser(BoxManager(ISimpleBox)._box_name_for_url(0))
+            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(0), as_admin=True)
 
     def test_box_forms_are_limited(self):
         with self.assertRaises(NotFound):
-            browser = self.browser(BoxManager(ISimpleBox)._box_name_for_url(1000000))
+            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(1000000), as_admin=True)
 
     def test_box_form_cannot_be_created_after_initialization(self):
         BoxManager(ISimpleBox).build_form(99) # try to build a box form in an arbitrary moment
         with self.assertRaises(NotFound):
-            browser = self.browser(BoxManager(ISimpleBox)._box_name_for_url(99))
+            browser = self.new_browser(BoxManager(ISimpleBox)._box_name_for_url(99), as_admin=True)
 
