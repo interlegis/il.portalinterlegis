@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from persistent.dict import PersistentDict 
+from persistent.dict import PersistentDict
 from plone.app.testing import PLONE_FIXTURE, PloneSandboxLayer, IntegrationTesting, applyProfile
 from z3c.form import datamanager
 from z3c.form.interfaces import IDataManager
@@ -7,7 +7,7 @@ from zope.component import adapts, provideAdapter
 from zope.configuration import xmlconfig
 from zope.interface import implements
 from zope.schema.interfaces import IField
-
+from integrationtestutils import BrowserAwareIntegrationTesting
 
 class IlPortalinterlegis(PloneSandboxLayer):
 
@@ -43,12 +43,13 @@ class IlPortalinterlegis(PloneSandboxLayer):
             adapts(PersistentDict, IField)
             implements(IDataManager)
         provideAdapter(PersistentDictionaryField)
-        # fim da POG 
+        # fim da POG
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'il.portalinterlegis:default')
 
+
 IL_PORTALINTERLEGIS_FIXTURE = IlPortalinterlegis()
 IL_PORTALINTERLEGIS_INTEGRATION_TESTING = \
-    IntegrationTesting(bases=(IL_PORTALINTERLEGIS_FIXTURE, ),
+    BrowserAwareIntegrationTesting(bases=(IL_PORTALINTERLEGIS_FIXTURE, ),
                        name="IlPortalinterlegis:Integration")
