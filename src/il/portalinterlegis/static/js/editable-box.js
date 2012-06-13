@@ -21,7 +21,7 @@ jQuery(function($) {
       $('<a class="editable-box-link" href="' + edithref + '"><img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/></a>')
         .appendTo($(this))
         .prepOverlay({
-            subtype: 'ajax',
+            subtype: 'iframe',
             filter: '#content',
             formselector: 'form',
             config: {
