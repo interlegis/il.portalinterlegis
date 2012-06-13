@@ -20,6 +20,17 @@ class Home(GridView):
         [(4, IHighlight, 1), (4, ISimpleBox, 1), (4, ISimpleBox, 2), (4, ISimpleBox, 3)]
     ]
 
+class Carousel(GridView):
+    grok.name('carrossel')
+    grok.context(IPloneSiteRoot)
+    grok.require('zope2.View')
+
+    grid = [
+        [(10, ICarousel, 1), (6, ICalendar, 1)],
+        [(10, ICarousel, 2), (6, ICalendar, 2)],
+        [(10, ICarousel, 3), (6, ICalendar, 3)],
+    ]
+
 
 class ComunidadeLegislativaHome(grok.View):
     grok.name('home')

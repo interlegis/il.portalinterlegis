@@ -1,9 +1,22 @@
+
+      function endsWith(str, suffix) {
+          return str.indexOf(suffix, str.length - suffix.length) !== -1;
+      };
+
+      function removeSuffix(str, suffix) {
+          if (endsWith(str, suffix)) {
+              return str.substring(0, str.length - suffix.length)
+          } else {
+              return str
+          }
+      };
+
 // jQuery function
 /*global common_content_filter:false */
 jQuery(function($) {
   $('.editable-box').each(function() {
       var id = $(this).attr('id');
-      var current = window.location;
+      var current = removeSuffix(String(window.location), '/carrossel');
       var edithref = current + '/box_' + id;
       $('<a class="editable-box-link" href="' + edithref + '"><img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/></a>')
         .appendTo($(this))
