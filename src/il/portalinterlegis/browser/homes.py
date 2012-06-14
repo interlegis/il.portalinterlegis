@@ -1,13 +1,34 @@
+# -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
-from boxes.manager import GridView
+from boxes.interfaces import ISimpleBox, ICarousel, ICalendar, IAcompanheOInterlegis, IHighlight
+from boxes.manager import DtRow, Box, GridView
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
-from boxes.interfaces import \
-     ISimpleBox, ICarousel, ICalendar, ITabsPilares, IAcompanheOInterlegis, IHighlight
 
+
+class Tab(object):
+
+    def __init__(self, title, inner_title, *row_spec):
+        self.title = title
+        self.inner_title = inner_title
+        self.row_spec = row_spec
+
+    def __call__(self, context):
+        return 'TODO: TAB %s' % self.title
+
+class TabbedPane(object):
+
+    def __init__(self, *tabs):
+        self.tabs = tabs
+
+    def __call__(self, context):
+        return ''.join([tab(context) for tab in self.tabs])
+
+# These are meant for more legible grid definitions. Do not overuse.
 FULL = 16
+___, _ = DtRow, Box
 
 class Home(GridView):
     grok.name('home')
@@ -15,10 +36,19 @@ class Home(GridView):
     grok.require('zope2.View')
 
     grid = [
-        [(10, ICarousel, 1), (6, ICalendar, 1)],
-        [(FULL, ITabsPilares, 1)],
-        [(FULL, IAcompanheOInterlegis, 1)],
-        [(4, IHighlight, 1), (4, ISimpleBox, 1), (4, ISimpleBox, 2), (4, ISimpleBox, 3)]
+        ___((10, _(ICarousel, 1)), (6, _(ICalendar, 1)),),
+        ___((FULL, TabbedPane(
+            Tab(u'Informação',  u'Informação Legislativa',
+                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+            Tab(u'Capacitação', u'Capacitação Legislativa',
+                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+            Tab(u'Tecnologia',  u'Tecnologia Legislativa',
+                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+            Tab(u'Comunicação', u'Comunicação Legislativa',
+                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+            ))),
+        ___((FULL, _(IAcompanheOInterlegis, 1)), ),
+        ___((4, _(IHighlight, 1)), (4, _(ISimpleBox, 1)), (4, _(ISimpleBox, 2)), (4, _(ISimpleBox, 3)),),
     ]
 
 class Carousel(GridView):
@@ -27,9 +57,9 @@ class Carousel(GridView):
     grok.require('zope2.View')
 
     grid = [
-        [(10, ICarousel, 1), (6, ICalendar, 1)],
-        [(10, ICarousel, 2), (6, ICalendar, 2)],
-        [(10, ICarousel, 3), (6, ICalendar, 3)],
+        ___((10, _(ICarousel, 1)), (6, _(ICalendar, 1)),),
+        ___((10, _(ICarousel, 2)), (6, _(ICalendar, 2)),),
+        ___((10, _(ICarousel, 3)), (6, _(ICalendar, 3)),),
     ]
 
 
@@ -61,4 +91,3 @@ class ComunicacaoHome(grok.View):
     grok.name('home')
     grok.context(IComunicacao)
     grok.require('zope2.View')
-
