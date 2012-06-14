@@ -33,6 +33,10 @@ class IlPortalinterlegis(PloneSandboxLayer):
                        context=configurationContext)
         import il.portalinterlegis
         xmlconfig.file('configure.zcml',
+                       plone.formwidget.contenttree,
+                       context=configurationContext)
+        import il.portalinterlegis
+        xmlconfig.file('configure.zcml',
                        il.portalinterlegis,
                        context=configurationContext)
 

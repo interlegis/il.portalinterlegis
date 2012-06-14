@@ -78,19 +78,21 @@ class TestIntegracao(unittest.TestCase):
         context = self.portal
         boxmanager = BoxManager(ISimpleBox)
 
-        def use_box_form(title, subtitle, text, num):
+        def use_box_form(title, subtitle, text, target, num):
             browser = self.layer.manager_browser()
             browser.open(self.url(boxmanager._box_name_for_url(num)))
             browser.getControl(name='form.widgets.title').value = title
             browser.getControl(name='form.widgets.subtitle').value = subtitle
             browser.getControl(name='form.widgets.text').value = text
+            # TODO: nao sei como testar um AutocompleteFieldWidget com o zope.testbrowser (tem javascript)
+            # browser.getControl(label=u'Conteúdo relacionado').value = target
             browser.getControl(name='form.buttons.apply').click()
 
-        use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 1)
-        use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 2)
-        self.assertEqual({'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1'},
+        use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 'ALVO_1', 1)
+        use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 'ALVO_2', 2)
+        self.assertEqual({'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': None},
                          boxmanager.box_content(context, 1))
-        self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2'},
+        self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2', 'target': None},
                          boxmanager.box_content(context, 2))
 
     def test_box_forms_numbers_begin_from_1_not_zero(self):

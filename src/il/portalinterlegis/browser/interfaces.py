@@ -2,6 +2,8 @@
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform.interfaces import WIDGETS_KEY
 from plone.directives import form
+from plone.formwidget.autocomplete import AutocompleteFieldWidget
+from plone.formwidget.contenttree import PathSourceBinder
 from zope import schema
 from zope.interface import Interface
 
@@ -17,9 +19,11 @@ def template(t):
     return f
 
 # decorator
-def with_widget(**kwargs):
+def rich(*args, **kwargs):
     def f(cls):
-        cls.setTaggedValue(WIDGETS_KEY, kwargs)
+        cls.setTaggedValue(WIDGETS_KEY,
+                           dict([(k, WysiwygFieldWidget) for k in args],
+                                **kwargs))
         return cls
     return f
 
@@ -49,20 +53,24 @@ class IComunicacao(Interface):
 
 # BOX INTERFACES
 
-
 @template('''
       <div class="simple-box">
-        <h2>%(title)s</h2>
-        <h3 class="icon-news"><a href="">%(subtitle)s</a></h3>
-        <p>
-          %(text)s
-        </p>
+        <a href="/portal/%(target)s">
+          <h2>%(title)s</h2>
+          <h3 class="icon-news">%(subtitle)s</h3>
+          <p>
+            %(text)s
+          </p>
+        </a>
       </div>''')
-@with_widget(text=WysiwygFieldWidget)
+@rich('text', target=AutocompleteFieldWidget)
 class ISimpleBox(form.Schema):
     title = schema.TextLine(title=u"Título", required=True)
     subtitle = schema.TextLine(title=u"Subtítulo", required=True)
     text = schema.Text(title=u"Texto", required=False)
+    target = schema.Choice(title=u"Conteúdo relacionado",
+                            source=PathSourceBinder(),
+                            required=False)
 
 @template('''
       <div id= "container">
@@ -107,8 +115,12 @@ class ISimpleBox(form.Schema):
 
 	  </div>
 ''')
+@rich('text', target=AutocompleteFieldWidget)
 class ICarousel(Interface):
-    pass
+    title = schema.TextLine(title=u"Título", required=True)
+    text = schema.Text(title=u"Texto", required=False)
+    target = schema.Choice(title=u"Conteúdo relacionado",
+                           source=PathSourceBinder(portal_type='Document'))
 
 @template('''
       <h2 class="box-header">Andamento do Interlegis</h2>

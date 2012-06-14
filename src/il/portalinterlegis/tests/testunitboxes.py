@@ -23,16 +23,18 @@ class TestUnitBoxes(unittest.TestCase):
 
     def test_html(self):
         with patch.object(BoxManager, 'box_content') as mock:
-            mock.return_value = {'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1'}
+            mock.return_value = {'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': 'alvo'}
 
             boxmanager = BoxManager(ISimpleBox)
             self.assertEqual('''
       <div class="simple-box">
-        <h2>TIT_1</h2>
-        <h3 class="icon-news"><a href="">SUBTIT_1</a></h3>
-        <p>
-          TEXT_1
-        </p>
+        <a href="/portal/alvo">
+          <h2>TIT_1</h2>
+          <h3 class="icon-news">SUBTIT_1</h3>
+          <p>
+            TEXT_1
+          </p>
+        </a>
       </div>
         ''', boxmanager.html(_, _))
 
