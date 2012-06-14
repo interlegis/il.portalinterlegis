@@ -41,11 +41,9 @@ class IlPortalinterlegis(PloneSandboxLayer):
                        context=configurationContext)
 
         #TODO: (fazer essa POG do jeito certo, que não sei qual é)
-        # tive de repetir isso aqui pois não sei como esse mesmo trecho
-        # (de browser.boxes) é ativado normalmente, e como reproduzir isso no ambiente de teste
-        class PersistentDictionaryField(datamanager.DictionaryField):
-            adapts(PersistentDict, IField)
-            implements(IDataManager)
+        # tive de repetir isso aqui pois não sei como esse adapter
+        # é ativado normalmente, e como reproduzir isso no ambiente de teste
+        from il.portalinterlegis.browser.boxes.manager import PersistentDictionaryField
         provideAdapter(PersistentDictionaryField)
         # fim da POG
 
