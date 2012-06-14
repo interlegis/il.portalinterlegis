@@ -1,7 +1,7 @@
 import martian
 from AccessControl import getSecurityManager
-from Products.CMFCore import permissions
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.permissions import ModifyPortalContent
 from five import grok
 from five.grok.components import ZopeTwoPageTemplate
 from jinja2 import Environment, PackageLoader
@@ -85,43 +85,61 @@ def get_or_create_persistent_dict(dictionary, key):
     if not value:
         dictionary[key] = value = PersistentDict()
     return value
-
+from exceptions import ValueError
 # ROWS
+class DtRow(object):
 
-ROW_TEMPLATE = '''
+    ROW_TEMPLATE = '''
   <div class="dt-row">%s
   </div>'''
 
-CELL_TEMPLATE = '''
-    <div id="%s" class="%s dt-cell dt-position-%s dt-width-%s">%s
+    CELL_TEMPLATE = '''
+    <div class="dt-cell dt-position-%s dt-width-%s">%s
     </div>'''
 
-# TODO: refactor these functions to live inside GridView @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-def row_spec_to_cells(context, row_spec):
-    """Iterates transforming each cell spec from
-       (width, schema, number) to
-       (id, additional_classes, position, width, html)
-    """
-    position = 0
-    for (width, schema, number) in row_spec:
-        boxmanager = BoxManager(schema)
-        if getSecurityManager().checkPermission(permissions.ModifyPortalContent, context):
-            additional_classes = 'editable-box'
-        else:
-            additional_classes = ''
-        yield (boxmanager._box_key(number),
-               additional_classes,
-               position,
-               width,
-               boxmanager.html(context, number))
-        position += width
+    def __init__(self, *row_spec):
+        try:
+            for (width, template) in row_spec: pass
+        except ValueError, e:
+            e.args += row_spec
+            raise
+        self.row_spec = row_spec
 
-def row_html(context, row_spec):
-    """Renders the html of one row.
-    `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
-    """
-    return ROW_TEMPLATE % ''.join(
-        [CELL_TEMPLATE % cell for cell in row_spec_to_cells(context, row_spec)])
+    def _cells(self, context):
+        """Iterates transforming each cell spec from (width, template) to
+           (position, width, rendered_html)
+        """
+        position = 0
+        for (width, template) in self.row_spec:
+            yield (position, width, template(context))
+            position += width
+
+    def render(self, context):
+        """Renders the html of one row.
+        `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
+        """
+        return self.ROW_TEMPLATE % ''.join(
+            [self.CELL_TEMPLATE % cell for cell in self._cells(context)])
+
+
+class Box(object):
+
+    BOX_TEMPLATE = '''
+      <div id="%s"%s>%s
+      </div>'''
+
+    def __init__(self, schema, number, permission=ModifyPortalContent):
+        self.schema = schema
+        self.number = number
+        self.permission = permission
+
+    def __call__(self, context):
+        boxmanager = BoxManager(self.schema)
+        is_editable = getSecurityManager().checkPermission(self.permission, context)
+        return self.BOX_TEMPLATE % (boxmanager._box_key(self.number),
+                                    ' class ="editable-box"' if is_editable else '',
+                                    boxmanager.html(context, self.number))
+
 
 class GridView(grok.View):
     "Base class for all grid-like views"
@@ -130,8 +148,8 @@ class GridView(grok.View):
     template = ZopeTwoPageTemplate(filename="gridview.pt")
 
     def rows(self):
-        for row_spec in self.grid:
-            yield row_html(self.context, row_spec)
+        for row in self.grid:
+            yield row.render(self.context)
 
 ################################################################
 # TODO: o unico lugar em que isto funcionou foi aqui. Entender porque e decidir lugar definitivo.
