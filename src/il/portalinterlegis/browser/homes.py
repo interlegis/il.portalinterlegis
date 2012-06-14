@@ -1,9 +1,10 @@
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
-from boxes import GridView
+from boxes.manager import GridView
 from interfaces import \
-     IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao, \
+     IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
+from boxes.interfaces import \
      ISimpleBox, ICarousel, ICalendar, ITabsPilares, IAcompanheOInterlegis, IHighlight
 
 FULL = 16
