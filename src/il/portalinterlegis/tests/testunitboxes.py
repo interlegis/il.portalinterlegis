@@ -2,9 +2,10 @@
 import unittest2 as unittest
 from mock import patch
 
-from il.portalinterlegis.browser.boxes import BoxManager, row_html
-from il.portalinterlegis.browser.interfaces import ISimpleBox
+from il.portalinterlegis.browser.boxes.manager import BoxManager, row_html
+from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
 from mockutils import *
+from itertools import count
 
 _ = None # anything, doesn't really matter
 
@@ -13,20 +14,30 @@ class TestUnitBoxes(unittest.TestCase):
     """
 
     def setUp(self):
-        pass
+        self.diff_count = count(1)
 
-    def assertEqual(self, first, second, *args):
+    def assertMultiLineEqual(self, first, second, *args):
         "ignores differences in leading and trailing whitespace in strings"
-        super(TestUnitBoxes, self).assertMultiLineEqual(
-            isinstance(first, str) and first.strip() or first,
-            isinstance(second, str) and second.strip() or second, *args)
+        self.assert_(isinstance(first, basestring), (
+                'First argument is not a string'))
+        self.assert_(isinstance(second, basestring), (
+                'Second argument is not a string'))
+
+        first = first.strip()
+        second = second.strip()
+        if first != second:
+            c = self.diff_count.next()
+            for i, s in enumerate([first, second]):
+                with open("out_%s.%s" % (c, i), "w+") as f:
+                    f.write(s)
+        super(TestUnitBoxes, self).assertMultiLineEqual(first, second, *args)
 
     def test_html(self):
         with patch.object(BoxManager, 'box_content') as mock:
             mock.return_value = {'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': 'alvo'}
 
             boxmanager = BoxManager(ISimpleBox)
-            self.assertEqual('''
+            self.assertMultiLineEqual('''
       <div class="simple-box">
         <a href="/portal/alvo">
           <h2>TIT_1</h2>
@@ -47,13 +58,12 @@ class TestUnitBoxes(unittest.TestCase):
                 def side_effect(c, n):
                     self.assertIs(context, c)
 
-                from itertools import count
                 numbers = count(1)
                 @return_values(mock_box_key, [1, 2, 3, 4])
                 def side_effect(n):
                     self.assertIs(numbers.next(), n)
 
-                self.assertEqual('''
+                self.assertMultiLineEqual('''
   <div class="dt-row">
     <div id="1" class=" dt-cell dt-position-0 dt-width-1">
       AAA

@@ -4,6 +4,7 @@ from Products.CMFCore import permissions
 from Products.CMFCore.interfaces import IFolderish
 from five import grok
 from five.grok.components import ZopeTwoPageTemplate
+from jinja2 import Environment, PackageLoader
 from persistent.dict import PersistentDict
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import form, datamanager
@@ -13,7 +14,7 @@ from zope.component import adapts, provideAdapter
 from zope.interface import implements
 from zope.schema.interfaces import IField
 
-from interfaces import template_dict, box_schemas
+from interfaces import box_schemas
 
 
 class PersistentDictionaryField(datamanager.DictionaryField):
@@ -21,6 +22,7 @@ class PersistentDictionaryField(datamanager.DictionaryField):
     implements(IDataManager)
 provideAdapter(PersistentDictionaryField)
 
+templates = Environment(loader=PackageLoader(__name__))
 
 class BoxManager(object):
 
@@ -68,8 +70,8 @@ class BoxManager(object):
         return get_or_create_persistent_dict(boxes, self._box_key(number))
 
     def html(self, context, number):
-        return self._schema_template() % NiceDictGetter(
-            self.box_content(context, number))
+        template = templates.get_template(self.schema.__name__.lower() + '.html')
+        return template.render(self.box_content(context, number))
 
     def _box_key(self, number):
         return '%s_%s' % (self.schema.__name__, number)
@@ -77,24 +79,12 @@ class BoxManager(object):
     def _box_name_for_url(self, number):
         return 'box_%s' % self._box_key(number)
 
-    def _schema_template(self):
-        return template_dict[self.schema]
 
 def get_or_create_persistent_dict(dictionary, key):
     value = dictionary.get(key, None)
     if not value:
         dictionary[key] = value = PersistentDict()
     return value
-
-class NiceDictGetter(object):
-    """Dictionary getter with a default empty string for unknown keys.
-    """
-    def __init__(self, wrapped):
-        self.wrapped = wrapped
-
-    def __getitem__(self, key):
-        value = self.wrapped.get(key, None)
-        return (value is None) and '---' or value
 
 # ROWS
 

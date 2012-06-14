@@ -5,10 +5,10 @@ from Products.CMFCore.utils import getToolByName
 from zExceptions import NotFound
 
 from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
-from il.portalinterlegis.browser.boxes import BoxManager
+from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
+from il.portalinterlegis.browser.boxes.manager import BoxManager
 from il.portalinterlegis.browser.interfaces import \
-     IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao, \
-     ISimpleBox
+     IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
 
 class TestIntegracao(unittest.TestCase):
