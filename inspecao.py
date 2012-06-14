@@ -10,3 +10,8 @@ from il.portalinterlegis.browser.boxes import BoxManager
 from il.portalinterlegis.browser.interfaces import ISimpleBox
 boxmanager = BoxManager(ISimpleBox)
 boxmanager.box_content(context, 1)
+
+from Testing.ZopeTestCase.utils import startZServer
+startZServer()
+
+with open("out", "w+") as f: f.write(browser.contents)
