@@ -20,14 +20,6 @@ class TestIntegracao(unittest.TestCase):
         self.portal = self.layer['portal']
         self.qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
 
-    def new_browser(self, path=None, as_admin=False):
-        if as_admin:
-            browser = self.layer.manager_browser()
-        else:
-            browser = self.layer.anonymous_browser()
-        browser.open(self.url(path))
-        return browser
-
     def dom(self, browser):
         return lxml.html.fromstring(browser.contents)
 
