@@ -6,7 +6,7 @@ from zExceptions import NotFound
 
 from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
 from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
-from il.portalinterlegis.browser.boxes.manager import BoxManager
+from il.portalinterlegis.browser.boxes.manager import Box, build_box_form
 from il.portalinterlegis.browser.interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
@@ -72,15 +72,14 @@ class TestIntegracao(unittest.TestCase):
             self.assertEqual('home', obj.getLayout())
 
     def test_box_content_is_empty_before_visiting_form(self):
-        self.assertEqual({}, BoxManager(ISimpleBox).box_content(self.portal, 1))
+        self.assertEqual({}, Box(ISimpleBox, 1).content(self.portal))
 
     def test_using_box_form_creates_box_content(self):
         context = self.portal
-        boxmanager = BoxManager(ISimpleBox)
 
-        def use_box_form(title, subtitle, text, target, num):
+        def use_box_form(title, subtitle, text, target, box):
             browser = self.layer.manager_browser()
-            browser.open(self.url(boxmanager._box_name_for_url(num)))
+            browser.open(self.url(box.form_name))
             browser.getControl(name='form.widgets.title').value = title
             browser.getControl(name='form.widgets.subtitle').value = subtitle
             browser.getControl(name='form.widgets.text').value = text
@@ -88,25 +87,32 @@ class TestIntegracao(unittest.TestCase):
             # browser.getControl(label=u'Conteúdo relacionado').value = target
             browser.getControl(name='form.buttons.apply').click()
 
-        use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 'ALVO_1', 1)
-        use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 'ALVO_2', 2)
+        box_1 = Box(ISimpleBox, 1)
+        use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 'ALVO_1', box_1)
         self.assertEqual({'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': None},
-                         boxmanager.box_content(context, 1))
+                         box_1.content(context))
+
+        # a second one to test there is no mutual interference
+        box_2 = Box(ISimpleBox, 2)
+        use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 'ALVO_2', box_2)
         self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2', 'target': None},
-                         boxmanager.box_content(context, 2))
+                         box_2.content(context))
 
     def test_box_forms_numbers_begin_from_1_not_zero(self):
         with self.assertRaises(NotFound):
             browser = self.layer.manager_browser()
-            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(0)))
+            browser.open(self.url(Box(ISimpleBox, 0).form_name))
 
     def test_box_forms_are_limited(self):
         with self.assertRaises(NotFound):
             browser = self.layer.manager_browser()
-            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(1000000)))
+            browser.open(self.url(Box(ISimpleBox, 1000000).form_name))
 
     def test_box_form_cannot_be_created_after_initialization(self):
-        BoxManager(ISimpleBox).build_form(99) # try to build a box form in an arbitrary moment
+        """Try to build a box form in an arbitrary moment.
+           Unfortunately that's not possible.
+        """
+        build_box_form(Box(ISimpleBox, 99))
         with self.assertRaises(NotFound):
             browser = self.layer.manager_browser()
-            browser.open(self.url(BoxManager(ISimpleBox)._box_name_for_url(99)))
+            browser.open(self.url(Box(ISimpleBox, 99).form_name))
