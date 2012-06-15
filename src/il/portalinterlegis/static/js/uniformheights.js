@@ -1,12 +1,12 @@
 
-function unifyHeights(sel) {    
+function unifyHeights(sel) {
     var max = 0;
-    children = $(sel).children('.dt-cell')
+    children = $(sel).children('.dt-cell').children()
     children.each(function(){
-        var height = $(this).height();      
-        if ( height > max ) { max = height; }    
-    }); 
-    children.css('height', max);  
+        var height = $(this).height();
+        if ( height > max ) { max = height; }
+    });
+    children.css('height', max);
 }
 
 // Unifies heights of the cells of each dotted row.
@@ -16,6 +16,6 @@ function unifyHeightsOfDottedCells(document) {
         $(".dt-row").each(function(){
             unifyHeights($(this))
         });
-    }); 
+    });
 }
 
