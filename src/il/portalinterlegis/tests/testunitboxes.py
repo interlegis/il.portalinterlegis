@@ -2,19 +2,18 @@
 import unittest2 as unittest
 from mock import patch
 
-from il.portalinterlegis.browser.boxes.manager import BoxManager, DtRow
-from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
-from mockutils import *
+from il.portalinterlegis.browser.boxes.manager import Box, DtRow
 from itertools import count
+from mock import MagicMock as Mock
 
-_any_ = None # anything, doesn't really matter
+diff_count = count(1)
 
 class TestUnitBoxes(unittest.TestCase):
     """ Unit tests for the boxes functionality
     """
 
     def setUp(self):
-        self.diff_count = count(1)
+        pass
 
     def assertMultiLineEqual(self, first, second, *args):
         "ignores differences in leading and trailing whitespace in strings"
@@ -26,36 +25,45 @@ class TestUnitBoxes(unittest.TestCase):
         first = first.strip()
         second = second.strip()
         if first != second:
-            c = self.diff_count.next()
+            c = diff_count.next()
             for i, s in enumerate([first, second]):
                 with open("out_%s.%s" % (c, i), "w+") as f:
                     f.write(s)
         super(TestUnitBoxes, self).assertMultiLineEqual(first, second, *args)
 
-    def test_html(self):
-        with patch.object(BoxManager, 'box_content') as mock:
-            mock.return_value = {'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': 'alvo'}
+    def test_box_render_basic(self):
 
-            boxmanager = BoxManager(ISimpleBox)
+        with patch('il.portalinterlegis.browser.boxes.manager.template_factory',
+                   template_factory_stub('        XXXX')):
+
+            box = Box(IStubBox, 1)
+            box.content = Mock(
+                return_value = {'var': 'XXXX'})
+            context = object()
             self.assertMultiLineEqual('''
-      <div class="simple-box">
-        <a href="/portal/alvo">
-          <h2>TIT_1</h2>
-          <h3 class="icon-news">SUBTIT_1</h3>
-          <p>
-            TEXT_1
-          </p>
-        </a>
-      </div>
-        ''', boxmanager.html(_any_, _any_))
+      <div id="IStubBox_1">
+        XXXX
+      </div>''', box(context))
+            box.content.assert_called_with(context)
 
-    def test_row(self):
+    def test_box_render_editable(self):
+        with patch('il.portalinterlegis.browser.boxes.manager.template_factory',
+                   template_factory_stub('        XXXX')):
+            with patch('il.portalinterlegis.browser.boxes.manager.getSecurityManager') as security_mock:
+                security_mock.checkPermission.return_value = True
+
+                box = Box(IStubBox, 1)
+                box.content = Mock(
+                    return_value = {'var': 'XXXX'})
+                context = object()
+                self.assertMultiLineEqual('''
+      <div id="IStubBox_1" class ="editable-box">
+        XXXX
+      </div>''', box(context))
+                box.content.assert_called_with(context)
+
+    def test_row_structure(self):
         context = object()
-        def mock_template(c):
-            # A template is just a callable. A function will do.
-            def f(context):
-                return "\n      %s" % (3*c)
-            return f
 
         self.assertMultiLineEqual('''
   <div class="dt-row">
@@ -72,9 +80,21 @@ class TestUnitBoxes(unittest.TestCase):
       DDD
     </div>
   </div>
-''', DtRow((1, mock_template('A')),
-           (2, mock_template('B')),
-           (3, mock_template('C')),
-           (1, mock_template('D'))).render(context))
+''', DtRow((1, Mock(return_value="\n      AAA")),
+           (2, Mock(return_value="\n      BBB")),
+           (3, Mock(return_value="\n      CCC")),
+           (1, Mock(return_value="\n      DDD"))).render(context))
 
+
+class IStubBox(object):
+    pass
+
+class TemplateStub(object):
+    def render(self, context):
+        return "        %(var)s" % context
+
+def template_factory_stub(value):
+    template_factory_stub = Mock()
+    template_factory_stub.get_template.return_value = TemplateStub()
+    return template_factory_stub
 

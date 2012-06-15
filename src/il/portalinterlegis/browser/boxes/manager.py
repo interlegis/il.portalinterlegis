@@ -1,3 +1,5 @@
+from exceptions import ValueError
+
 import martian
 from AccessControl import getSecurityManager
 from Products.CMFCore.interfaces import IFolderish
@@ -22,70 +24,87 @@ class PersistentDictionaryField(datamanager.DictionaryField):
     implements(IDataManager)
 provideAdapter(PersistentDictionaryField)
 
-templates = Environment(loader=PackageLoader(__name__))
+template_factory = Environment(loader=PackageLoader(__name__))
 
-class BoxManager(object):
+class Box(object):
 
     ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
 
-    def __init__(self, schema, label=None):
+    BOX_TEMPLATE = '''
+      <div id="%s"%s>
+%s
+      </div>'''
+
+    def __init__(self, schema, number, permission=ModifyPortalContent, form_label=None):
         self.schema = schema
+        self.number = number
+        self.permission = permission
         #TODO: improve this text
-        self.form_label = label or u'Edite os valore desta caixa'
+        self.form_label = form_label or u'Edite os valore desta caixa'
 
-    def build_form(self, number):
+    def __call__(self, context):
+        is_editable = getSecurityManager().checkPermission(self.permission, context)
+        return self.BOX_TEMPLATE % (self.key,
+                                    ' class ="editable-box"' if is_editable else '',
+                                    self.template.render(self.content(context)))
 
-        # the combination (form.EditForm, grok.View)
-        # is from https://mail.zope.org/pipermail/grok-dev/2008-July/005999.html
-        # (plone.directives.form.EditForm did not work well)
-        class BoxEditForm(AutoExtensibleForm, form.EditForm, grok.View):
-            grok.context(IFolderish)
-            grok.name(self._box_name_for_url(number))
-            grok.require('cmf.ModifyPortalContent')
-
-            label = self.form_label
-            schema = self.schema
-
-            def getContent(form_self):
-                return self.box_content(form_self.context, number)
-
-            def render(self):
-                # we cannot simply associtate this template in the class level
-                # because form.EditForm has a ".render()" method and grok.View
-                # assumes you cannot have both "template = ..." and ".render()".
-                # No problem, we make a method that simply renders the template
-                template = ZopeTwoPageTemplate(filename="boxform.pt")
-                return template.render(self)
-
-        globals()['BoxEditForm_%s' % self._box_key(number)] = BoxEditForm
-        return BoxEditForm
-
-    def build_n_forms(self, max_number):
-        for number in range(1, max_number+1):
-            self.build_form(number)
-
-    def box_content(self, context, number): # maybe this method should be private
+    def content(self, context):
         annotations = IAnnotations(context)
-        boxes = get_or_create_persistent_dict(annotations, BoxManager.ALL_BOXES_KEY)
-        return get_or_create_persistent_dict(boxes, self._box_key(number))
+        boxes = get_or_create_persistent_dict(annotations, self.ALL_BOXES_KEY)
+        return get_or_create_persistent_dict(boxes, self.key)
 
-    def html(self, context, number):
-        template = templates.get_template(self.schema.__name__.lower() + '.html')
-        return template.render(self.box_content(context, number))
+    @property
+    def template(self):
+        return template_factory.get_template(
+            self.schema.__name__.lower() + '.html')
 
-    def _box_key(self, number):
-        return '%s_%s' % (self.schema.__name__, number)
+    @property
+    def key(self):
+        return '%s_%s' % (self.schema.__name__, self.number)
 
-    def _box_name_for_url(self, number):
-        return 'box_%s' % self._box_key(number)
+    @property
+    def form_name(self):
+        """Last part of form urls.
+        """
+        return 'box_%s' % self.key
 
+def build_box_form(box):
+
+    # the combination (form.EditForm, grok.View)
+    # is from https://mail.zope.org/pipermail/grok-dev/2008-July/005999.html
+    # (plone.directives.form.EditForm did not work well)
+    class BoxEditForm(AutoExtensibleForm, form.EditForm, grok.View):
+        grok.context(IFolderish)
+        grok.name(box.form_name)
+        grok.require('cmf.ModifyPortalContent')
+
+        label = box.form_label
+        schema = box.schema
+
+        def getContent(self):
+            return box.content(self.context)
+
+        def render(self):
+            # we cannot simply associtate this template in the class level
+            # because form.EditForm has a ".render()" method and grok.View
+            # assumes you cannot have both "template = ..." and ".render()".
+            # No problem, we make a method that simply renders the template
+            template = ZopeTwoPageTemplate(filename="boxform.pt")
+            return template.render(self)
+
+    globals()['BoxEditForm_%s' % box.key] = BoxEditForm
+    return BoxEditForm
+
+def build_many_box_forms(schema, max_number):
+    for number in range(1, max_number+1):
+        build_box_form(Box(schema, number))
 
 def get_or_create_persistent_dict(dictionary, key):
     value = dictionary.get(key, None)
     if not value:
         dictionary[key] = value = PersistentDict()
     return value
-from exceptions import ValueError
+
 # ROWS
 class DtRow(object):
 
@@ -122,25 +141,6 @@ class DtRow(object):
             [self.CELL_TEMPLATE % cell for cell in self._cells(context)])
 
 
-class Box(object):
-
-    BOX_TEMPLATE = '''
-      <div id="%s"%s>%s
-      </div>'''
-
-    def __init__(self, schema, number, permission=ModifyPortalContent):
-        self.schema = schema
-        self.number = number
-        self.permission = permission
-
-    def __call__(self, context):
-        boxmanager = BoxManager(self.schema)
-        is_editable = getSecurityManager().checkPermission(self.permission, context)
-        return self.BOX_TEMPLATE % (boxmanager._box_key(self.number),
-                                    ' class ="editable-box"' if is_editable else '',
-                                    boxmanager.html(context, self.number))
-
-
 class GridView(grok.View):
     "Base class for all grid-like views"
     martian.baseclass()
@@ -155,7 +155,6 @@ class GridView(grok.View):
 # TODO: o unico lugar em que isto funcionou foi aqui. Entender porque e decidir lugar definitivo.
 
 # initialize all the box managers
-
 for s in box_schemas():
-    BoxManager(s).build_n_forms(10)
+    build_many_box_forms(s, 10)
 
