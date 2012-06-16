@@ -33,33 +33,32 @@ class TestUnitBoxes(unittest.TestCase):
 
     def test_box_render_basic(self):
 
-        with patch('il.portalinterlegis.browser.boxes.manager.template_factory',
-                   template_factory_stub('        XXXX')):
+        with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
 
             box = Box(IStubBox, 1)
-            box.content = Mock(
-                return_value = {'var': 'XXXX'})
+            box.content = Mock(return_value = {'var': 'XXXX'})
             context = object()
             self.assertMultiLineEqual('''
-      <div id="IStubBox_1">
-        XXXX
-      </div>''', box(context))
+<div id="IStubBox_1">
+  XXXX
+</div>''', box(context))
             box.content.assert_called_with(context)
 
     def test_box_render_editable(self):
-        with patch('il.portalinterlegis.browser.boxes.manager.template_factory',
-                   template_factory_stub('        XXXX')):
+        with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
             with patch('il.portalinterlegis.browser.boxes.manager.getSecurityManager') as security_mock:
                 security_mock.checkPermission.return_value = True
 
                 box = Box(IStubBox, 1)
-                box.content = Mock(
-                    return_value = {'var': 'XXXX'})
+                box.content = Mock(return_value = {'var': 'XXXX'})
                 context = object()
                 self.assertMultiLineEqual('''
-      <div id="IStubBox_1" class ="editable-box">
-        XXXX
-      </div>''', box(context))
+<div id="IStubBox_1" class ="editable-box" >
+  XXXX
+  <a class="editable-box-link" href="box_IStubBox_1">
+    <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
+  </a>
+</div>''', box(context))
                 box.content.assert_called_with(context)
 
     def test_row_structure(self):
@@ -89,12 +88,16 @@ class TestUnitBoxes(unittest.TestCase):
 class IStubBox(object):
     pass
 
-class TemplateStub(object):
-    def render(self, context):
-        return "        %(var)s" % context
+from il.portalinterlegis.browser.boxes.manager import template_factory, EditableBox
+from jinja2 import Template
 
-def template_factory_stub(value):
-    template_factory_stub = Mock()
-    template_factory_stub.get_template.return_value = TemplateStub()
-    return template_factory_stub
+class TemplateFactoryStub(object):
+
+    def get_template(self, name):
+        if name == "istubbox.html":
+            return Template("{{var}}")
+        elif name == EditableBox.TEMPLATE_NAME:
+            return template_factory.get_template(EditableBox.TEMPLATE_NAME)
+        else:
+            raise AssertionError
 

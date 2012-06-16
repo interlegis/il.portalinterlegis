@@ -1,5 +1,3 @@
-from exceptions import ValueError
-
 import martian
 from AccessControl import getSecurityManager
 from Products.CMFCore.interfaces import IFolderish
@@ -18,7 +16,6 @@ from zope.schema.interfaces import IField
 
 from interfaces import box_schemas
 
-
 class PersistentDictionaryField(datamanager.DictionaryField):
     adapts(PersistentDict, IField)
     implements(IDataManager)
@@ -26,47 +23,66 @@ provideAdapter(PersistentDictionaryField)
 
 template_factory = Environment(loader=PackageLoader(__name__))
 
-class Box(object):
+class EditableBox(object):
+
+    TEMPLATE_NAME = 'editablebox.html'
+
+    def __init__(self, permission=ModifyPortalContent):
+        self.permission = permission
+
+    def __call__(self, context):
+        editablebox_template = template_factory.get_template(self.TEMPLATE_NAME)
+        return editablebox_template.render(
+            box = self,
+            is_editable = self.is_editable(context),
+            inner = self.inner_render(context))
+
+    def is_editable(self, context):
+        return getSecurityManager().checkPermission(self.permission, context)
+
+    @property
+    def id(self):
+        raise NotImplementedError
+
+    @property
+    def edit_href(self):
+        raise NotImplementedError
+
+    def inner_render(self, context):
+        raise NotImplementedError
+
+
+class Box(EditableBox):
 
     ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
 
-    BOX_TEMPLATE = '''
-      <div id="%s"%s>
-%s
-      </div>'''
-
     def __init__(self, schema, number, permission=ModifyPortalContent, form_label=None):
+        super(Box, self).__init__(permission)
         self.schema = schema
         self.number = number
-        self.permission = permission
-        #TODO: improve this text
-        self.form_label = form_label or u'Edite os valore desta caixa'
+        self.form_label = form_label or u'Edite os valore desta caixa' #TODO: improve this text
 
-    def __call__(self, context):
-        is_editable = getSecurityManager().checkPermission(self.permission, context)
-        return self.BOX_TEMPLATE % (self.key,
-                                    ' class ="editable-box"' if is_editable else '',
-                                    self.template.render(self.content(context)))
+    @property
+    def id(self):
+        return '%s_%s' % (self.schema.__name__, self.number)
+
+    def inner_render(self, context):
+        template = template_factory.get_template(self.schema.__name__.lower() + '.html')
+        return template.render(self.content(context))
 
     def content(self, context):
         annotations = IAnnotations(context)
         boxes = get_or_create_persistent_dict(annotations, self.ALL_BOXES_KEY)
-        return get_or_create_persistent_dict(boxes, self.key)
-
-    @property
-    def template(self):
-        return template_factory.get_template(
-            self.schema.__name__.lower() + '.html')
-
-    @property
-    def key(self):
-        return '%s_%s' % (self.schema.__name__, self.number)
+        return get_or_create_persistent_dict(boxes, self.id)
 
     @property
     def form_name(self):
         """Last part of form urls.
         """
-        return 'box_%s' % self.key
+        return 'box_%s' % self.id
+
+    edit_href = form_name # To be overridden independently
+
 
 def build_box_form(box):
 
@@ -98,7 +114,7 @@ def build_box_form(box):
             template = ZopeTwoPageTemplate(filename="boxform.pt")
             return template.render(self)
 
-    globals()['BoxEditForm_%s' % box.key] = BoxEditForm
+    globals()['BoxEditForm_%s' % box.id] = BoxEditForm
     return BoxEditForm
 
 def build_many_box_forms(schema, max_number):

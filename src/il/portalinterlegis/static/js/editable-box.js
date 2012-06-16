@@ -14,27 +14,22 @@
 // jQuery function
 /*global common_content_filter:false */
 jQuery(function($) {
-  $('.editable-box').each(function() {
-      var id = $(this).attr('id');
-      var current = removeSuffix(String(window.location), '/carrossel');
-      var edithref = current + '/box_' + id;
-      $('<a class="editable-box-link" href="' + edithref + '"><img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/></a>')
-        .appendTo($(this))
-        .prepOverlay({
-            subtype: 'iframe',
-            filter: '#content',
-            formselector: 'form',
-            config: {
+  $('.editable-box-link').each(function() {
+      $(this).prepOverlay({
+          subtype: 'iframe',
+          filter: '#content',
+          formselector: 'form',
+          config: {
               closeOnClick: true,
               mask: {
-                color: '#000000',
-                opacity: 0.8
+                  color: '#000000',
+                  opacity: 0.8
               },
               onClose: function() {
-                location.reload();
-            }
-            },
-        });
+                  location.reload();
+              }
+          },
+      });
   });
 
   // Check if tiledata is available and valid
