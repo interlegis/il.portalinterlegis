@@ -13,11 +13,12 @@
     <notheme if-path="table.htm"/>
     <notheme if-path="attributes.htm"/>
 
+    <!-- theme selection -->
     <theme href="box_form.html" css:if-content="#box-preview"/>
     <theme href="index.html" />
 
+    <!-- incorpotating general content  -->
     <before theme-children='/html/head' content-children='/html/head'/>
-
     <copy attributes="*" theme="/html" content="/html"/>
     <copy attributes="*" theme="/html/body" content="/html/body"/>
 
