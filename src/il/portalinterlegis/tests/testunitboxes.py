@@ -79,10 +79,10 @@ class TestUnitBoxes(unittest.TestCase):
       DDD
     </div>
   </div>
-''', DtRow((1, Mock(return_value="\n      AAA")),
-           (2, Mock(return_value="\n      BBB")),
-           (3, Mock(return_value="\n      CCC")),
-           (1, Mock(return_value="\n      DDD"))).render(context))
+''', DtRow((1, Mock(return_value="AAA")),
+           (2, Mock(return_value="BBB")),
+           (3, Mock(return_value="CCC")),
+           (1, Mock(return_value="DDD"))).render(context))
 
 
 class IStubBox(object):
@@ -96,8 +96,7 @@ class TemplateFactoryStub(object):
     def get_template(self, name):
         if name == "istubbox.html":
             return Template("{{var}}")
-        elif name == BaseBox.TEMPLATE_NAME:
-            return template_factory.get_template(BaseBox.TEMPLATE_NAME)
+        elif name == "basebox.html":
+            return template_factory.get_template(name)
         else:
-            raise AssertionError
-
+            raise AssertionError("Unexpected name: [%s]" % name)

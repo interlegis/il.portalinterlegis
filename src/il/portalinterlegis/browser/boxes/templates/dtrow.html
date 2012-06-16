@@ -1,0 +1,7 @@
+  <div class="dt-row">
+    {%- for cell in cells %}
+    <div class="dt-cell dt-position-{{ cell.position }} dt-width-{{ cell.width }}">
+      {{ cell.html }}
+    </div>
+    {%- endfor %}
+  </div>
