@@ -23,21 +23,23 @@ provideAdapter(PersistentDictionaryField)
 
 template_factory = Environment(loader=PackageLoader(__name__))
 
-class EditableBox(object):
+class BaseBox(object):
+    """Base abstract class for editable boxes.
+    """
 
-    TEMPLATE_NAME = 'editablebox.html'
+    TEMPLATE_NAME = 'basebox.html'
 
     def __init__(self, permission=ModifyPortalContent):
         self.permission = permission
 
     def __call__(self, context):
-        editablebox_template = template_factory.get_template(self.TEMPLATE_NAME)
-        return editablebox_template.render(
+        basebox_template = template_factory.get_template(self.TEMPLATE_NAME)
+        return basebox_template.render(
             box = self,
-            is_editable = self.is_editable(context),
+            has_permission = self.has_permission(context),
             inner = self.inner_render(context))
 
-    def is_editable(self, context):
+    def has_permission(self, context):
         return getSecurityManager().checkPermission(self.permission, context)
 
     @property
@@ -52,7 +54,7 @@ class EditableBox(object):
         raise NotImplementedError
 
 
-class Box(EditableBox):
+class Box(BaseBox):
 
     ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
 

@@ -88,7 +88,7 @@ class TestUnitBoxes(unittest.TestCase):
 class IStubBox(object):
     pass
 
-from il.portalinterlegis.browser.boxes.manager import template_factory, EditableBox
+from il.portalinterlegis.browser.boxes.manager import template_factory, BaseBox
 from jinja2 import Template
 
 class TemplateFactoryStub(object):
@@ -96,8 +96,8 @@ class TemplateFactoryStub(object):
     def get_template(self, name):
         if name == "istubbox.html":
             return Template("{{var}}")
-        elif name == EditableBox.TEMPLATE_NAME:
-            return template_factory.get_template(EditableBox.TEMPLATE_NAME)
+        elif name == BaseBox.TEMPLATE_NAME:
+            return template_factory.get_template(BaseBox.TEMPLATE_NAME)
         else:
             raise AssertionError
 
