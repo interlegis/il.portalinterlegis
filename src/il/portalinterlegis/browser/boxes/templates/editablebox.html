@@ -1,0 +1,8 @@
+<div id="{{ box.id }}"{% if is_editable %} class ="editable-box" {% endif %}>
+  {{ inner }}
+  {%- if is_editable %}
+  <a class="editable-box-link" href="{{ box.edit_href }}">
+    <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
+  </a>
+  {%- endif %}
+</div>
