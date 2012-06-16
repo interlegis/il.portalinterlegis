@@ -23,18 +23,24 @@ provideAdapter(PersistentDictionaryField)
 
 template_factory = Environment(loader=PackageLoader(__name__))
 
-class BaseBox(object):
+class TemplateAware(object):
+
+    @property
+    def template(self):
+        return template_factory.get_template(self.template_name)
+
+
+class BaseBox(TemplateAware):
     """Base abstract class for editable boxes.
     """
 
-    TEMPLATE_NAME = 'basebox.html'
+    template_name = 'basebox.html'
 
     def __init__(self, permission=ModifyPortalContent):
         self.permission = permission
 
     def __call__(self, context):
-        basebox_template = template_factory.get_template(self.TEMPLATE_NAME)
-        return basebox_template.render(
+        return self.template.render(
             box = self,
             has_permission = self.has_permission(context),
             inner = self.inner_render(context))
@@ -130,39 +136,32 @@ def get_or_create_persistent_dict(dictionary, key):
     return value
 
 # ROWS
-class DtRow(object):
+class DtRow(TemplateAware):
 
-    ROW_TEMPLATE = '''
-  <div class="dt-row">%s
-  </div>'''
-
-    CELL_TEMPLATE = '''
-    <div class="dt-cell dt-position-%s dt-width-%s">%s
-    </div>'''
+    template_name = 'dtrow.html'
 
     def __init__(self, *row_spec):
         try:
-            for (width, template) in row_spec: pass
+            for (width, renderable) in row_spec: pass
         except ValueError, e:
             e.args += row_spec
             raise
         self.row_spec = row_spec
 
-    def _cells(self, context):
-        """Iterates transforming each cell spec from (width, template) to
-           (position, width, rendered_html)
+    def cells(self, context):
+        """Iterates transforming each cell spec from (width, renderable) to
+           a dict of {position, width, rendered_html}
         """
         position = 0
-        for (width, template) in self.row_spec:
-            yield (position, width, template(context))
+        for (width, renderable) in self.row_spec:
+            yield dict(position=position, width=width, html=renderable(context))
             position += width
 
     def render(self, context):
         """Renders the html of one row.
         `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
         """
-        return self.ROW_TEMPLATE % ''.join(
-            [self.CELL_TEMPLATE % cell for cell in self._cells(context)])
+        return self.template.render(cells = self.cells(context))
 
 
 class GridView(grok.View):
