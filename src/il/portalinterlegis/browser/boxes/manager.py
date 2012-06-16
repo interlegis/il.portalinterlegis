@@ -89,6 +89,12 @@ def build_box_form(box):
             # because form.EditForm has a ".render()" method and grok.View
             # assumes you cannot have both "template = ..." and ".render()".
             # No problem, we make a method that simply renders the template
+
+            # hack to make forms appear in ajax mode even using an iframe
+            # setting ajax_load is useless, probably because of a bug in plone
+            # TODO: check later if there is a more natural way of doing this
+            self.request['disable_plone.leftcolumn'] = True
+            self.request['disable_plone.rightcolumn'] = True
             template = ZopeTwoPageTemplate(filename="boxform.pt")
             return template.render(self)
 
