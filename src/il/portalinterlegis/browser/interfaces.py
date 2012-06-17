@@ -11,17 +11,22 @@ class IThemeSpecific(Interface):
 
 # HOMES
 
+
 class IComunidadeLegislativa(Interface):
     "Marker interface para home"
+
 
 class IInformacao(Interface):
     "Marker interface para home"
 
+
 class ICapacitacao(Interface):
     "Marker interface para home"
 
+
 class ITecnologia(Interface):
     "Marker interface para home"
+
 
 class IComunicacao(Interface):
     "Marker interface para home"

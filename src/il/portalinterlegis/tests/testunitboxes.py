@@ -8,6 +8,7 @@ from mock import MagicMock as Mock
 
 diff_count = count(1)
 
+
 class TestUnitBoxes(unittest.TestCase):
     """ Unit tests for the boxes functionality
     """
@@ -36,7 +37,7 @@ class TestUnitBoxes(unittest.TestCase):
         with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
 
             box = Box(IStubBox, 1)
-            box.content = Mock(return_value = {'var': 'XXXX'})
+            box.content = Mock(return_value={'var': 'XXXX'})
             context = object()
             self.assertMultiLineEqual('''
 <div id="IStubBox_1">
@@ -50,7 +51,7 @@ class TestUnitBoxes(unittest.TestCase):
                 security_mock.checkPermission.return_value = True
 
                 box = Box(IStubBox, 1)
-                box.content = Mock(return_value = {'var': 'XXXX'})
+                box.content = Mock(return_value={'var': 'XXXX'})
                 context = object()
                 self.assertMultiLineEqual('''
 <div id="IStubBox_1" class ="editable-box" >
@@ -90,6 +91,7 @@ class IStubBox(object):
 
 from il.portalinterlegis.browser.boxes.manager import template_factory, BaseBox
 from jinja2 import Template
+
 
 class TemplateFactoryStub(object):
 

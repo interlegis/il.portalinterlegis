@@ -5,6 +5,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 import logging
 from Products.Five.utilities.marker import mark
 
+
 # codigo de
 # http://keeshink.blogspot.com.br/2011/05/creating-plone-content-when-installing.html
 # com alteracao para usar logger
@@ -20,21 +21,21 @@ def createObjects(parent, children):
     Children is a list of dictionaries defined as follows:
 
     new_objects = [
-        {   'id': 'some-id', 
-            'title': 'Some Title',
-            'description': 'Some Description',
-            'type': 'Folder',
-            'layout': 'folder_contents',
-            'workflow_transition': 'retract',
-            'exclude_from_nav': True,
-            'children': profile_children,
-            'marker_interface': marker_interface
-            },
+        {'id': 'some-id',
+         'title': 'Some Title',
+         'description': 'Some Description',
+         'type': 'Folder',
+         'layout': 'folder_contents',
+         'workflow_transition': 'retract',
+         'exclude_from_nav': True,
+         'children': profile_children,
+         'marker_interface': marker_interface
+         },
         ]
-    
+
     * layout:               optional, it sets a different default layout
     * workflow_transition:  optional, it tries to start that state transition
-        after the object is created. (You cannot directly set the workflow to 
+        after the object is created. (You cannot directly set the workflow to
         any state, but you must push it through legal state transitions.)
     * exclude_from_nav:     optional, excludes item from navigation
     * children:             optional, is a list of dictionaries (like this one)
@@ -61,21 +62,21 @@ def createObjects(parent, children):
         else:
             if obj.Type() != new_object['type']:
                 logger.info("types don't match!")
-            else:   
-                if new_object.has_key('layout'): 
+            else:
+                if 'layout' in new_object:
                     obj.setLayout(new_object['layout'])
-                if new_object.has_key('workflow_transition'): 
+                if 'workflow_transition' in new_object:
                     try:
-                        workflowTool.doActionFor(obj, 
+                        workflowTool.doActionFor(obj,
                             new_object['workflow_transition'])
                     except WorkflowException:
                         logger.info(
                             "WARNING: couldn't do workflow transition")
-                if new_object.has_key('exclude_from_nav'):
+                if 'exclude_from_nav' in new_object:
                     obj.setExcludeFromNav(new_object['exclude_from_nav'])
-                if new_object.has_key('marker_interface'): 
+                if 'marker_interface' in new_object:
                     mark(obj, new_object['marker_interface'])
                 obj.reindexObject()
-                children = new_object.get('children',[])
+                children = new_object.get('children', [])
                 if len(children) > 0:
                     createObjects(obj, children)

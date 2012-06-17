@@ -49,15 +49,15 @@ class TestIntegracao(unittest.TestCase):
                           u'Informação',
                           u'Capacitação',
                           u'Tecnologia',
-                          u'Comunicação',],
+                          u'Comunicação'],
             [li.text_content() for li in dom.cssselect('#portal-globalnav li')])
 
     def test_homes_marcadas_e_com_layout_home(self):
         for id, marker in [('comunidade-legislativa', IComunidadeLegislativa),
-                           ('informacao',          IInformacao),
-                           ('capacitacao',         ICapacitacao),
-                           ('tecnologia',          ITecnologia),
-                           ('comunicacao',         IComunicacao),
+                           ('informacao', IInformacao),
+                           ('capacitacao', ICapacitacao),
+                           ('tecnologia', ITecnologia),
+                           ('comunicacao', IComunicacao),
                            ]:
             obj = self.portal[id]
             self.assertTrue(marker.providedBy(obj))
