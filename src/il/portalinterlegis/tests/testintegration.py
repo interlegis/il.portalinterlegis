@@ -63,6 +63,8 @@ class TestIntegracao(unittest.TestCase):
             self.assertTrue(marker.providedBy(obj))
             self.assertEqual('home', obj.getLayout())
 
+    # BOXES
+
     def test_box_content_is_empty_before_visiting_form(self):
         self.assertEqual({}, Box(ISimpleBox, 1).content(self.portal))
 
@@ -108,3 +110,20 @@ class TestIntegracao(unittest.TestCase):
         with self.assertRaises(NotFound):
             browser = self.layer.manager_browser()
             browser.open(self.url(Box(ISimpleBox, 99).form_name))
+
+    # CAROUSEL
+
+    def test_carousel(self):
+        """Carousel editing happy path.
+        """
+        #
+        # got carousel page, relative to a given "base page"
+        # there are 5 visible carousel slots each
+        #   with its own "selected" checkbox
+        # put data in the first 4 of them
+        #   with only the 1st, 3rd and 4th selected
+        # save
+        # go to the "base page" and assert that there is a carousel with 3 panels
+        #   they match the panels number 1, 3 and 4
+
+
