@@ -16,12 +16,14 @@ from zope.schema.interfaces import IField
 
 from interfaces import box_schemas
 
+
 class PersistentDictionaryField(datamanager.DictionaryField):
     adapts(PersistentDict, IField)
     implements(IDataManager)
 provideAdapter(PersistentDictionaryField)
 
 template_factory = Environment(loader=PackageLoader(__name__))
+
 
 class TemplateAware(object):
 
@@ -41,9 +43,9 @@ class BaseBox(TemplateAware):
 
     def __call__(self, context):
         return self.template.render(
-            box = self,
-            has_permission = self.has_permission(context),
-            inner = self.inner_render(context))
+            box=self,
+            has_permission=self.has_permission(context),
+            inner=self.inner_render(context))
 
     def has_permission(self, context):
         return getSecurityManager().checkPermission(self.permission, context)
@@ -68,7 +70,7 @@ class Box(BaseBox):
         super(Box, self).__init__(permission)
         self.schema = schema
         self.number = number
-        self.form_label = form_label or u'Edite os valore desta caixa' #TODO: improve this text
+        self.form_label = form_label or u'Edite os valore desta caixa'  # TODO: improve this text
 
     @property
     def id(self):
@@ -89,7 +91,7 @@ class Box(BaseBox):
         """
         return 'box_%s' % self.id
 
-    edit_href = form_name # To be overridden independently
+    edit_href = form_name  # To be overridden independently
 
 
 def build_box_form(box):
@@ -125,15 +127,18 @@ def build_box_form(box):
     globals()['BoxEditForm_%s' % box.id] = BoxEditForm
     return BoxEditForm
 
+
 def build_many_box_forms(schema, max_number):
-    for number in range(1, max_number+1):
+    for number in range(1, max_number + 1):
         build_box_form(Box(schema, number))
+
 
 def get_or_create_persistent_dict(dictionary, key):
     value = dictionary.get(key, None)
     if not value:
         dictionary[key] = value = PersistentDict()
     return value
+
 
 # ROWS
 class DtRow(TemplateAware):
@@ -142,7 +147,8 @@ class DtRow(TemplateAware):
 
     def __init__(self, *row_spec):
         try:
-            for (width, renderable) in row_spec: pass
+            for (width, renderable) in row_spec:
+                pass
         except ValueError, e:
             e.args += row_spec
             raise
@@ -161,7 +167,7 @@ class DtRow(TemplateAware):
         """Renders the html of one row.
         `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
         """
-        return self.template.render(cells = self.cells(context))
+        return self.template.render(cells=self.cells(context))
 
 
 class GridView(grok.View):
@@ -180,4 +186,3 @@ class GridView(grok.View):
 # initialize all the box managers
 for s in box_schemas():
     build_many_box_forms(s, 10)
-

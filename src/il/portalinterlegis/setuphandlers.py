@@ -4,6 +4,7 @@ from plone.i18n.normalizer.interfaces import IIDNormalizer
 from content.createcontent import createObjects
 from browser.homes import IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
+
 def setupVarious(context):
 
     # Ordinarily, GenericSetup handlers check for the existence of XML files.
@@ -23,7 +24,7 @@ def setupVarious(context):
 
     # navegacao de 1o nivel
     normalizer = getUtility(IIDNormalizer)
-    folders_do_menu = [{'id': normalizer.normalize(title), 
+    folders_do_menu = [{'id': normalizer.normalize(title),
                      'title': title,
                      'description': u'Seção %s' % title,
                      'type': 'Folder',
@@ -40,11 +41,11 @@ def setupVarious(context):
                              ]]
     createObjects(portal, folders_do_menu)
 
-    # esconde todo o resto!
+    # esconde todo o resto
     ids_folders_do_menu = [f['id'] for f in folders_do_menu] + ['front-page']
     for id in portal.objectIds():
         if id not in ids_folders_do_menu:
             obj = portal[id]
             if hasattr(obj, 'exclude_from_nav'):
                 obj.setExcludeFromNav(True)
-                obj.reindexObject() # nao sei exatamente pq isso, mas nao custa colocar
+                obj.reindexObject()  # nao sei exatamente pq isso, mas nao custa colocar

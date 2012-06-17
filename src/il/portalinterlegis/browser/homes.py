@@ -18,6 +18,7 @@ class Tab(object):
     def __call__(self, context):
         return 'TODO: TAB %s' % self.title
 
+
 class TabbedPane(object):
 
     def __init__(self, *tabs):
@@ -29,6 +30,7 @@ class TabbedPane(object):
 # These are meant for more legible grid definitions. Do not overuse.
 FULL = 16
 ___, _ = DtRow, Box
+
 
 class Home(GridView):
     grok.name('home')
@@ -50,6 +52,7 @@ class Home(GridView):
         ___((FULL, _(IAcompanheOInterlegis, 1)), ),
         ___((4, _(IHighlight, 1)), (4, _(ISimpleBox, 1)), (4, _(ISimpleBox, 2)), (4, _(ISimpleBox, 3)),),
     ]
+
 
 class Carousel(GridView):
     grok.name('carrossel')

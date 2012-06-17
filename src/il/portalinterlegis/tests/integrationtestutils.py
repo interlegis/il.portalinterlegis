@@ -35,4 +35,3 @@ class BrowserAwareIntegrationTesting(IntegrationTesting):
         """Browser with Member authentication
         """
         return self._auth_browser(TEST_USER_NAME, TEST_USER_PASSWORD)
-

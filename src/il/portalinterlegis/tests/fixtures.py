@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-from persistent.dict import PersistentDict
+#from persistent.dict import PersistentDict
 from plone.app.testing import PLONE_FIXTURE, PloneSandboxLayer, IntegrationTesting, applyProfile
-from z3c.form import datamanager
-from z3c.form.interfaces import IDataManager
+#from z3c.form import datamanager
+#from z3c.form.interfaces import IDataManager
 from zope.component import adapts, provideAdapter
 from zope.configuration import xmlconfig
-from zope.interface import implements
-from zope.schema.interfaces import IField
+#from zope.interface import implements
+#from zope.schema.interfaces import IField
 from integrationtestutils import BrowserAwareIntegrationTesting
+
 
 class IlPortalinterlegis(PloneSandboxLayer):
 
@@ -20,7 +21,6 @@ class IlPortalinterlegis(PloneSandboxLayer):
         <meta:provides feature="disable-autoinclude" />
         </configure>
         """, context=configurationContext)
-
 
         # Load ZCML for this package
         import plone.app.theming
@@ -35,7 +35,6 @@ class IlPortalinterlegis(PloneSandboxLayer):
         xmlconfig.file('configure.zcml',
                        plone.formwidget.contenttree,
                        context=configurationContext)
-        import il.portalinterlegis
         xmlconfig.file('configure.zcml',
                        il.portalinterlegis,
                        context=configurationContext)
