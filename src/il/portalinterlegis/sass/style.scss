@@ -35,9 +35,9 @@ h1, h2, h3, h4, h5, h6 {
 // NOTE: we convention that __<name> classes should not be used in the markup:
 // they are ment just to compose other classes via sass @extend
 .__white-font {
-    color: white;
+    color: #fff;
     a:link, a:visited {
-        color: white;
+        color: #fff;
     }
 }
 
@@ -48,14 +48,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 div.middle-container {
-    max-width: $width;
     margin: 0 auto;
+    max-width: $width;
 }
 
 // EDIT BAR
 #edit-bar {
-    margin-top: 10px;
     font-size: 100%;
+    margin-top: 10px;
     #contentActionMenus {
         right: -3px;
     }
@@ -71,13 +71,13 @@ div.middle-container {
 #portal-personaltools {
     background: transparent;
     border-radius: 0;
-    padding: 0;
     margin: -14px 0 0 0;
+    padding: 0;
     #personaltools-login, #user-name {
         background: url("../images/icons/person.png") no-repeat right top transparent;
-        padding: 9px 25px 0 0;
-        margin: 0;
         color: black;
+        margin: 0;
+        padding: 9px 25px 0 0;
     }
     dt.actionMenuHeader a:after {
         content: none;
@@ -100,20 +100,20 @@ div.middle-container {
 #portal-searchbox {
     margin: 73px 0 30px 0;
     input {
-        border: none;
+        border: 0;
         height: 30px;
         &[type="text"] {
             background: url("../images/search-open-brace.png") no-repeat left top white;
-            width: 272px;
-            padding-left: 10px;
             font-family: Poly,serif;
             font-style: italic;
+            padding-left: 10px;
+            width: 272px;
         }
         &.searchButton {
             background: url("../images/search-button.png") no-repeat left top white;
+            height: 30px;
             text-indent: -3000px;                 /* sends the text off-screen */
             width: 41px;
-            height: 30px;
         }
     }
 }
@@ -122,7 +122,7 @@ div.middle-container {
     background: transparent;
     margin-top: -4px;
     .livesearchContainer {
-        background: white;
+        background: #fff;
     }
 }
 
@@ -148,58 +148,60 @@ div.middle-container {
 
 #portal-globalnav {
     background: white;
-    font-size: 10px;
-    margin: 0;
     border-style: dotted;
     border-width: 1px 1px 0 1px;
+    font-size: 10px;
+    margin: 0;
     padding: 10px 8px 10px 0px;
     width: $width - 8px;
 
     li {
         display: inline-block;
-        width: $width/6 - 13px; //TODO rever isso
         margin:  0 0 0 10px;
         padding: 0;
+        width: $width/6 - 13px; //TODO rever isso
         &#portaltab-index_html {
             margin-left: 8px;
         }
         a {
-            color: white;
             background: $blue;
-            text-transform: uppercase;
-            line-height: 72px;
+            color: #fff;
             height: 48px;
-            width: 100%;
-            margin:  0;
+            line-height: 72px;
+            margin: 0;
             padding: 0 0 0 8px;
+            text-transform: uppercase;
+            width: 100%;
         }
         a:visited {
-            color: white;
+            color: #fff;
         }
     }
-    li.selected a, li.selected a:hover, li a:hover {
-        color: white;
+    li.selected a,
+    li.selected a:hover,
+    li a:hover {
         background: $dark-blue;
+        color: #fff;
     }
 }
 
 // boxes
 // ================================================================
 @mixin box-header {
-    font-size: 12px; //TODO rever este tamanho
-    color: white;
     background: $blue;
-    text-transform: uppercase;
+    color: #fff;
+    font-size: 12px; //TODO rever este tamanho
     height: 24px;
     line-height: 26px;
-    padding-left: 10px;
     margin-bottom: 10px;
+    padding-left: 10px;
+    text-transform: uppercase;
 }
 
 // uso de "b": vide http://html5doctor.com/i-b-em-strong-element/
 @mixin superlink {
-    padding-left: 45px;
     margin-bottom: 5px;
+    padding-left: 45px;
     a, a:visited {
         b {
             color: $medium-blue;
@@ -221,8 +223,8 @@ div.middle-container {
     }
     h3 {
         @include superlink;
-        margin-top: 20px;
         font-size: 1.5em;
+        margin-top: 20px;
     }
 }
 
@@ -233,4 +235,3 @@ div.middle-container {
         background: url("../images/icons/#{$type}.png") left no-repeat;
     }
 }
-
