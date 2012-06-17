@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
-#from persistent.dict import PersistentDict
-from plone.app.testing import PLONE_FIXTURE, PloneSandboxLayer, IntegrationTesting, applyProfile
-#from z3c.form import datamanager
-#from z3c.form.interfaces import IDataManager
-from zope.component import adapts, provideAdapter
-from zope.configuration import xmlconfig
-#from zope.interface import implements
-#from zope.schema.interfaces import IField
 from integrationtestutils import BrowserAwareIntegrationTesting
+from plone.app.testing import PLONE_FIXTURE, PloneSandboxLayer, applyProfile
+from zope.component import provideAdapter
+from zope.configuration import xmlconfig
 
 
 class IlPortalinterlegis(PloneSandboxLayer):
