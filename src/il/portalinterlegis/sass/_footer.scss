@@ -6,9 +6,8 @@
 $footer-pad: 8px;
 
 @mixin footer-firstrow {
-    float: left;
     border-style: dotted;
-
+    float: left;
     height: 250px;
     padding-left: $footer-pad;
     li {
@@ -20,13 +19,13 @@ $footer-pad: 8px;
 div.footer {
     @extend .__white-font;
     background: $footer-blue;
-    height: 1000px;
-    padding-top: 40px;
     float: left;
-    width: 100%;
     font-family: Mako, sans-serif;
     font-size: 11px;
+    height: 1000px;
     margin-top: 50px;
+    padding-top: 40px;
+    width: 100%;
 
     h2 {
         font-family: Poly, serif;
@@ -50,10 +49,11 @@ div.footer {
     }
     .address {
         float: left;
-        width: ($width / 2) - $footer-pad - 1;
         font-size: 10px;
-        padding: 30px 0 0 $footer-pad;
         line-height: 150%;
+        padding: 30px 0 0 $footer-pad;
+        width: ($width / 2) - $footer-pad - 1;
+
         address {
             font-style: normal;
             font-weight: bold;
@@ -64,14 +64,14 @@ div.footer {
     }
     .utils {
         $util-pad: 20px;
-        float: left;
         border-style: dotted;
         border-width: 0 0 1px 1px;
+        float: left;
+        font-size: 9px;
         padding: 30px 0 25px $util-pad;
         width: ($width / 2) - $util-pad - 1px;
-        font-size: 9px;
 
-        ul#portal-siteactions {
+        #portal-siteactions {
             font-size: 9px;
             padding: 0;
             li {
@@ -83,22 +83,22 @@ div.footer {
             }
             li:first-child:before {
                 content: "";
-                margin:0
+                margin: 0;
             }
         }
     }
     .partners {
-        float: left;
         border-style: dotted;
         border-width: 0 0 0 1px;
-        padding: 10px 0 0 20px;
+        float: left;
         height: 70px;
+        padding: 10px 0 0 20px;
         img {
             vertical-align: middle;
             padding-right: 40px;
         }
         img.last {
-            padding-right: 0px;
+            padding-right: 0;
         }
     }
 

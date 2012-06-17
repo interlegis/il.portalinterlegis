@@ -30,7 +30,7 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
                      * $deco-column-count * 2) / $deco-column-count;
 }
 
-// 
+//
 // Mixin to re-define deco-grid global variables.
 //
 // Example: @include deco-grid(960px, 16, 10px, true);
@@ -56,19 +56,19 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
     }
 }
 
-// 
+//
 // Mixin to inject attributes for a row-class.
 //
 // Example: div.row { @include deco-row; }
 //
 @mixin deco-row {
+    display: block;
     float: left;
     position: relative;
-    display: block;
     width: 100%;
 }
 
-// 
+//
 // Mixin to inject attributes for a cell-width-class.
 //
 // Example: div.width-1 { @include deco-width(1); }
@@ -99,7 +99,7 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
   }
 }
 
-// 
+//
 // Mixin to inject attributes for a cell-position-class.
 //
 // Example: div.position-0 { @include deco-width(0); }
@@ -119,13 +119,13 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
   }
 }
 
-// 
+//
 // Mixin to inject attributes for a cell-class.
 //
 // Example: div.cell { @include deco-row; }
 //
 // Advanced notes: By defining parameters, it's possible to define
-// special cell-classes self-containing width and position attributes. 
+// special cell-classes self-containing width and position attributes.
 //
 @mixin deco-cell($position: -1, $width: 0,
                  $padding-left: 0, $padding-right: 0) {
@@ -141,7 +141,7 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
     }
 }
 
-// 
+//
 // Mixin to generate complete deco-grid-systems.
 //
 // Example: @include deco-gs(16);
@@ -153,7 +153,7 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
 
   $prefix: if($prefix=="", "", $prefix + "-"); // adds a dash after a non-empty prefix
 
-  /* The $columns-column Deco Grid System. 
+  /* The $columns-column Deco Grid System.
    * Available in multiple variants, see http://deco.gs
    */
   @include deco-grid(960px, $columns, $margin, true);
@@ -166,14 +166,14 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
     @include deco-cell;
   }
 
-  /* Width classes. 
-     For a given cell width, the calculation is: 
+  /* Width classes.
+     For a given cell width, the calculation is:
      width = (total cell width) * n - (margin*2) */
   @for $i from 1 through $deco-column-count {
     div.#{$prefix}width-#{$i} { @include deco-width($i, $padding, $padding); }
   }
 
-  /* Positioning classes, these are subtracting from a rightmost 
+  /* Positioning classes, these are subtracting from a rightmost
      position, which is why they seem the wrong way around */
   /* For a given position, the calculation is:
      -100 + (total cell width * n)*/
@@ -183,7 +183,7 @@ $deco-cell-width: ($deco-grid-width - $deco-margin-width
 
   /* End of the core Deco Grid System */
 
-  /* Convenience classes — ¼, ½, ¾ widths and ¼, ½, ¾ positions. 
+  /* Convenience classes — ¼, ½, ¾ widths and ¼, ½, ¾ positions.
      Not strictly necessary. */
   /* .width-1:2 */
   div.#{$prefix}width-1\3a 2 { @include deco-width($deco-column-count * (1/2), $padding, $padding); }
