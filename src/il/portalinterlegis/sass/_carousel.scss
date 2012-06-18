@@ -1,7 +1,7 @@
 
-$car-width:  600px - 20px;
-$car-height:  215px;
-/* $car-height:  400px; */
+$car-width: 600px - 20px;
+$car-height: 215px;
+/* $car-height: 400px; */
 
 #container {
     .js {
@@ -48,7 +48,7 @@ $car-height:  215px;
             vertical-align: middle;
             width: 40px;
             zoom: 1;
-            &: hover {
+            &:hover {
                 -moz-opacity: .7;
                 opacity: 0.70;
                 filter: alpha(opacity=70);
@@ -60,7 +60,8 @@ $car-height:  215px;
         .carousel-previous {
             background: url(../images/icons/prev.png) 0 0 no-repeat;
         }
-        .disabled, .disabled: hover {
+        .disabled,
+        .disabled:hover {
             cursor: default;
             filter: alpha(opacity=10);
             -moz-opacity: .1;
@@ -79,11 +80,11 @@ $car-height:  215px;
                 position: relative;
                 width: $car-width;
                 div.carousel-text {
-                    color:  $blue;
+                    color: $blue;
                     left: 362px;
                     position: absolute;
                     top: 30px;
-                    // TODO:  refatorar essa repeticao
+                    // TODO: refatorar essa repeticao
                     b {
                         color: $dark-blue;
                     }
@@ -122,7 +123,7 @@ $car-height:  215px;
         }
         a {
             span {
-                color:  transparent;
+                color: transparent;
             }
             background: url(../images/icons/bullet-off.png) 0 0 no-repeat;
             cursor: pointer;
