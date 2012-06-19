@@ -1,36 +1,14 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
 from mock import patch
 
 from il.portalinterlegis.browser.boxes.manager import Box, DtRow
-from itertools import count
 from mock import MagicMock as Mock
 
-diff_count = count(1)
+from differenttestcase import DifferentTestCase
 
-
-class TestUnitBoxes(unittest.TestCase):
+class TestUnitBoxes(DifferentTestCase):
     """ Unit tests for the boxes functionality
     """
-
-    def setUp(self):
-        pass
-
-    def assertMultiLineEqual(self, first, second, *args):
-        "ignores differences in leading and trailing whitespace in strings"
-        self.assert_(isinstance(first, basestring), (
-                'First argument is not a string'))
-        self.assert_(isinstance(second, basestring), (
-                'Second argument is not a string'))
-
-        first = first.strip()
-        second = second.strip()
-        if first != second:
-            c = diff_count.next()
-            for i, s in enumerate([first, second]):
-                with open("out_%s.%s" % (c, i), "w+") as f:
-                    f.write(s)
-        super(TestUnitBoxes, self).assertMultiLineEqual(first, second, *args)
 
     def test_box_render_basic(self):
 
@@ -42,7 +20,8 @@ class TestUnitBoxes(unittest.TestCase):
             self.assertMultiLineEqual('''
 <div id="IStubBox_1">
   XXXX
-</div>''', box(context))
+</div>
+'''.strip('\n'), box(context))
             box.content.assert_called_with(context)
 
     def test_box_render_editable(self):
@@ -59,7 +38,8 @@ class TestUnitBoxes(unittest.TestCase):
   <a class="editable-box-link" href="box_IStubBox_1">
     <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
   </a>
-</div>''', box(context))
+</div>
+'''.strip('\n'), box(context))
                 box.content.assert_called_with(context)
 
     def test_row_structure(self):
@@ -80,7 +60,7 @@ class TestUnitBoxes(unittest.TestCase):
       DDD
     </div>
   </div>
-''', DtRow((1, Mock(return_value="AAA")),
+'''.strip('\n'), DtRow((1, Mock(return_value="AAA")),
            (2, Mock(return_value="BBB")),
            (3, Mock(return_value="CCC")),
            (1, Mock(return_value="DDD"))).render(context))
