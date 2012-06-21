@@ -22,27 +22,21 @@ class PersistentDictionaryField(datamanager.DictionaryField):
     implements(IDataManager)
 provideAdapter(PersistentDictionaryField)
 
-template_factory = Environment(loader=PackageLoader(__name__))
+_template_factory = Environment(loader=PackageLoader(__name__))
+
+def template(template_name):
+    return _template_factory.get_template(template_name)
 
 
-class TemplateAware(object):
-
-    @property
-    def template(self):
-        return template_factory.get_template(self.template_name)
-
-
-class BaseBox(TemplateAware):
+class BaseBox(object):
     """Base abstract class for editable boxes.
     """
-
-    template_name = 'basebox.html'
 
     def __init__(self, permission=ModifyPortalContent):
         self.permission = permission
 
     def __call__(self, context):
-        return self.template.render(
+        return template('basebox.html').render(
             box=self,
             has_permission=self.has_permission(context),
             inner=self.inner_render(context))
@@ -77,8 +71,8 @@ class Box(BaseBox):
         return '%s_%s' % (self.schema.__name__, self.number)
 
     def inner_render(self, context):
-        template = template_factory.get_template(self.schema.__name__.lower() + '.html')
-        return template.render(self.get_data_from(context))
+        templ = template(self.schema.__name__.lower() + '.html')
+        return templ.render(self.get_data_from(context))
 
     def get_data_from(self, context):
         annotations = IAnnotations(context)
@@ -141,9 +135,7 @@ def get_or_create_persistent_dict(dictionary, key):
 
 
 # ROWS
-class DtRow(TemplateAware):
-
-    template_name = 'dtrow.html'
+class DtRow(object):
 
     def __init__(self, *row_spec):
         try:
@@ -167,7 +159,7 @@ class DtRow(TemplateAware):
         """Renders the html of one row.
         `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
         """
-        return self.template.render(cells=self.cells(context))
+        return template('dtrow.html').render(cells=self.cells(context))
 
 
 class GridView(grok.View):
