@@ -14,7 +14,7 @@
 // jQuery function
 /*global common_content_filter:false */
 jQuery(function($) {
-  $('.editable-box-link').each(function() {
+  $('.editable-box-link-overlay').each(function() {
       $(this).prepOverlay({
           subtype: 'iframe',
           filter: '#content',

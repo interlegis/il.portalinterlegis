@@ -53,6 +53,7 @@ class BaseBox(BoxAware):
     """Base abstract class for editable boxes.
     """
 
+    is_link_overlay = True
 
     def __init__(self, permission=ModifyPortalContent):
         self.permission = permission

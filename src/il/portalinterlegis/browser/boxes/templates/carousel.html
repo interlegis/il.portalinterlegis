@@ -1,0 +1,19 @@
+<div class="carousel-container">
+  <div class="carousel">
+    <ul>
+      {%- for number, item in items %}
+      <li>
+        <a href="{{ item.target }}">
+          <img src="{{ item.image }}" width="340" height="215" />
+          <div class="carousel-text">
+            <h3>{{ item.title }}</h3>
+            <p>
+              {{ item.text }}
+            </p>
+          </div>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+</div>

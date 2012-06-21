@@ -30,16 +30,20 @@ class ISimpleBox(BoxSchema):
     subtitle = schema.TextLine(title=u"Subtítulo", required=True)
     text = schema.Text(title=u"Texto", required=False)
     target = schema.Choice(title=u"Conteúdo relacionado",
-                            source=PathSourceBinder(),
-                            required=False)
+                           source=PathSourceBinder(),
+                           required=False)
+    # TODO: imagem !!!
 
 
+# TODO: remover esse copiar-e-colar entre esse e ISimpleBox: extrair uma classe base comum?
 @rich('text', target=AutocompleteFieldWidget)
-class ICarousel(BoxSchema):
+class ICarouselItem(BoxSchema):
+    target = schema.Choice(title=u"Conteúdo relacionado",
+                           source=PathSourceBinder(),
+                           required=False)
+    image = schema.TextLine(title=u"URL da imagem", required=False) # TODO: imagem de verdade !!!
     title = schema.TextLine(title=u"Título", required=True)
     text = schema.Text(title=u"Texto", required=False)
-    target = schema.Choice(title=u"Conteúdo relacionado",
-                           source=PathSourceBinder(portal_type='Document'))
 
 
 class ICalendar(BoxSchema):

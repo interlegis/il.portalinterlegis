@@ -1,0 +1,30 @@
+// TODO: reescrever completamente isso para alinhar-se com o carousel.scss !!!!
+.column {
+    width: 700px;
+    float: left;
+    padding-bottom: 100px;
+}
+.portlet {
+    margin: 0 1em 1em 0;
+    width: $carousel-width;
+    /* height: $carousel-height; */
+}
+.portlet-header {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    .ui-icon {
+        float: right;
+    }
+}
+.portlet-content {
+    padding: 0.4em;
+    position: relative;
+}
+.ui-sortable-placeholder {
+    border: 1px dotted black;
+    visibility: visible !important;
+    height: $carousel-height !important;
+}
+.ui-sortable-placeholder * {
+    visibility: hidden;
+}
