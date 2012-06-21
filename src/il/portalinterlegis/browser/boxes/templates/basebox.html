@@ -1,7 +1,7 @@
 <div id="{{ box.id }}"{% if has_permission %} class ="editable-box" {% endif %}>
   {{ inner }}
   {%- if has_permission %}
-  <a class="editable-box-link" href="{{ box.edit_href }}">
+  <a class="editable-box-link{% if box.is_link_overlay %}-overlay{% endif %}" href="{{ box.edit_href }}">
     <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
   </a>
   {%- endif %}

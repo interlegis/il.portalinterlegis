@@ -1,0 +1,18 @@
+<div class="column">
+  {%- for number, item in items %}
+  <div class="portlet" id="carousel_item_{{ number }}">
+    <div class="portlet-header">Arraste para mover este painel</div>
+    <div class="portlet-content">
+      <a href="{{ item.target }}">
+        <img src="{{ item.image }}" width="340" height="215" />
+        <div class="carousel-text">
+          <h3>{{ item.title }}</h3>
+          <p>
+            {{ item.text }}
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+  {%- endfor %}
+</div>
