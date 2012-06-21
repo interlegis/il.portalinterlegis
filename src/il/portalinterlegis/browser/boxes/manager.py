@@ -28,9 +28,26 @@ def template(template_name):
     return _template_factory.get_template(template_name)
 
 
-class BaseBox(object):
+class BoxAware(object):
+
+    ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
+
+    def get_box_data(self, context, key):
+        annotations = IAnnotations(context)
+        boxes = get_or_create_from_dict(annotations, self.ALL_BOXES_KEY)
+        return get_or_create_from_dict(boxes, key)
+
+    def erase_box_data(self, context, key):
+        annotations = IAnnotations(context)
+        boxes = annotations.get(self.ALL_BOXES_KEY, None)
+        if boxes and key in boxes:
+            del boxes[key]
+
+
+class BaseBox(BoxAware):
     """Base abstract class for editable boxes.
     """
+
 
     def __init__(self, permission=ModifyPortalContent):
         self.permission = permission
@@ -46,6 +63,7 @@ class BaseBox(object):
 
     @property
     def id(self):
+        "id of the box. Used in the template."
         raise NotImplementedError
 
     @property
@@ -57,8 +75,6 @@ class BaseBox(object):
 
 
 class Box(BaseBox):
-
-    ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
 
     def __init__(self, schema, number, permission=ModifyPortalContent, form_label=None):
         super(Box, self).__init__(permission)
@@ -75,9 +91,10 @@ class Box(BaseBox):
         return templ.render(self.get_data_from(context))
 
     def get_data_from(self, context):
-        annotations = IAnnotations(context)
-        boxes = get_or_create_persistent_dict(annotations, self.ALL_BOXES_KEY)
-        return get_or_create_persistent_dict(boxes, self.id)
+        return self.get_box_data(context, self.id)
+
+    def erase_data_from(self, context):
+        self.erase_box_data(context, self.id)
 
     @property
     def form_name(self):
@@ -87,6 +104,11 @@ class Box(BaseBox):
 
     edit_href = form_name  # To be overridden independently
 
+def get_or_create_from_dict(dictionary, key, type_to_create=PersistentDict):
+    value = dictionary.get(key, None)
+    if not value:
+        dictionary[key] = value = type_to_create()
+    return value
 
 def build_box_form(box):
 
@@ -123,7 +145,7 @@ def build_box_form(box):
 
 
 def build_many_box_forms(schema, max_number):
-    for number in range(1, max_number + 1):
+    for number in range(max_number):
         build_box_form(Box(schema, number))
 
 
@@ -176,5 +198,6 @@ class GridView(grok.View):
 # TODO: o unico lugar em que isto funcionou foi aqui. Entender porque e decidir lugar definitivo.
 
 # initialize all the box managers
+NUMBER_OF_PRE_CREATED_BOXES = 10
 for s in box_schemas():
-    build_many_box_forms(s, 10)
+    build_many_box_forms(s, NUMBER_OF_PRE_CREATED_BOXES)
