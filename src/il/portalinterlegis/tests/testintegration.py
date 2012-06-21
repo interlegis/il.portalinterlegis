@@ -6,7 +6,8 @@ from zExceptions import NotFound
 
 from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
 from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
-from il.portalinterlegis.browser.boxes.manager import Box, build_box_form
+from il.portalinterlegis.browser.boxes.manager import \
+     Box, build_box_form, NUMBER_OF_PRE_CREATED_BOXES
 from il.portalinterlegis.browser.interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
@@ -92,15 +93,16 @@ class TestIntegracao(unittest.TestCase):
         self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2', 'target': None},
                          box_2.get_data_from(context))
 
-    def test_box_forms_numbers_begin_from_1_not_zero(self):
-        with self.assertRaises(NotFound):
-            browser = self.layer.manager_browser()
-            browser.open(self.url(Box(ISimpleBox, 0).form_name))
-
     def test_box_forms_are_limited(self):
+        browser = self.layer.manager_browser()
+        # These are ok. No exception raised
+        browser.open(self.url(Box(ISimpleBox, 0).form_name))
+        browser.open(self.url(Box(ISimpleBox,
+                                  NUMBER_OF_PRE_CREATED_BOXES - 1).form_name))
         with self.assertRaises(NotFound):
-            browser = self.layer.manager_browser()
-            browser.open(self.url(Box(ISimpleBox, 1000000).form_name))
+            # This doesn't exist
+            browser.open(self.url(Box(ISimpleBox,
+                                      NUMBER_OF_PRE_CREATED_BOXES).form_name))
 
     def test_box_form_cannot_be_created_after_initialization(self):
         """Try to build a box form in an arbitrary moment.
