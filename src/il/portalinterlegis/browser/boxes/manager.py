@@ -78,9 +78,9 @@ class Box(BaseBox):
 
     def inner_render(self, context):
         template = template_factory.get_template(self.schema.__name__.lower() + '.html')
-        return template.render(self.content(context))
+        return template.render(self.get_data_from(context))
 
-    def content(self, context):
+    def get_data_from(self, context):
         annotations = IAnnotations(context)
         boxes = get_or_create_persistent_dict(annotations, self.ALL_BOXES_KEY)
         return get_or_create_persistent_dict(boxes, self.id)
@@ -108,7 +108,7 @@ def build_box_form(box):
         schema = box.schema
 
         def getContent(self):
-            return box.content(self.context)
+            return box.get_data_from(self.context)
 
         def render(self):
             # we cannot simply associtate this template in the class level

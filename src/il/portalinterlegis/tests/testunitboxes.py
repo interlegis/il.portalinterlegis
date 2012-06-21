@@ -15,14 +15,14 @@ class TestUnitBoxes(DifferentTestCase):
         with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
 
             box = Box(IStubBox, 1)
-            box.content = Mock(return_value={'var': 'XXXX'})
+            box.get_data_from = Mock(return_value={'var': 'XXXX'})
             context = object()
             self.assertMultiLineEqual('''
 <div id="IStubBox_1">
   XXXX
 </div>
 '''.strip('\n'), box(context))
-            box.content.assert_called_with(context)
+            box.get_data_from.assert_called_with(context)
 
     def test_box_render_editable(self):
         with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
@@ -30,7 +30,7 @@ class TestUnitBoxes(DifferentTestCase):
                 security_mock.checkPermission.return_value = True
 
                 box = Box(IStubBox, 1)
-                box.content = Mock(return_value={'var': 'XXXX'})
+                box.get_data_from = Mock(return_value={'var': 'XXXX'})
                 context = object()
                 self.assertMultiLineEqual('''
 <div id="IStubBox_1" class ="editable-box" >
@@ -40,7 +40,7 @@ class TestUnitBoxes(DifferentTestCase):
   </a>
 </div>
 '''.strip('\n'), box(context))
-                box.content.assert_called_with(context)
+                box.get_data_from.assert_called_with(context)
 
     def test_row_structure(self):
         context = object()
