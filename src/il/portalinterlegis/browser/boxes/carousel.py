@@ -42,6 +42,9 @@ class Carousel(BoxAware):
         self.numbers.remove(index)
         Box(ICarouselItem, i).erase_data(self.context)
 
+    def reorder(self, order):
+        self.numbers[:] = [int(o.split('_')[-1]) for o in order.split(',')]
+
 
 class CarouselEditView(grok.View):
 
@@ -62,6 +65,8 @@ class CarouselEditView(grok.View):
             self._carousel.add_item()
         elif 'del' in self.request:
             self._carousel.remove_item()
+        elif 'reorder' in self.request:
+            self._carousel.reorder(self.request['reorder'])
 
 class CarouselBox(BaseBox):
 

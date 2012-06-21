@@ -11,7 +11,13 @@
 
     <script>
     $(function() {
-    $( ".column" ).sortable();
+
+    $( ".column" ).sortable({
+			update: function(event, ui) {
+				var order = $(this).sortable('toArray').toString();
+                $.post('edit-carousel', {reorder:order});
+			}
+    });
 
     $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
             .find( ".portlet-header" )
@@ -26,6 +32,8 @@
         });
 
         $( ".column" ).disableSelection();
+
+
     });
     </script>
 
