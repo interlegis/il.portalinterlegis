@@ -67,7 +67,7 @@ class TestIntegracao(unittest.TestCase):
     # BOXES
 
     def test_box_content_is_empty_before_visiting_form(self):
-        self.assertEqual({}, Box(ISimpleBox, 1).get_data_from(self.portal))
+        self.assertEqual({}, Box(ISimpleBox, 1).get_data(self.portal))
 
     def test_using_box_form_creates_box_content(self):
         context = self.portal
@@ -85,13 +85,13 @@ class TestIntegracao(unittest.TestCase):
         box_1 = Box(ISimpleBox, 1)
         use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 'ALVO_1', box_1)
         self.assertEqual({'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': None},
-                         box_1.get_data_from(context))
+                         box_1.get_data(context))
 
         # a second one to test there is no mutual interference
         box_2 = Box(ISimpleBox, 2)
         use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 'ALVO_2', box_2)
         self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2', 'target': None},
-                         box_2.get_data_from(context))
+                         box_2.get_data(context))
 
     def test_box_forms_are_limited(self):
         browser = self.layer.manager_browser()

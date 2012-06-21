@@ -24,9 +24,7 @@ provideAdapter(PersistentDictionaryField)
 
 _template_factory = Environment(loader=PackageLoader(__name__))
 
-def template(template_name):
-    return _template_factory.get_template(template_name)
-
+get_template = _template_factory.get_template
 
 class BoxAware(object):
 
@@ -34,14 +32,21 @@ class BoxAware(object):
 
     def get_box_data(self, context, key):
         annotations = IAnnotations(context)
-        boxes = get_or_create_from_dict(annotations, self.ALL_BOXES_KEY)
-        return get_or_create_from_dict(boxes, key)
+        boxes = self.get_or_create_from_dict(annotations, self.ALL_BOXES_KEY)
+        return self.get_or_create_from_dict(boxes, key)
 
     def erase_box_data(self, context, key):
         annotations = IAnnotations(context)
         boxes = annotations.get(self.ALL_BOXES_KEY, None)
         if boxes and key in boxes:
             del boxes[key]
+
+    @classmethod
+    def get_or_create_from_dict(cls, dictionary, key, type_to_create=PersistentDict):
+        value = dictionary.get(key, None)
+        if not value:
+            dictionary[key] = value = type_to_create()
+        return value
 
 
 class BaseBox(BoxAware):
@@ -53,7 +58,7 @@ class BaseBox(BoxAware):
         self.permission = permission
 
     def __call__(self, context):
-        return template('basebox.html').render(
+        return get_template('basebox.html').render(
             box=self,
             has_permission=self.has_permission(context),
             inner=self.inner_render(context))
@@ -87,13 +92,13 @@ class Box(BaseBox):
         return '%s_%s' % (self.schema.__name__, self.number)
 
     def inner_render(self, context):
-        templ = template(self.schema.__name__.lower() + '.html')
-        return templ.render(self.get_data_from(context))
+        templ = get_template(self.schema.__name__.lower() + '.html')
+        return templ.render(self.get_data(context))
 
-    def get_data_from(self, context):
+    def get_data(self, context):
         return self.get_box_data(context, self.id)
 
-    def erase_data_from(self, context):
+    def erase_data(self, context):
         self.erase_box_data(context, self.id)
 
     @property
@@ -103,12 +108,6 @@ class Box(BaseBox):
         return 'box_%s' % self.id
 
     edit_href = form_name  # To be overridden independently
-
-def get_or_create_from_dict(dictionary, key, type_to_create=PersistentDict):
-    value = dictionary.get(key, None)
-    if not value:
-        dictionary[key] = value = type_to_create()
-    return value
 
 def build_box_form(box):
 
@@ -124,7 +123,7 @@ def build_box_form(box):
         schema = box.schema
 
         def getContent(self):
-            return box.get_data_from(self.context)
+            return box.get_data(self.context)
 
         def render(self):
             # we cannot simply associtate this template in the class level
@@ -181,7 +180,7 @@ class DtRow(object):
         """Renders the html of one row.
         `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
         """
-        return template('dtrow.html').render(cells=self.cells(context))
+        return get_template('dtrow.html').render(cells=self.cells(context))
 
 
 class GridView(grok.View):
