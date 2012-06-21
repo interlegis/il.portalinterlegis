@@ -12,7 +12,7 @@ class TestUnitBoxes(DifferentTestCase):
 
     def test_box_render_basic(self):
 
-        with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
+        with patch('il.portalinterlegis.browser.boxes.manager._template_factory', TemplateFactoryStub()):
 
             box = Box(IStubBox, 1)
             box.get_data_from = Mock(return_value={'var': 'XXXX'})
@@ -25,7 +25,7 @@ class TestUnitBoxes(DifferentTestCase):
             box.get_data_from.assert_called_with(context)
 
     def test_box_render_editable(self):
-        with patch('il.portalinterlegis.browser.boxes.manager.template_factory', TemplateFactoryStub()):
+        with patch('il.portalinterlegis.browser.boxes.manager._template_factory', TemplateFactoryStub()):
             with patch('il.portalinterlegis.browser.boxes.manager.getSecurityManager') as security_mock:
                 security_mock.checkPermission.return_value = True
 
@@ -69,7 +69,7 @@ class TestUnitBoxes(DifferentTestCase):
 class IStubBox(object):
     pass
 
-from il.portalinterlegis.browser.boxes.manager import template_factory, BaseBox
+from il.portalinterlegis.browser.boxes.manager import _template_factory, BaseBox
 from jinja2 import Template
 
 
@@ -79,6 +79,6 @@ class TemplateFactoryStub(object):
         if name == "istubbox.html":
             return Template("{{var}}")
         elif name == "basebox.html":
-            return template_factory.get_template(name)
+            return _template_factory.get_template(name)
         else:
             raise AssertionError("Unexpected name: [%s]" % name)
