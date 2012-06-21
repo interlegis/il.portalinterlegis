@@ -12,25 +12,25 @@ class TestUnitBoxes(DifferentTestCase):
 
     def test_box_render_basic(self):
 
-        with patch('il.portalinterlegis.browser.boxes.manager._template_factory', TemplateFactoryStub()):
+        with patch('il.portalinterlegis.browser.boxes.manager.get_template', get_template_stub):
 
             box = Box(IStubBox, 1)
-            box.get_data_from = Mock(return_value={'var': 'XXXX'})
+            box.get_data = Mock(return_value={'var': 'XXXX'})
             context = object()
             self.assertMultiLineEqual('''
 <div id="IStubBox_1">
   XXXX
 </div>
 '''.strip('\n'), box(context))
-            box.get_data_from.assert_called_with(context)
+            box.get_data.assert_called_with(context)
 
     def test_box_render_editable(self):
-        with patch('il.portalinterlegis.browser.boxes.manager._template_factory', TemplateFactoryStub()):
+        with patch('il.portalinterlegis.browser.boxes.manager.get_template', get_template_stub):
             with patch('il.portalinterlegis.browser.boxes.manager.getSecurityManager') as security_mock:
                 security_mock.checkPermission.return_value = True
 
                 box = Box(IStubBox, 1)
-                box.get_data_from = Mock(return_value={'var': 'XXXX'})
+                box.get_data = Mock(return_value={'var': 'XXXX'})
                 context = object()
                 self.assertMultiLineEqual('''
 <div id="IStubBox_1" class ="editable-box" >
@@ -40,7 +40,7 @@ class TestUnitBoxes(DifferentTestCase):
   </a>
 </div>
 '''.strip('\n'), box(context))
-                box.get_data_from.assert_called_with(context)
+                box.get_data.assert_called_with(context)
 
     def test_row_structure(self):
         context = object()
@@ -69,16 +69,12 @@ class TestUnitBoxes(DifferentTestCase):
 class IStubBox(object):
     pass
 
-from il.portalinterlegis.browser.boxes.manager import _template_factory, BaseBox
 from jinja2 import Template
-
-
-class TemplateFactoryStub(object):
-
-    def get_template(self, name):
-        if name == "istubbox.html":
-            return Template("{{var}}")
-        elif name == "basebox.html":
-            return _template_factory.get_template(name)
-        else:
-            raise AssertionError("Unexpected name: [%s]" % name)
+def get_template_stub(name):
+    if name == "istubbox.html":
+        return Template("{{var}}")
+    elif name == "basebox.html":
+        from il.portalinterlegis.browser.boxes.manager import _template_factory
+        return _template_factory.get_template(name)
+    else:
+        raise AssertionError("Unexpected name: [%s]" % name)
