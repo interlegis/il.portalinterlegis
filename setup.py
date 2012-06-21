@@ -35,6 +35,7 @@ setup(name='il.portalinterlegis',
           'plone.formwidget.contenttree',
           'plone.formwidget.autocomplete',
           'Jinja2', # This one is not neurotic about missing values. We need this.
+          'collective.js.jqueryui',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""
