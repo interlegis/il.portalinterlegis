@@ -22,9 +22,11 @@ class Carousel(BoxAware):
             template = get_template("carousel-edit.html")
         else:
             template = get_template("carousel.html")
+        boxes = [(number, Box(ICarouselItem, number)) for number in self.numbers]
         return template.render(
-            items=[(i, Box(ICarouselItem, i).get_data(self.context))
-                   for i in self.numbers])
+            items=[(number,
+                    box.get_data(self.context),
+                    box.edit_href) for number, box in boxes])
 
     @property
     def numbers(self):

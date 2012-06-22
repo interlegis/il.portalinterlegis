@@ -45,7 +45,7 @@
       <li>Arreste os paineis para alterar a ordem em que aparecem no carrosel.</li>
       <li>Clique em nos ícones <img src="pencil_icon.png" width="16" height="16" alt="Lápis"/>
         em cada painel para editá-lo.</li>
-      <li>Ao terminar salve suas mudanças e volte para a página original clicando no botão <b>Salvar</b></li>
+      <li>Ao terminar salve suas mudanças e volte para a página original.</li>
     </ul>
 
     <div tal:content="structure view/carousel" />

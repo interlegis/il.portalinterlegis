@@ -1,16 +1,19 @@
 <div class="column" id="carousel-edit-panels">
-  {%- for number, item in items %}
+  {%- for number, data, edit_href in items %}
   <div class="portlet" id="carousel_item_{{ number }}">
-    <div class="portlet-header">Arraste para mover este painel</div>
-    <div class="portlet-content">
-      <a href="{{ item.target }}">
-        <img src="{{ item.image }}" width="340" height="215" />
+    <div class="portlet-header">Arraste e solte para reordenar os painéis</div>
+    <div class="portlet-content editable-box">
+      <a href="{{ data.target }}">
+        <img src="{{ data.image }}" width="340" height="215" />
         <div class="carousel-text">
-          <h3>{{ item.title }}</h3>
+          <h3>{{ data.title }}</h3>
           <p>
-            {{ item.text }}
+            {{ data.text }}
           </p>
         </div>
+      </a>
+      <a class="editable-box-link-overlay" href="{{ edit_href }}">
+        <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
       </a>
     </div>
   </div>
