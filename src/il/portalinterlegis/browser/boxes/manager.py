@@ -106,7 +106,6 @@ class Box(BaseBox):
     def form_name(self):
         """Last part of form urls.
         """
-        print 'box_%s' % self.id
         return 'box_%s' % self.id
 
     edit_href = form_name  # To be overridden independently
