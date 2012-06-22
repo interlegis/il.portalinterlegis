@@ -1,14 +1,14 @@
 <div class="carousel-container">
   <div class="carousel">
     <ul>
-      {%- for number, item in items %}
+      {%- for number, data, edit_href in items %}
       <li>
-        <a href="{{ item.target }}">
-          <img src="{{ item.image }}" width="340" height="215" />
+        <a href="{{ data.target }}">
+          <img src="{{ data.image }}" width="340" height="215" />
           <div class="carousel-text">
-            <h3>{{ item.title }}</h3>
+            <h3>{{ data.title }}</h3>
             <p>
-              {{ item.text }}
+              {{ data.text }}
             </p>
           </div>
         </a>
