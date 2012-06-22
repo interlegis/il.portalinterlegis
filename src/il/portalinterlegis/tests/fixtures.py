@@ -19,19 +19,18 @@ class IlPortalinterlegis(PloneSandboxLayer):
 
         # Load ZCML for this package
         import plone.app.theming
-        xmlconfig.file('configure.zcml',
-                       plone.app.theming,
+        xmlconfig.file('configure.zcml', plone.app.theming,
                        context=configurationContext)
         import five.grok
-        xmlconfig.file('configure.zcml',
-                       five.grok,
+        xmlconfig.file('configure.zcml', five.grok,
+                       context=configurationContext)
+        xmlconfig.file('configure.zcml', plone.formwidget.contenttree,
                        context=configurationContext)
         import il.portalinterlegis
-        xmlconfig.file('configure.zcml',
-                       plone.formwidget.contenttree,
+        xmlconfig.file('configure.zcml', il.portalinterlegis,
                        context=configurationContext)
-        xmlconfig.file('configure.zcml',
-                       il.portalinterlegis,
+        import collective.js.jqueryui
+        xmlconfig.file('configure.zcml', collective.js.jqueryui,
                        context=configurationContext)
 
         #TODO: (fazer essa POG do jeito certo, que não sei qual é)
