@@ -26,7 +26,8 @@ jQuery(function($) {
                   opacity: 0.8
               },
               onClose: function() {
-                  location.reload();
+                  // location.reload() would resend post data sometimes
+                  location = location.href
               }
           },
       });
