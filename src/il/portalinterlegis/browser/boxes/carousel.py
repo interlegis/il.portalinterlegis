@@ -37,15 +37,19 @@ class Carousel(BoxAware):
         numbers = self.numbers
         for i in range(NUMBER_OF_PRE_CREATED_BOXES):
             if i not in numbers:
-                numbers.append(i)
+                numbers.insert(0, i)
                 break
 
-    def remove_item(self, index):
+    def remove_item(self, id):
+        index = self._index_from_id(id)
         self.numbers.remove(index)
-        Box(ICarouselItem, i).erase_data(self.context)
+        Box(ICarouselItem, index).erase_data(self.context)
 
-    def reorder(self, order):
-        self.numbers[:] = [int(o.split('_')[-1]) for o in order.split(',')]
+    def reorder(self, ids):
+        self.numbers[:] = [self._index_from_id(id) for id in ids.split(',')]
+
+    def _index_from_id(self, id):
+        return int(id.split('_')[-1])
 
 
 class CarouselEditView(grok.View):
@@ -65,10 +69,11 @@ class CarouselEditView(grok.View):
         self._carousel = Carousel(self.context)
         if 'add' in self.request:
             self._carousel.add_item()
-        elif 'del' in self.request:
-            self._carousel.remove_item()
+        elif 'remove' in self.request:
+            self._carousel.remove_item(self.request['remove'])
         elif 'reorder' in self.request:
             self._carousel.reorder(self.request['reorder'])
+    # TODO: ajustar o render para retornar apenas feedback de sucesso ou falha
 
 class CarouselBox(BaseBox):
 

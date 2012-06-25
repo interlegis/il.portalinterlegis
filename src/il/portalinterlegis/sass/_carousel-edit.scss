@@ -1,13 +1,17 @@
 // TODO: reescrever completamente isso para alinhar-se com o carousel.scss !!!!
-.column {
+// TODO: simpificar o javascript para simplesmente usar templates e scss
+#carousel-edit-panels {
     width: 700px;
     float: left;
     padding-bottom: 100px;
+    margin-top: 10px;
 }
 .portlet {
     margin: 0 1em 1em 0;
     width: $carousel-width;
-    /* height: $carousel-height; */
+    .editable-box {
+        min-height: $carousel-height;
+    }
 }
 .portlet-header {
     margin: 0.5em;
@@ -24,6 +28,14 @@
     border: 1px dotted black;
     visibility: visible !important;
     height: $carousel-height !important;
+}
+
+#carousel-add-form {
+    padding: 10px 0;
+    font-size: 16px;
+}
+.carousel-add-button {
+    font-size: 12px;
 }
 .ui-sortable-placeholder * {
     visibility: hidden;

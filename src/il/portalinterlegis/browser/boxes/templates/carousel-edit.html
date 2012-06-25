@@ -1,4 +1,4 @@
-<div class="column" id="carousel-edit-panels">
+<div id="carousel-edit-panels">
   {%- for number, data, edit_href in items %}
   <div class="portlet" id="carousel_item_{{ number }}">
     <div class="portlet-header">Arraste e solte para reordenar os painéis</div>
@@ -19,3 +19,8 @@
   </div>
   {%- endfor %}
 </div>
+<form id="carousel-add-form" method="post" action="edit-carousel">
+  <button id="carousel-add-button" type="submit" name="add" value="_">
+    Adicionar um novo painel
+  </button>
+</form>
