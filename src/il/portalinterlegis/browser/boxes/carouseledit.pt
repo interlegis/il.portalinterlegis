@@ -13,10 +13,12 @@
 
   <h2>Edição</h2>
 
-  <ul>
-    <li>Arreste os paineis para alterar a ordem em que aparecem no carrosel.</li>
-    <li>Clique em nos ícones <img src="pencil_icon.png" width="16" height="16" alt="Lápis"/>
-      em cada painel para editá-lo.</li>
+  <ul class="instrucoes">
+    <li>Arreste os painéis para alterar a ordem em que aparecem no carrosel.</li>
+    <li>Para editar o conteúdo de um painel,
+      clique no ícone <img src="pencil_icon.png" width="16" height="16" alt="Lápis"/>.
+    </li>
+    <li>Para criar um novo painel utilize o botão <i>Adicionar um novo painel</i>.</li>
     <li>Ao terminar volte para a página original.</li>
   </ul>
 
