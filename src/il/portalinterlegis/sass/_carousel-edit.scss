@@ -40,3 +40,11 @@
 .ui-sortable-placeholder * {
     visibility: hidden;
 }
+
+ul.instrucoes {
+    margin-left: 20px;
+    list-style-type: square;
+    li {
+        display: list-item;
+    }
+}
