@@ -10,7 +10,7 @@
 
 <div id="bigbox" class="dt-row-group">
 
-  <div tal:repeat="row view/rows" tal:content="structure row" />
+  <div tal:repeat="row view/rows" tal:replace="structure row" />
 
 </div>
 
