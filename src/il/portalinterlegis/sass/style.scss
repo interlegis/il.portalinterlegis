@@ -14,6 +14,7 @@ $footer-blue: #25528c; // used only in the footer
 // IMPORTS
 // ================================================================
 
+@import "base";
 @import "dotted-deco";
 @import "footer";
 @import "carousel";
@@ -190,14 +191,12 @@ div.middle-container {
 // boxes
 // ================================================================
 @mixin box-header {
+    @include header-font;
     background: $blue;
-    color: #fff;
-    font-size: 12px; //TODO rever este tamanho
     height: 24px;
     line-height: 26px;
     margin-bottom: 10px;
     padding-left: 10px;
-    text-transform: uppercase;
 }
 
 // uso de "b": vide http://html5doctor.com/i-b-em-strong-element/
