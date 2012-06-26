@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from five import grok
 from five.grok.components import ZopeTwoPageTemplate
+from interfaces import ICarouselItem
 from persistent.list import PersistentList
 from zope.interface import Interface
 
-from interfaces import ICarouselItem
 from manager import BoxAware, Box, NUMBER_OF_PRE_CREATED_BOXES, get_template, BaseBox
 
 
