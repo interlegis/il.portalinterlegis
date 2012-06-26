@@ -1,32 +1,13 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+from boxes.carousel import CarouselBox
+from boxes.interfaces import ISimpleBox, ICalendar, IAcompanheOInterlegis, IHighlight
+from boxes.manager import DtRow, Box, GridView
+from boxes.tabs import Tab, TabbedPane
 from five import grok
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
-from boxes.carousel import CarouselBox
-from boxes.interfaces import ISimpleBox, ICalendar, IAcompanheOInterlegis, IHighlight
-from boxes.manager import DtRow, Box, GridView
-
-
-class Tab(object):
-
-    def __init__(self, title, inner_title, *row_spec):
-        self.title = title
-        self.inner_title = inner_title
-        self.row_spec = row_spec
-
-    def __call__(self, context):
-        return 'TODO: TAB %s' % self.title
-
-
-class TabbedPane(object):
-
-    def __init__(self, *tabs):
-        self.tabs = tabs
-
-    def __call__(self, context):
-        return ''.join([tab(context) for tab in self.tabs])
 
 # These are meant for more legible grid definitions. Do not overuse.
 FULL = 16
