@@ -54,10 +54,6 @@ class IAcompanheOInterlegis(BoxSchema):
     pass
 
 
-class ITabsPilares(BoxSchema):
-    pass
-
-
 class IHighlight(BoxSchema):
     pass
 
