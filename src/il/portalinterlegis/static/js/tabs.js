@@ -1,5 +1,5 @@
 $(function() {
-    $(".il-tabs > ul").tabs(".il-tabs > div");
+    $(".il-tabs > ul").tabs(".il-tabs > div > div");
 
     // TODO: refactor this to go with the way of JQuery Tools
     // from http://css-tricks.com/tabs-with-round-out-borders/
