@@ -1,14 +1,12 @@
 <div class="il-tabs">
   <ul>
-	<li><a href="#">Informação</a></li>
-	<li><a href="#">Capacitação</a></li>
-	<li><a href="#">Tecnologia</a></li>
-	<li><a href="#">Comunicação</a></li>
+    {%- for title in titles %}
+	<li><a href="#">{{ title }}</a></li>
+    {%- endfor %}
   </ul>
   <div>
-    <div>First tab content. Tab contents are called "panes"</div>
-    <div>Second tab content</div>
-    <div>Third tab content</div>
-    <div>Fourth tab content</div>
+    {%- for tab in tabs %}
+    {{ tab }}
+    {%- endfor %}
   </div>
 </div>

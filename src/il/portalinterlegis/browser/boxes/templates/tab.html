@@ -1,0 +1,10 @@
+<div>
+  <h2>{{ inner_title }}</h2>
+  <div class="row">
+    {%- for cell in cells %}
+    <div class="cell position-{{ cell.position }} width-{{ cell.width }}">
+      {{ cell.html }}
+    </div>
+    {%- endfor %}
+  </div>
+</div>
