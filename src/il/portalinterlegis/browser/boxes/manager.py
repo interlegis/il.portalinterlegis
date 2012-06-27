@@ -157,7 +157,9 @@ def get_or_create_persistent_dict(dictionary, key):
 
 
 # ROWS
-class DtRow(object):
+class Row(object):
+    """Abstract class for rows. Subclasses must define 'template_name'
+    """
 
     def __init__(self, *row_spec):
         try:
@@ -181,7 +183,12 @@ class DtRow(object):
         """Renders the html of one row.
         `row_spec` is a sequence of cell specs: [(width, schema, number), ...]
         """
-        return get_template('dtrow.html').render(cells=self.cells(context))
+        return get_template(self.template_name).render(cells=self.cells(context))
+
+
+class DtRow(Row):
+
+    template_name = 'dtrow.html'
 
 
 class GridView(grok.View):
