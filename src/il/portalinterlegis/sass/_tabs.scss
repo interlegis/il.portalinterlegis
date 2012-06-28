@@ -125,5 +125,12 @@ $tabs-active-background-color: $dark-blue;
     border-width: 4px;
     border-color: $tabs-active-background-color;
     min-height: 200px;
-    padding: 10px;
+}
+
+.il-tabs > div > div > h2 {
+    margin: 20px 10px;
+    padding-left: 35px;
+    background: url("../images/icons/rss-big.png") no-repeat left top transparent;
+    text-transform: uppercase;
+    font-weight: normal;
 }
