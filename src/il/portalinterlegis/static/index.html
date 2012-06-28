@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/jquery.carousel.js"></script>
   <script src="js/jquery.easing.js"></script>
-  <script src="js/uniformheights.js"></script>
+  <script src="js/tabs.js"></script>
   <script>
   $(function() {
     $("div.carousel")
@@ -14,17 +14,11 @@
                    prevBtn: '',
                    autoSlide: true,
                    autoSlideInterval: 5000});
-    unifyHeightsOfDottedCells(document);
   });
   </script>
-  <!-- É importante que isto venha depois de unifyHeightsOfDottedCells -->
-  <script src="js/editable-box.js"></script>
-
-  <script src="js/tabs.js"></script>
-
-  <!-- TODO: colocar isso apenas para carouseledit.pt -->
-  <script src="js/carousel-edit.js"></script>
-
+  <script src="js/carousel-edit.js"><!-- TODO: colocar isso apenas para carouseledit.pt --></script>
+  <script src="js/uniformheights.js"><!-- This one should generally be the last! --></script>
+  <script src="js/editable-box.js"><!-- This must come after uniformheights --></script>
 </head>
 <body>
 
