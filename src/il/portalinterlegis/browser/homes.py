@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from boxes.carousel import CarouselBox
-from boxes.interfaces import ISimpleBox, ICalendar, IAcompanheOInterlegis, IHighlight
+from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight
 from boxes.manager import DtRow, Box, GridView
 from boxes.tabs import Tab, TabbedPane
 from five import grok
@@ -32,7 +32,7 @@ class Home(GridView):
                 (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
             ))),
         ___((FULL, _(IAcompanheOInterlegis, 1)), ),
-        ___((4, _(IHighlight, 1)), (4, _(ISimpleBox, 1)), (4, _(ISimpleBox, 2)), (4, _(ISimpleBox, 3)),),
+        ___((4, _(IHighlight, 1)), (4, _(ISuperTitleBox, 1)), (4, _(ISuperTitleBox, 2)), (4, _(ISuperTitleBox, 3)),),
     ]
 
 
