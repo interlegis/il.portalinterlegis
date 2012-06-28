@@ -13,37 +13,32 @@ class BoxSchema(form.Schema):
     """Marker interface for box schemas.
     """
 
-
 # decorator
-def rich(*args, **kwargs):
+def rich(**kwargs):
     def f(cls):
-        cls.setTaggedValue(WIDGETS_KEY,
-                           dict([(k, WysiwygFieldWidget) for k in args],
-                                **kwargs))
+        cls.setTaggedValue(WIDGETS_KEY, dict(**kwargs))
         return cls
     return f
 
 
-@rich('text', target=AutocompleteFieldWidget)
-class ISimpleBox(BoxSchema):
-    title = schema.TextLine(title=u"Título", required=True)
-    subtitle = schema.TextLine(title=u"Subtítulo", required=True)
-    text = schema.Text(title=u"Texto", required=False)
-    target = schema.Choice(title=u"Conteúdo relacionado",
-                           source=PathSourceBinder(),
-                           required=False)
-    # TODO: imagem !!!
-
-
-# TODO: remover esse copiar-e-colar entre esse e ISimpleBox: extrair uma classe base comum?
-@rich('text', target=AutocompleteFieldWidget)
-class ICarouselItem(BoxSchema):
+@rich(text=WysiwygFieldWidget, target=AutocompleteFieldWidget)
+class IRelated(BoxSchema):
     target = schema.Choice(title=u"Conteúdo relacionado",
                            source=PathSourceBinder(),
                            required=False)
     image = schema.TextLine(title=u"URL da imagem", required=False) # TODO: imagem de verdade !!!
     title = schema.TextLine(title=u"Título", required=True)
     text = schema.Text(title=u"Texto", required=False)
+
+
+class ISuperTitleBox(IRelated):
+    supertitle = schema.TextLine(title=u"Supertítulo", required=True)
+
+
+class ICarouselItem(IRelated):
+    # It's important to have a separate class (instead of using IRelated directly)
+    # since the class name is used for storage
+    pass
 
 
 class ICalendar(BoxSchema):

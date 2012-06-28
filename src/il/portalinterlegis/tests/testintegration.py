@@ -5,7 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from zExceptions import NotFound
 
 from fixtures import IL_PORTALINTERLEGIS_INTEGRATION_TESTING
-from il.portalinterlegis.browser.boxes.interfaces import ISimpleBox
+from il.portalinterlegis.browser.boxes.interfaces import ISuperTitleBox
 from il.portalinterlegis.browser.boxes.manager import \
      Box, build_box_form, NUMBER_OF_PRE_CREATED_BOXES
 from il.portalinterlegis.browser.interfaces import \
@@ -67,51 +67,51 @@ class TestIntegracao(unittest.TestCase):
     # BOXES
 
     def test_box_content_is_empty_before_visiting_form(self):
-        self.assertEqual({}, Box(ISimpleBox, 1).get_data(self.portal))
+        self.assertEqual({}, Box(ISuperTitleBox, 1).get_data(self.portal))
 
     def test_using_box_form_creates_box_content(self):
         context = self.portal
 
-        def use_box_form(title, subtitle, text, target, box):
+        def use_box_form(supertitle, title, text, target, box):
             browser = self.layer.manager_browser()
             browser.open(self.url(box.form_name))
+            browser.getControl(name='form.widgets.supertitle').value = supertitle
             browser.getControl(name='form.widgets.title').value = title
-            browser.getControl(name='form.widgets.subtitle').value = subtitle
             browser.getControl(name='form.widgets.text').value = text
             # TODO: nao sei como testar um AutocompleteFieldWidget com o zope.testbrowser (tem javascript)
             # browser.getControl(label=u'Conteúdo relacionado').value = target
             browser.getControl(name='form.buttons.apply').click()
 
-        box_1 = Box(ISimpleBox, 1)
-        use_box_form('TIT_1', 'SUBTIT_1', 'TEXT_1', 'ALVO_1', box_1)
-        self.assertEqual({'title': 'TIT_1', 'subtitle': 'SUBTIT_1', 'text': 'TEXT_1', 'target': None},
+        box_1 = Box(ISuperTitleBox, 1)
+        use_box_form('SUPERTIT_1', 'TIT_1', 'TEXT_1', 'ALVO_1', box_1)
+        self.assertEqual(dict(supertitle='SUPERTIT_1', title='TIT_1', text='TEXT_1', target=None, image=None),
                          box_1.get_data(context))
 
         # a second one to test there is no mutual interference
-        box_2 = Box(ISimpleBox, 2)
-        use_box_form('TIT_2', 'SUBTIT_2', 'TEXT_2', 'ALVO_2', box_2)
-        self.assertEqual({'title': 'TIT_2', 'subtitle': 'SUBTIT_2', 'text': 'TEXT_2', 'target': None},
+        box_2 = Box(ISuperTitleBox, 2)
+        use_box_form('SUPERTIT_2', 'TIT_2', 'TEXT_2', 'ALVO_2', box_2)
+        self.assertEqual(dict(supertitle='SUPERTIT_2', title='TIT_2', text='TEXT_2', target=None, image=None),
                          box_2.get_data(context))
 
     def test_box_forms_are_limited(self):
         browser = self.layer.manager_browser()
         # These are ok. No exception raised
-        browser.open(self.url(Box(ISimpleBox, 0).form_name))
-        browser.open(self.url(Box(ISimpleBox,
+        browser.open(self.url(Box(ISuperTitleBox, 0).form_name))
+        browser.open(self.url(Box(ISuperTitleBox,
                                   NUMBER_OF_PRE_CREATED_BOXES - 1).form_name))
         with self.assertRaises(NotFound):
             # This doesn't exist
-            browser.open(self.url(Box(ISimpleBox,
+            browser.open(self.url(Box(ISuperTitleBox,
                                       NUMBER_OF_PRE_CREATED_BOXES).form_name))
 
     def test_box_form_cannot_be_created_after_initialization(self):
         """Try to build a box form in an arbitrary moment.
            Unfortunately that's not possible.
         """
-        build_box_form(Box(ISimpleBox, 99))
+        build_box_form(Box(ISuperTitleBox, 99))
         with self.assertRaises(NotFound):
             browser = self.layer.manager_browser()
-            browser.open(self.url(Box(ISimpleBox, 99).form_name))
+            browser.open(self.url(Box(ISuperTitleBox, 99).form_name))
 
     # CAROUSEL
 
