@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
+from collections import defaultdict
+from itertools import count
+
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+from five import grok
+
 from boxes.carousel import CarouselBox
-from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight
+from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight, IRelated
 from boxes.manager import DtRow, Box, GridView
 from boxes.tabs import Tab, TabbedPane
-from five import grok
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
 
 
-# These are meant for more legible grid definitions. Do not overuse.
+# These are meant for more readable grid definitions. Do not overuse.
 FULL = 16
-___, _ = DtRow, Box
-
+_count_dict = defaultdict(count)
+def _(interface):
+    return Box(interface, _count_dict[interface].next())
+___ = DtRow
 
 class Home(GridView):
     grok.name('home')
@@ -20,19 +26,19 @@ class Home(GridView):
     grok.require('zope2.View')
 
     grid = [
-        ___((10, CarouselBox()), (6, _(ICalendar, 1)),),
+        ___((10, CarouselBox()), (6, _(ICalendar)),),
         ___((FULL, TabbedPane(
             Tab(u'Informação',  u'Informação Legislativa',
-                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             Tab(u'Capacitação', u'Capacitação Legislativa',
-                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             Tab(u'Tecnologia',  u'Tecnologia Legislativa',
-                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             Tab(u'Comunicação', u'Comunicação Legislativa',
-                (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)), (4, _(IHighlight, 1)),),
+                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             ))),
-        ___((FULL, _(IAcompanheOInterlegis, 1)), ),
-        ___((4, _(IHighlight, 1)), (4, _(ISuperTitleBox, 1)), (4, _(ISuperTitleBox, 2)), (4, _(ISuperTitleBox, 3)),),
+        ___((FULL, _(IAcompanheOInterlegis)), ),
+        ___((4, _(IHighlight)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)),),
     ]
 
 

@@ -21,7 +21,9 @@ def rich(**kwargs):
     return f
 
 
-@rich(text=WysiwygFieldWidget, target=AutocompleteFieldWidget)
+# TODO: title in "almost" WysiwygFieldWidget... (just <b></b> allowed)... configure Tiny and filters
+@rich(text=WysiwygFieldWidget,
+      target=AutocompleteFieldWidget)
 class IRelated(BoxSchema):
     target = schema.Choice(title=u"Conteúdo relacionado",
                            source=PathSourceBinder(),
@@ -32,6 +34,7 @@ class IRelated(BoxSchema):
 
 
 class ISuperTitleBox(IRelated):
+    # TODO: usar hint para que este campo seja o primeiro
     supertitle = schema.TextLine(title=u"Supertítulo", required=True)
 
 
