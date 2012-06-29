@@ -38,8 +38,11 @@ class Carousel(BoxAware):
     def add_item(self):
         panels = self.panels
         for i in range(NUMBER_OF_PRE_CREATED_BOXES):
-            if i not in panels and Box(ICarouselItem, number).is_empty(self.context):
+            if i not in panels and Box(ICarouselItem, i).is_empty(self.context):
                 panels.insert(0, i)
+                # this marks the slot as used
+                # to avoid conflicts between panels of two carousels
+                Box(ICarouselItem, i).get_data(self.context)
                 break
 
     def remove_item(self, id):
