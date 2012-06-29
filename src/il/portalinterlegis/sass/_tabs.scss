@@ -134,3 +134,9 @@ $tabs-active-background-color: $dark-blue;
     text-transform: uppercase;
     font-weight: normal;
 }
+.il-tabs .row {
+    padding-bottom: 10px;
+}
+.il-tabs > div > br {
+    clear:both;
+}
