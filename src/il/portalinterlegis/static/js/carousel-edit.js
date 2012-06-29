@@ -3,7 +3,7 @@ $(function() {
     $( "#carousel-edit-panels" ).sortable({
         update: function(event, ui) {
             var order = $(this).sortable('toArray').toString();
-            $.post('edit-carousel', {reorder:order});
+            $.post(location.pathname, {reorder:order});
         }
     });
     $( "#carousel-edit-panels" ).disableSelection();
@@ -18,7 +18,7 @@ $(function() {
         var answer = confirm("Quer apagar esse painel?")
         if (answer){
             var panel = $(this).parents(".portlet:first");
-            $.post('edit-carousel', {remove:panel.attr('id')});
+            $.post(location.pathname, {remove:panel.attr('id')});
             panel.fadeOut(300, function() {
                 $(this).remove();
             });

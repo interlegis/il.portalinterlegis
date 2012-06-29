@@ -19,7 +19,7 @@ class TestCarousel(DifferentTestCase):
 
         with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
             IAnnotations.return_value = {BoxAware.ALL_BOXES_KEY: {
-                Carousel.CAROUSEL_KEY: {Carousel.NUMBERS_KEY: [1, 2]},
+                "carousel_numbers_0": [1, 2],
                 Box(ICarouselItem, 1).id: dict(
                     target = "TARGET_1",
                     image = "IMG_1",
@@ -63,5 +63,5 @@ class TestCarousel(DifferentTestCase):
     </ul>
   </div>
 </div>
-'''.strip('\n'), Carousel(context).render())
+'''.strip('\n'), Carousel(0, context).render())
             IAnnotations.assert_called_with(context)

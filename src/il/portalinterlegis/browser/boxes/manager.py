@@ -30,10 +30,15 @@ class BoxAware(object):
 
     ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
 
-    def get_box_data(self, context, key):
+    def has_box_data(self, context, key):
+        annotations = IAnnotations(context)
+        return self.ALL_BOXES_KEY in annotations \
+          and key in annotations[self.ALL_BOXES_KEY]
+
+    def get_box_data(self, context, key, type_to_create=PersistentDict):
         annotations = IAnnotations(context)
         boxes = self.get_or_create_from_dict(annotations, self.ALL_BOXES_KEY)
-        return self.get_or_create_from_dict(boxes, key)
+        return self.get_or_create_from_dict(boxes, key, type_to_create)
 
     def erase_box_data(self, context, key):
         annotations = IAnnotations(context)
@@ -102,6 +107,9 @@ class Box(BaseBox):
     def erase_data(self, context):
         self.erase_box_data(context, self.id)
 
+    def is_empty(self, context):
+        return not self.has_box_data(context, self.id)
+
     @property
     def form_name(self):
         """Last part of form urls.
@@ -143,7 +151,7 @@ def build_box_form(box):
     globals()['BoxEditForm_%s' % box.id] = BoxEditForm
     return BoxEditForm
 
-
+# TODO: This is first class POG. Has to be eliminated someday
 def build_many_box_forms(schema, max_number):
     for number in range(max_number):
         build_box_form(Box(schema, number))
@@ -205,6 +213,6 @@ class GridView(grok.View):
 # TODO: o unico lugar em que isto funcionou foi aqui. Entender porque e decidir lugar definitivo.
 
 # initialize all the box managers
-NUMBER_OF_PRE_CREATED_BOXES = 10
+NUMBER_OF_PRE_CREATED_BOXES = 20
 for s in box_schemas():
     build_many_box_forms(s, NUMBER_OF_PRE_CREATED_BOXES)
