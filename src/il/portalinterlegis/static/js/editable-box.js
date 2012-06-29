@@ -19,6 +19,7 @@ jQuery(function($) {
           subtype: 'iframe',
           filter: '#content',
           formselector: 'form',
+          width: '80%',
           config: {
               closeOnClick: true,
               mask: {
