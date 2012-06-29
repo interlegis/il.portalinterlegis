@@ -16,10 +16,10 @@ class TestCarousel(DifferentTestCase):
         """This is a semi-integration test: given a certain IAnnotations state (our DB)
         assert a redered output
         """
-
+        context = object()
         with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
             IAnnotations.return_value = {BoxAware.ALL_BOXES_KEY: {
-                "carousel_numbers_0": [1, 2],
+                Carousel(0, context)._panels_key(): [1, 2],
                 Box(ICarouselItem, 1).id: dict(
                     target = "TARGET_1",
                     image = "IMG_1",
@@ -33,7 +33,6 @@ class TestCarousel(DifferentTestCase):
                     text = "TEXT_2",
                 ),
             }}
-            context = object()
             self.assertMultiLineEqual('''
 <div class="carousel-container">
   <div class="carousel">

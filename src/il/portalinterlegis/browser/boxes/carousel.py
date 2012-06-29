@@ -21,34 +21,34 @@ class Carousel(BoxAware):
             template = get_template("carousel-edit.html")
         else:
             template = get_template("carousel.html")
-        boxes = [(number, Box(ICarouselItem, number)) for number in self.numbers]
+        boxes = [(panel, Box(ICarouselItem, panel)) for panel in self.panels]
         return template.render(
             carousel_edit_href=carousel_edit_href(self.number),
-            items=[(number,
+            items=[(panel,
                     box.get_data(self.context),
-                    box.edit_href) for number, box in boxes])
+                    box.edit_href) for panel, box in boxes])
 
-    # TODO: renomear isso para panels
     @property
-    def numbers(self):
-        return self.get_box_data(self.context,
-                                 "carousel_numbers_%s" % self.number,
-                                 PersistentList)
+    def panels(self):
+        return self.get_box_data(self.context, self._panels_key(), PersistentList)
+
+    def _panels_key(self):
+        return "carousel_panels_%s" % self.number
 
     def add_item(self):
-        numbers = self.numbers
+        panels = self.panels
         for i in range(NUMBER_OF_PRE_CREATED_BOXES):
-            if i not in numbers and Box(ICarouselItem, number).is_empty(self.context):
-                numbers.insert(0, i)
+            if i not in panels and Box(ICarouselItem, number).is_empty(self.context):
+                panels.insert(0, i)
                 break
 
     def remove_item(self, id):
         index = self._index_from_id(id)
-        self.numbers.remove(index)
+        self.panels.remove(index)
         Box(ICarouselItem, index).erase_data(self.context)
 
     def reorder(self, ids):
-        self.numbers[:] = [self._index_from_id(id) for id in ids.split(',')]
+        self.panels[:] = [self._index_from_id(id) for id in ids.split(',')]
 
     def _index_from_id(self, id):
         return int(id.split('_')[-1])

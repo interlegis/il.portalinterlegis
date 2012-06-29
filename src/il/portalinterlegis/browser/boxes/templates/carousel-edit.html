@@ -1,6 +1,6 @@
 <div id="carousel-edit-panels">
-  {%- for number, data, edit_href in items %}
-  <div class="portlet" id="carousel_item_{{ number }}">
+  {%- for panel, data, edit_href in items %}
+  <div class="portlet" id="carousel_item_{{ panel }}">
     <div class="portlet-header">Arraste e solte para reordenar os painéis</div>
     <div class="portlet-content editable-box">
       <a href="{{ data.target }}">
