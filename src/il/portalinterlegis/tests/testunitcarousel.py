@@ -64,3 +64,35 @@ class TestCarousel(DifferentTestCase):
 </div>
 '''.strip('\n'), Carousel(0, context).render())
             IAnnotations.assert_called_with(context)
+
+    def test_multiple_carousel_panels_are_independant(self):
+        """Make sure the panels of different carousels do not mix
+        with one another after edit operations.
+        """
+        annotations = {}
+        context = object()
+        with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
+            IAnnotations.return_value = annotations
+            carousel_0 = Carousel(0, context)
+            carousel_1 = Carousel(1, context)
+
+            carousel_0.add_item()
+            carousel_0.add_item()
+            carousel_0.add_item()
+            self.assertEqual(carousel_0.panels, [2, 1, 0])
+            self.assertEqual(carousel_1.panels, [])
+            carousel_0.remove_item('zzzzz_1')
+            self.assertEqual(carousel_0.panels, [2, 0])
+            self.assertEqual(carousel_1.panels, [])
+            carousel_1.add_item()
+            carousel_1.add_item()
+            self.assertEqual(carousel_0.panels, [2, 0])
+            self.assertEqual(carousel_1.panels, [3, 1])
+            carousel_1.remove_item('zzzzz_3')
+            self.assertEqual(carousel_0.panels, [2, 0])
+            self.assertEqual(carousel_1.panels, [1])
+            carousel_0.add_item()
+            carousel_0.add_item()
+            carousel_1.add_item()
+            self.assertEqual(carousel_0.panels, [4, 3, 2, 0])
+            self.assertEqual(carousel_1.panels, [5, 1])
