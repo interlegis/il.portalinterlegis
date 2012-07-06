@@ -74,7 +74,7 @@ class BaseBox(BoxAware):
 
     @property
     def id(self):
-        "id of the box. Used in the template."
+        "id of the box. Used in the template. Must be unique on a page."
         raise NotImplementedError
 
     @property
