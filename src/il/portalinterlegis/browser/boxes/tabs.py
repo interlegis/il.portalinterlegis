@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from manager import get_template, Row
 
+from zope.component import queryUtility
+from plone.i18n.normalizer.interfaces import IIDNormalizer
+
 
 class Tab(Row):
 
@@ -15,6 +18,10 @@ class Tab(Row):
     def __call__(self, context):
         return self.render(context)
 
+    def __repr__(self):
+        util = queryUtility(IIDNormalizer)
+        return 'tab-%s' % util.normalize(self.title)
+
     def render(self, context):
         return get_template(self.template_name).render(
             cells=self.cells(context),
@@ -28,7 +35,7 @@ class TabbedPane(object):
         self.tabs = tabs
 
     def __call__(self, context):
-        template = get_template("tabbedpane.html")
+        template = get_template('tabbedpane.html')
         return template.render(
-            titles=[tab.title for tab in self.tabs],
-            tabs=[tab(context) for tab in self.tabs],)
+            slug_title=[(tab, tab.title) for tab in self.tabs],
+            tabs=[tab(context) for tab in self.tabs])

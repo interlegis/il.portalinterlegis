@@ -14,11 +14,16 @@ from interfaces import \
 
 
 # These are meant for more readable grid definitions. Do not overuse.
-FULL = 16
-_count_dict = defaultdict(count)
+
 def _(interface):
     return Box(interface, _count_dict[interface].next())
+
 ___ = DtRow
+
+_count_dict = defaultdict(count)
+
+FULL = 16
+
 
 class Home(GridView):
     grok.name('home')
@@ -28,13 +33,13 @@ class Home(GridView):
     grid = [
         ___((10, CarouselBox(0)), (6, _(ICalendar)),),
         ___((FULL, TabbedPane(
-            Tab(u'Informação',  u'Informação Legislativa',
+            Tab(u'Informação',  u'Informação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(0)),),
-            Tab(u'Capacitação', u'Capacitação Legislativa',
+            Tab(u'Capacitação', u'Capacitação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
-            Tab(u'Tecnologia',  u'Tecnologia Legislativa',
+            Tab(u'Tecnologia',  u'Tecnologia',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
-            Tab(u'Comunicação', u'Comunicação Legislativa',
+            Tab(u'Comunicação', u'Comunicação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             ))),
         ___((FULL, _(IAcompanheOInterlegis)), ),

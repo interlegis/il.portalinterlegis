@@ -20,54 +20,60 @@
                    loop: true});
   });
   </script>
-  <script src="js/carousel-edit.js"><!-- TODO: colocar isso apenas para carouseledit.pt --></script>
+  <!-- TODO: colocar script abaixo somente para bundle de editores -->
+  <script src="js/carousel-edit.js"></script>
   <script src="js/tabs.js"></script>
-  <script src="js/uniformheights.js"><!-- This one should generally be the last! --></script>
-  <script src="js/editable-box.js"><!-- This must come after uniformheights --></script>
+  <!-- The next two scripts should generally be the last, in the same order -->
+  <script src="js/uniformheights.js"></script>
+  <script src="js/editable-box.js"></script>
 </head>
 <body>
+
   <div id="visual-portal-wrapper" class="middle-container">
 
     <div class="row" id="portal-top">
 
-        <div id="portal-header">
+      <div id="portal-header">
 
-          <ul id="header-actions">
-            <li id="header-actions-accessibility"><a href="#" title="Acessibilidade">Acessibilidade</a></li>
-          </ul>
+        <ul id="header-actions">
+          <li id="header-actions-accessibility">
+            <a href="#" title="Acessibilidade">Acessibilidade</a>
+          </li>
+        </ul>
 
-          <div id="portal-personaltools-wrapper">
-          </div>
-          <div id="portal-searchbox">
-          </div>
+        <div id="portal-personaltools-wrapper" />
 
-          <a id="portal-logo">
-            <img width="280" height="81" title="Site" alt="Site" src="images/logo.png" />
-          </a>
+        <div id="portal-searchbox" />
 
-          <h5 class="hiddenStructure">Sections</h5>
+        <a id="portal-logo">
+          <img width="280" height="81" title="Interlegis" alt="Logo Interlegis" src="images/logo.png" />
+        </a>
 
-          <ul id="portal-globalnav">
-            <li class="selected" id="portaltab-index_html"><a>O Interlegis</a></li>
-            <li class="plain" id="portaltab-comunidade-legislativa"><a>Comunidade Legislativa</a></li>
-            <li class="plain" id="portaltab-informacao"><a>Informação</a></li>
-            <li class="plain" id="portaltab-capacitacao"><a>Capacitação</a></li>
-            <li class="plain" id="portaltab-tecnologia"><a>Tecnologia</a></li>
-            <li class="plain" id="portaltab-comunicacao"><a>Comunicação</a></li>
-          </ul>
+        <h5 class="hiddenStructure">Sections</h5>
 
-        </div>
+        <ul id="portal-globalnav">
+          <li class="selected" id="portaltab-index_html"><a>O Interlegis</a></li>
+          <li class="plain" id="portaltab-comunidade-legislativa"><a>Comunidade Legislativa</a></li>
+          <li id="portaltab-informacao"><a>Informação</a></li>
+          <li id="portaltab-capacitacao"><a>Capacitação</a></li>
+          <li id="portaltab-tecnologia"><a>Tecnologia</a></li>
+          <li id="portaltab-comunicacao"><a>Comunicação</a></li>
+        </ul>
+
+      </div>
+
     </div>
 
-      <div class="row">
-        <div id="carousel-1" />
-      </div>
+    <div class="row">
+      <div id="carousel-1" />
+    </div>
 
-      <div class="dt-row-only-one" id="portal-columns">
-        Conteúdo
-      </div>
+    <div class="dt-row-only-one" id="portal-columns">
+      Conteúdo
+    </div>
 
   </div>
+
   <div class="footer">
     <div class="middle-container">
       <div class="row">
@@ -125,16 +131,15 @@
         </div>
       <div class="utils">
           <em>
-            <ul id="portal-siteactions">
-            </ul>
+            <ul id="portal-siteactions" />
           </em>
         </div>
       <div class="partners">
           <ul>
-            <li><a href="http://senado.leg.br"><img title="Senado Federal" alt="Senado Federal" src="images/senado.png"/></a></li>
-            <li><a href="http://camara.leg.br"><img title="Câmara dos Deputados" alt="Câmara dos Deputados" src="images/camara.png"/></a></li>
-            <li><a href="http://www.iadb.org"><img title="Banco Interamericano de Desenvolvimento" alt="Banco Interamericano de Desenvolvimento" src="images/bid.png"/></a></li>
-            <li><a href="http://tcu.leg.br"><img class="last" title="Tribunal de Contas da União" alt="Tribunal de Contas da União" src="images/tcu.png"/></a></li>
+            <li><a href="http://senado.leg.br"><img title="Senado Federal" alt="Senado Federal" src="images/senado.png" /></a></li>
+            <li><a href="http://camara.leg.br"><img title="Câmara dos Deputados" alt="Câmara dos Deputados" src="images/camara.png" /></a></li>
+            <li><a href="http://www.iadb.org"><img title="Banco Interamericano de Desenvolvimento" alt="Banco Interamericano de Desenvolvimento" src="images/bid.png" /></a></li>
+            <li><a href="http://tcu.leg.br"><img class="last" title="Tribunal de Contas da União" alt="Tribunal de Contas da União" src="images/tcu.png" /></a></li>
           </ul>
         </div>
       </div>

@@ -197,6 +197,17 @@ div.middle-container {
     line-height: 26px;
     margin-bottom: 10px;
     padding-left: 10px;
+    &:before {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $blue;
+        content: "";
+        height: 0;
+        margin-right: -10px;
+        position: relative;
+        top: 25px;
+        width: 0;
+    }
 }
 
 // uso de "b": vide http://html5doctor.com/i-b-em-strong-element/
@@ -233,6 +244,6 @@ div.middle-container {
 
 @each $type in news, cases, contact {
     .icon-#{$type} {
-        background: url("../images/icons/#{$type}.png") left no-repeat;
+        background: url(../images/icons/#{$type}.png) left no-repeat;
     }
 }
