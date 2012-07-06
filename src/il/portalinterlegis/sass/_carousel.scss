@@ -1,8 +1,4 @@
-
-$carousel-width: 600px - 20px;
-$carousel-height: 215px;
-
-.carousel-container {
+@mixin carousel-container-mixin($carousel-width: 600px - 20px, $carousel-height: 215px) {
     .js {
         overflow: hidden;
         zoom: 1;
@@ -78,7 +74,10 @@ $carousel-height: 215px;
             }
         }
     }
+}
 
+.carousel-container {
+    @include carousel-container-mixin();
 }
 
 .carousel-control {
