@@ -1,5 +1,8 @@
 // TODO: reescrever completamente isso para alinhar-se com o carousel.scss !!!!
 // TODO: simplificar o javascript para simplesmente usar templates e scss
+$carousel-width: 600px - 20px;
+$carousel-height: 215px;
+
 #carousel-edit-panels {
     width: 700px;
     float: left;

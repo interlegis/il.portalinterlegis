@@ -6,9 +6,7 @@ $(function() {
                    prevBtn: '',
                    autoSlide: true,
                    autoSlideInterval: 5000});
-    $("div.carousel-products")
+    $("div.products-services")
         .carousel({pagination: false,
-                   nextBtn: '',
-                   prevBtn: '',
                    loop: true});
 });

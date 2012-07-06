@@ -1,0 +1,8 @@
+
+.products-services-container {
+    @include carousel-container-mixin(185px, 220px);
+}
+
+.products-services {
+    @extend .carousel;
+}

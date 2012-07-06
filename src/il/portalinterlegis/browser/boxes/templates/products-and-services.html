@@ -5,21 +5,27 @@
 </div>
 
 <div class="products-services-container">
-  <div class="carousel-products">
+  <div class="products-services">
     <ul>
-      {%- for _, data, __ in items %}
       <li>
-        <a href="{{ data.target }}">
-          <img src="{{ data.image }}" width="340" height="215" />
-          <div class="carousel-text">
-            <h3>{{ data.title }}</h3>
+        <div class="simple-box">
+          <a href="/portal//news/nova-noticia">
+            <h3 class="icon-news">Título <b>legal</b></h3>
             <p>
-              {{ data.text }}
-            </p>
-          </div>
-        </a>
+            </p><p>Donec dui diam, bibendum eu tincidunt a, vehicula ac sem. Sed placerat diam in magna placerat ultrices. Donec in posuere est. Curabitur dictum pulvinar risus, id laoreet enim pretium eu.</p>
+
+          </a>
+        </div>
       </li>
-      {%- endfor %}
+      <li>
+        <div class="simple-box">
+          <a href="/portal//news/nova-noticia">
+            <h3 class="icon-news">Título <b>legal</b></h3>
+            <p>
+            </p><p>Donec dui diam, bibendum eu tincidunt a, vehicula ac sem. Sed placerat diam in magna placerat ultrices. Donec in posuere est. Curabitur dictum pulvinar risus, id laoreet enim pretium eu.</p>
+          </a>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

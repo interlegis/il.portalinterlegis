@@ -14,10 +14,12 @@ $footer-blue: #25528c; // used only in the footer
 // IMPORTS
 // ================================================================
 
+// Attention: The order of these imports matter.
 @import "base";
 @import "dotted-deco";
 @import "footer";
 @import "carousel";
+@import "products-and-services";
 @import "carousel-edit";
 @import "editable-box";
 @import "tabs";
