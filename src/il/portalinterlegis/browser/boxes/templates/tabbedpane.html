@@ -8,6 +8,14 @@
     {%- for tab in tabs %}
     {{ tab }}
     {%- endfor %}
+    {# XXX: tentar tirar esse <br/> daqui
+       (vide tb ".il-tabs > div > br" em sass/_tabs.scss)
+       o <div class="visualClear"> a seguir nao eh suficiente!!!!
+
+       Somente com esse br consegui que a altura da tab aumente para conter totalmente as caixas,
+       mesmo quando a altura de uma caixa eh maior que a altura minima da tab.
+    #}
+    <br/>
     <div class="visualClear"><!-- --></div>
   </div>
 </div>
