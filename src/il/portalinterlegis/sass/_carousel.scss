@@ -30,29 +30,6 @@ $carousel-height: 215px;
             margin: 0;
             zoom: 1;
         }
-        .carousel-control {
-            border: 0;
-            cursor: pointer;
-            display: inline-block;
-            height: 40px;
-            line-height: 999px;
-            overflow: hidden;
-            text-indent: -9999px;
-            vertical-align: middle;
-            width: 40px;
-            zoom: 1;
-            &:hover {
-                -moz-opacity: .7;
-                opacity: 0.70;
-                filter: alpha(opacity=70);
-            }
-        }
-        .carousel-next {
-            background: url(../images/icons/next.png) 0 0 no-repeat;
-        }
-        .carousel-previous {
-            background: url(../images/icons/prev.png) 0 0 no-repeat;
-        }
         .disabled,
         .disabled:hover {
             cursor: default;
@@ -102,6 +79,37 @@ $carousel-height: 215px;
         }
     }
 
+}
+
+.carousel-control {
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 999px;
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 25px;
+    zoom: 1;
+    &:hover {
+        -moz-opacity: .7;
+        opacity: 0.70;
+        filter: alpha(opacity=70);
+    }
+}
+
+.next-previous-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.carousel-next {
+    background: url(../images/icons/next.png) 0 0 no-repeat;
+}
+
+.carousel-previous {
+    background: url(../images/icons/prev.png) 0 0 no-repeat;
 }
 
 .carousel-text {

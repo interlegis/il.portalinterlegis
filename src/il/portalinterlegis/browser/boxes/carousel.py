@@ -12,15 +12,16 @@ from manager import BoxAware, Box, NUMBER_OF_PRE_CREATED_BOXES, get_template, Ba
 class Carousel(BoxAware):
     """General carousel manager, related to a context"""
 
-    def __init__(self, number, context):
+    def __init__(self, kind, number, context):
+        self.kind = kind
         self.number = number
         self.context = context
 
     def render(self, edit_mode=False):
         if edit_mode:
-            template = get_template("carousel-edit.html")
+            template = get_template("%s-edit.html" % self.kind)
         else:
-            template = get_template("carousel.html")
+            template = get_template("%s.html" % self.kind)
         boxes = [(panel, Box(ICarouselItem, panel)) for panel in self.panels]
         return template.render(
             carousel_edit_href=carousel_edit_href(self.number),
@@ -59,15 +60,19 @@ class Carousel(BoxAware):
 
 class CarouselBox(BaseBox):
 
-    id = 'carousel'
     is_link_overlay = False
+    kind = 'carousel'
 
     def __init__(self, number, permission=ModifyPortalContent):
         super(CarouselBox, self).__init__(permission)
         self.number = number
 
+    @property
+    def id(self):
+        return '%s_%s' % (self.kind, self.number)
+
     def inner_render(self, context):
-        return Carousel(self.number, context).render()
+        return Carousel(self.kind, self.number, context).render()
 
     @property
     def edit_href(self):
@@ -105,3 +110,5 @@ def build_CarouselEditView(number):
 for number in range(8):
     build_CarouselEditView(number)
 
+class ProductsAndServices(CarouselBox):
+    kind = 'products-and-services'

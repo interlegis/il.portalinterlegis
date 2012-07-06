@@ -5,7 +5,7 @@ from itertools import count
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
-from boxes.carousel import CarouselBox
+from boxes.carousel import CarouselBox, ProductsAndServices
 from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight, IRelated
 from boxes.manager import DtRow, Box, GridView
 from boxes.tabs import Tab, TabbedPane
@@ -29,7 +29,7 @@ class Home(GridView):
         ___((10, CarouselBox(0)), (6, _(ICalendar)),),
         ___((FULL, TabbedPane(
             Tab(u'Informação',  u'Informação Legislativa',
-                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, CarouselBox(1)),),
+                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(0)),),
             Tab(u'Capacitação', u'Capacitação Legislativa',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)),),
             Tab(u'Tecnologia',  u'Tecnologia Legislativa',
