@@ -1,13 +1,13 @@
 <div class="il-tabs">
   <ul>
-    {%- for title in titles %}
-	<li><a href="#">{{ title }}</a></li>
+    {%- for slug, title in slug_title %}
+    <li class="{{ slug }}"><a href="#">{{ title }}</a></li>
     {%- endfor %}
   </ul>
   <div>
     {%- for tab in tabs %}
     {{ tab }}
     {%- endfor %}
-    <br/> {# XXX: tentar tirar isso daqui (vide tb ".il-tabs > div > br" em sass/_tabs.scss) #}
+    <div class="visualClear"><!-- --></div>
   </div>
 </div>

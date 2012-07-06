@@ -26,6 +26,7 @@ _template_factory = Environment(loader=PackageLoader(__name__))
 
 get_template = _template_factory.get_template
 
+
 class BoxAware(object):
 
     ALL_BOXES_KEY = 'il.portalinterlegis.boxes'
@@ -91,7 +92,7 @@ class Box(BaseBox):
         super(Box, self).__init__(permission)
         self.schema = schema
         self.number = number
-        self.form_label = form_label or u'Edite os valore desta caixa'  # TODO: improve this text
+        self.form_label = form_label or u'Edite os valores desta caixa'  # TODO: improve this text
 
     @property
     def id(self):
@@ -117,6 +118,7 @@ class Box(BaseBox):
         return 'box_%s' % self.id
 
     edit_href = form_name  # To be overridden independently
+
 
 def build_box_form(box):
 
@@ -150,6 +152,7 @@ def build_box_form(box):
 
     globals()['BoxEditForm_%s' % box.id] = BoxEditForm
     return BoxEditForm
+
 
 # TODO: This is first class POG. Has to be eliminated someday
 def build_many_box_forms(schema, max_number):
@@ -210,7 +213,7 @@ class GridView(grok.View):
             yield row.render(self.context)
 
 ################################################################
-# TODO: o unico lugar em que isto funcionou foi aqui. Entender porque e decidir lugar definitivo.
+# TODO: o unico lugar em que isto funcionou foi aqui. Entender por que e decidir lugar definitivo.
 
 # initialize all the box managers
 NUMBER_OF_PRE_CREATED_BOXES = 20

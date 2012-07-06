@@ -1,9 +1,16 @@
 // based on http://css-tricks.com/tabs-with-round-out-borders/
 
+$tabs: informacao, capacitacao, tecnologia, comunicacao;
 $tabs-canvas-color: white;
-$tabs-background-color: $blue;
-$tabs-color: white;
-$tabs-active-background-color: $dark-blue;
+$tabs-informacao-color: #68679b;
+$tabs-capacitacao-color: #6aa575;
+$tabs-tecnologia-color: #dd9f4b;
+$tabs-comunicacao-color: #e38064;
+
+// XXX: nao consigo avaliar uma variavel de nome dinamico
+@function -bg-tab-color($tab) {
+    @return '$tabs-' + $tab + '-color';
+}
 
 .il-tabs > ul {
     list-style: none;
@@ -20,123 +27,192 @@ $tabs-active-background-color: $dark-blue;
     zoom: 1;
 
     li {
-	    /* Makes a horizontal row */
-	    float: left;
+        // Makes a horizontal row
+        float: left;
 
-	    /* So the psueudo elements can be
-	       abs. positioned inside */
-	    position: relative;
+        // So the pseudo elements can be abs. positioned inside
+        position: relative;
 
         @include header-font;
     }
     a {
-	    /* Make them block level
-	       and only as wide as they need */
-	    float: left;
-	    padding: 8px 0 8px 20px;
-        width: 230px - 20px;
+        // Make them block level and only as wide as they need
+        float: left;
+        padding: 8px 0 8px 20px;
         text-align: left;
+        width: 230px - 20px;
 
-	    /* Default colors */
-	    color: $tabs-color;
-	    background: $tabs-background-color;
+        // Default text color
+        color: white;
 
-	    /* Only round the top corners */
-	    -webkit-border-top-left-radius: 15px;
-	    -webkit-border-top-right-radius: 15px;
-	    -moz-border-radius-topleft: 15px;
-	    -moz-border-radius-topright: 15px;
-	    border-top-left-radius: 15px;
-	    border-top-right-radius: 15px;
+        // Only round the top corners
+        -webkit-border-top-left-radius: 15px;
+        -webkit-border-top-right-radius: 15px;
+        -moz-border-radius-topleft: 15px;
+        -moz-border-radius-topright: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    // XXX: nao consigo avaliar uma variavel de nome dinamico
+    @each $tab in $tabs {
+        > .tab-#{$tab} a, .active.tab-#{$tab} a {
+            background: -bg-tab-color($tab);
+        }
     }
     .active {
-	    /* Highest, active tab is on top */
-	    z-index: 3;
+        // Active tab is on top
+        z-index: 3;
     }
-    .active a {
-	    /* Colors when tab is active */
-	    background: $tabs-active-background-color;
-	    color: $tabs-color;
+    .tab-informacao a, .active.tab-informacao a {
+        background: $tabs-informacao-color;
+    }
+    .tab-capacitacao a, .active.tab-capacitacao a {
+        background: $tabs-capacitacao-color;
+    }
+    .tab-tecnologia a, .active.tab-tecnologia a {
+        background: $tabs-tecnologia-color;
+    }
+    .tab-comunicacao a, .active.tab-comunicacao a {
+        background: $tabs-comunicacao-color;
     }
     li:before, li:after, li a:before, li a:after {
-	    /* All pseudo elements are
-	       abs. positioned and on bottom */
-	    position: absolute;
-	    bottom: 0;
+        // All pseudo elements are abs. positioned and on bottom
+        bottom: 0;
+        position: absolute;
     }
-    /* Only the first, last, and active
-       tabs need pseudo elements at all */
-    li:last-child:after,   li:last-child a:after,
+    // Only the first, last, and active tabs need pseudo elements at all
+    li:last-child:after, li:last-child a:after,
     li:first-child:before, li:first-child a:before,
-    .active:after,   .active:before,
+    .active:after, .active:before,
     .active a:after, .active a:before {
-	    content: "";
+        content: "";
     }
     .active:before, .active:after {
-	    background: $tabs-active-background-color;
-
-	    /* Squares below circles */
-	    z-index: 1;
+        // Squares below circles
+        z-index: 1;
     }
-    /* Squares */
+    .active.tab-informacao:before, .active.tab-informacao:after {
+        background: $tabs-informacao-color;
+    }
+    .active.tab-capacitacao:before, .active-tab-capacitacao:after {
+        background: $tabs-capacitacao-color;
+    }
+    .active.tab-tecnologia:before, .active-tab-tecnologia:after {
+        background: $tabs-tecnologia-color;
+    }
+    .active.tab-comunicacao:before, .active-tab-comunicacao:after {
+        background: $tabs-comunicacao-color;
+    }
+    // Squares
     li:before, li:after {
-	    background: $tabs-background-color;
-	    width: 10px;
-	    height: 10px;
+        height: 10px;
+        width: 10px;
+    }
+    li.tab-informacao:before {
+        background: $tabs-informacao-color;
+    }
+    li.tab-capacitacao:after {
+        background: $tabs-capacitacao-color;
+    }
+    li.tab-tecnologia:after {
+        background: $tabs-tecnologia-color;
+    }
+    li.tab-comunicacao:after {
+        background: $tabs-comunicacao-color;
     }
     li:before {
-	    left: -10px;
+        left: -10px;
     }
     li:after {
-	    right: -10px;
+        right: -10px;
     }
-    /* Circles */
+    // Circles
     li a:after, li a:before {
-	    width: 20px;
-	    height: 20px;
-	    /* Circles are circular */
-	    -webkit-border-radius: 10px;
-	    -moz-border-radius:    10px;
-	    border-radius:         10px;
-	    background: $tabs-canvas-color;
-
-	    /* Circles over squares */
-	    z-index: 2;
+        height: 20px;
+        width: 20px;
+        // Circles are circular
+        -webkit-border-radius: 10px;
+        -moz-border-radius:    10px;
+        border-radius:         10px;
+        background: $tabs-canvas-color;
+        // Circles over squares
+        z-index: 2;
     }
-    .active a:after, .active a:before {
-	    background: $tabs-background-color;
+    .active.tab-informacao a:after {
+        background: $tabs-capacitacao-color;
     }
-    /* First and last tabs have different
-       outside color needs */
+    .active.tab-capacitacao a:before {
+        background: $tabs-informacao-color;
+    }
+    .active.tab-capacitacao a:after {
+        background: $tabs-tecnologia-color;
+    }
+    .active.tab-tecnologia a:before {
+        background: $tabs-capacitacao-color;
+    }
+    .active.tab-tecnologia a:after {
+        background: $tabs-comunicacao-color;
+    }
+    .active.tab-comunicacao a:before {
+        background: $tabs-tecnologia-color;
+    }
+    // First and last tabs have different outside color needs
     li:first-child.active a:before,
     li:last-child.active a:after {
-	    background: $tabs-canvas-color;
+        background: $tabs-canvas-color;
     }
     li a:before {
-	    left: -20px;
+        left: -20px;
     }
     li a:after {
-	    right: -20px;
+        right: -20px;
     }
 }
 
-.il-tabs > div {
-    border-style: solid;
-    border-width: 4px;
-    border-color: $tabs-active-background-color;
-    min-height: 200px;
-}
-
-.il-tabs > div > div > h2 {
-    margin: 20px 10px;
-    padding-left: 35px;
-    background: url("../images/icons/rss-big.png") no-repeat left top transparent;
-    text-transform: uppercase;
-    font-weight: normal;
-}
-.il-tabs .row {
-    padding-bottom: 10px;
-}
-.il-tabs > div > br {
-    clear:both;
+.il-tabs {
+    > div {
+        border: 8px solid transparent;
+        -moz-box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
+        min-height: 200px;
+        position: relative;
+    }
+    > div > div {
+        background: url("../images/icons/rss-big.png") no-repeat center left;
+        font-weight: normal;
+        margin: 0 10px;
+        text-transform: uppercase;
+    }
+    > div > div > h2 {
+        margin: 15px 0;
+        padding-left: 35px;
+    }
+    > div.tab-informacao {
+        border-color: $tabs-informacao-color;
+        div > h2 {
+           color: darken($tabs-informacao-color, 20);
+        }
+    }
+    > div.tab-capacitacao {
+        border-color: $tabs-capacitacao-color;
+        div > h2 {
+           color: darken($tabs-capacitacao-color, 20);
+        }
+    }
+    > div.tab-tecnologia {
+        border-color: $tabs-tecnologia-color;
+        div > h2 {
+           color: darken($tabs-tecnologia-color, 20);
+        }
+    }
+    > div.tab-comunicacao {
+        border-color: $tabs-comunicacao-color;
+        div > h2 {
+           color: darken($tabs-comunicacao-color, 20);
+        }
+    }
+    .row {
+        padding-bottom: 10px;
+    }
 }
