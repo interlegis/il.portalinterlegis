@@ -77,24 +77,39 @@ class TestCarousel(DifferentTestCase):
             IAnnotations.return_value = annotations
             carousel_0 = Carousel(KIND, 0, context)
             carousel_1 = Carousel(KIND, 1, context)
+            self.check_carousels_are_independent(carousel_0, carousel_1)
 
-            carousel_0.add_item()
-            carousel_0.add_item()
-            carousel_0.add_item()
-            self.assertEqual(carousel_0.panels, [2, 1, 0])
-            self.assertEqual(carousel_1.panels, [])
-            carousel_0.remove_item('zzzzz_1')
-            self.assertEqual(carousel_0.panels, [2, 0])
-            self.assertEqual(carousel_1.panels, [])
-            carousel_1.add_item()
-            carousel_1.add_item()
-            self.assertEqual(carousel_0.panels, [2, 0])
-            self.assertEqual(carousel_1.panels, [3, 1])
-            carousel_1.remove_item('zzzzz_3')
-            self.assertEqual(carousel_0.panels, [2, 0])
-            self.assertEqual(carousel_1.panels, [1])
-            carousel_0.add_item()
-            carousel_0.add_item()
-            carousel_1.add_item()
-            self.assertEqual(carousel_0.panels, [4, 3, 2, 0])
-            self.assertEqual(carousel_1.panels, [5, 1])
+    def test_carousel_of_different_kinds_have_independant_panels(self):
+        """Make sure the panels of different carousels do not mix
+        with one another after edit operations.
+        """
+        annotations = {}
+        context = object()
+        with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
+            IAnnotations.return_value = annotations
+            # it's important to test with the same number (here 0)
+            carousel_0 = Carousel('kind_111', 0, context)
+            carousel_1 = Carousel('kind_222', 0, context)
+            self.check_carousels_are_independent(carousel_0, carousel_1)
+
+    def check_carousels_are_independent(self, carousel_0, carousel_1):
+        carousel_0.add_item()
+        carousel_0.add_item()
+        carousel_0.add_item()
+        self.assertEqual(carousel_0.panels, [2, 1, 0])
+        self.assertEqual(carousel_1.panels, [])
+        carousel_0.remove_item('zzzzz_1')
+        self.assertEqual(carousel_0.panels, [2, 0])
+        self.assertEqual(carousel_1.panels, [])
+        carousel_1.add_item()
+        carousel_1.add_item()
+        self.assertEqual(carousel_0.panels, [2, 0])
+        self.assertEqual(carousel_1.panels, [3, 1])
+        carousel_1.remove_item('zzzzz_3')
+        self.assertEqual(carousel_0.panels, [2, 0])
+        self.assertEqual(carousel_1.panels, [1])
+        carousel_0.add_item()
+        carousel_0.add_item()
+        carousel_1.add_item()
+        self.assertEqual(carousel_0.panels, [4, 3, 2, 0])
+        self.assertEqual(carousel_1.panels, [5, 1])

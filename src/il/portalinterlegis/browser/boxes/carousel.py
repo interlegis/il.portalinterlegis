@@ -34,7 +34,7 @@ class Carousel(BoxAware):
         return self.get_box_data(self.context, self._panels_key(), PersistentList)
 
     def _panels_key(self):
-        return "carousel_panels_%s" % self.number
+        return "carousel_panels_%s_%s" % (self.kind, self.number)
 
     def add_item(self):
         panels = self.panels
