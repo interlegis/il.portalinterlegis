@@ -1,4 +1,4 @@
-<h3>Produtos e Serviços</h3>
+<h2>Produtos e Serviços</h2>
 <div class="next-previous-buttons">
   <input type="button" value="Previous" class="carousel-control previous carousel-previous">
   <input type="button" value="Next" class="carousel-control next carousel-next">
@@ -7,25 +7,14 @@
 <div class="products-services-container">
   <div class="products-services">
     <ul>
+      {%- for _, data, __ in items %}
       <li>
-        <div class="simple-box">
-          <a href="/portal//news/nova-noticia">
-            <h3 class="icon-news">Título <b>legal</b></h3>
-            <p>
-            </p><p>Donec dui diam, bibendum eu tincidunt a, vehicula ac sem. Sed placerat diam in magna placerat ultrices. Donec in posuere est. Curabitur dictum pulvinar risus, id laoreet enim pretium eu.</p>
-
-          </a>
-        </div>
+        <a class="products-services-item" href="{{ data.target }}">
+          <h3 class="icon-home">{{ data.title }}</h3>
+          {{ data.text }}
+        </a>
       </li>
-      <li>
-        <div class="simple-box">
-          <a href="/portal//news/nova-noticia">
-            <h3 class="icon-news">Título <b>legal</b></h3>
-            <p>
-            </p><p>Donec dui diam, bibendum eu tincidunt a, vehicula ac sem. Sed placerat diam in magna placerat ultrices. Donec in posuere est. Curabitur dictum pulvinar risus, id laoreet enim pretium eu.</p>
-          </a>
-        </div>
-      </li>
+      {%- endfor %}
     </ul>
   </div>
 </div>
