@@ -19,7 +19,7 @@ class TestCarousel(DifferentTestCase):
         context = object()
         with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
             IAnnotations.return_value = {BoxAware.ALL_BOXES_KEY: {
-                Carousel(0, context)._panels_key(): [1, 2],
+                Carousel('carousel', 0, context)._panels_key(): [1, 2],
                 Box(ICarouselItem, 1).id: dict(
                     target = "TARGET_1",
                     image = "IMG_1",
@@ -62,7 +62,7 @@ class TestCarousel(DifferentTestCase):
     </ul>
   </div>
 </div>
-'''.strip('\n'), Carousel(0, context).render())
+'''.strip('\n'), Carousel('carousel', 0, context).render())
             IAnnotations.assert_called_with(context)
 
     def test_multiple_carousel_panels_are_independant(self):
@@ -73,8 +73,8 @@ class TestCarousel(DifferentTestCase):
         context = object()
         with patch('il.portalinterlegis.browser.boxes.manager.IAnnotations') as IAnnotations:
             IAnnotations.return_value = annotations
-            carousel_0 = Carousel(0, context)
-            carousel_1 = Carousel(1, context)
+            carousel_0 = Carousel('carousel', 0, context)
+            carousel_1 = Carousel('carousel', 1, context)
 
             carousel_0.add_item()
             carousel_0.add_item()
