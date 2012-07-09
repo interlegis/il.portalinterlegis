@@ -244,7 +244,7 @@ div.middle-container {
 
 .box-header {@include box-header;}
 
-@each $type in news, cases, contact {
+@each $type in news, cases, contact, home {
     .icon-#{$type} {
         background: url(../images/icons/#{$type}.png) left no-repeat;
     }
