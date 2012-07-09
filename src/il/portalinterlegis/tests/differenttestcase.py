@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest2 as unittest
-from itertools import count
+import codecs
 import os
+from itertools import count
+
+import unittest2 as unittest
 
 
 class DifferentTestCase(unittest.TestCase):
@@ -32,7 +34,7 @@ class DifferentTestCase(unittest.TestCase):
 
         if first is not None and second is not None and first != second:
             for fname, content in zip(self._next_out_filenames(), [first, second]):
-                with open(fname, "w+") as f:
+                with codecs.open(fname, "w+", "utf-8") as f:
                     f.write(content)
         super(DifferentTestCase, self).assertMultiLineEqual(first, second, *args)
 
