@@ -6,15 +6,16 @@ $(function() {
                    prevBtn: '',
                    autoSlide: true,
                    autoSlideInterval: 5000});
+    function next_previous_buttons(elts) {
+        return elts.carousel.parent().children('.next-previous-buttons');
+    };
     $("div.products-services")
         .carousel({pagination: false,
                    nextBtnInsertFn: function (elts) {
-                       var buttons = elts.carousel.parent().parent().children('.next-previous-buttons');
-                       return buttons.children('input[value="Next"]')
+                       return next_previous_buttons(elts).children('input[value="Next"]');
                    },
                    prevBtnInsertFn: function (elts) {
-                       var buttons = elts.carousel.parent().parent().children('.next-previous-buttons');
-                       return buttons.children('input[value="Previous"]')
+                       return next_previous_buttons(elts).children('input[value="Previous"]');
                    },
                    loop: true});
 });

@@ -1,8 +1,16 @@
 
 .products-services-container {
-    @include carousel-container-mixin(185px, 220px);
+    @include carousel-container-mixin(185px, 220px, "products-services");
+    h2 {
+        font-size: 12px;
+    }
+    h3 {
+        line-height: 42px;
+        margin-bottom: 10px;
+        padding-left: 60px;
+    }
 }
 
-.products-services {
-    @extend .carousel;
+.products-services-container .products-services {
+    margin-top: 20px;
 }
