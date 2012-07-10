@@ -169,12 +169,16 @@ $tabs-comunicacao-color: #e38064;
     }
 }
 
+// XXX: sombra retirada temporariamente. Retornar quando a funcionalidade estiver completa.
+// $shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
+$shadow: 0;
+
 .il-tabs {
     > div {
         border: 8px solid transparent;
-        -moz-box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
-        -webkit-box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 -4px 2px -2px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: $shadow;
+        -webkit-box-shadow: $shadow;
+        box-shadow: $shadow;
         min-height: 200px;
         position: relative;
     }
