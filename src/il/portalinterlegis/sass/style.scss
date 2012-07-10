@@ -195,10 +195,10 @@ div.middle-container {
 @mixin box-header {
     @include header-font;
     background: $blue;
-    height: 24px;
+    height: 26px;
     line-height: 26px;
     margin-bottom: 10px;
-    padding-left: 10px;
+    padding-left: 4px;
     &:before {
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
@@ -207,7 +207,8 @@ div.middle-container {
         height: 0;
         margin-right: -10px;
         position: relative;
-        top: 24px;
+        top: 26px;
+        left: 8px;
         width: 0;
     }
 }
