@@ -82,6 +82,7 @@ class CarouselBox(BaseBox):
 def carousel_edit_href(kind, number):
     return "carousel_edit_%s_%s" % (kind, number)
 
+
 def build_CarouselEditView(kind, number):
 
     class CarouselEditView(grok.View):
