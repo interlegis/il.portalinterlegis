@@ -35,13 +35,12 @@ class TestProductsServices(DifferentTestCase):
                 ),
             }}
             self.assertMultiLineEqual(u'''
-<h2>Produtos e Serviços</h2>
-<div class="next-previous-buttons">
-  <input type="button" value="Previous" class="carousel-control previous carousel-previous">
-  <input type="button" value="Next" class="carousel-control next carousel-next">
-</div>
-
 <div class="products-services-container">
+  <h2>Produtos e Serviços</h2>
+  <div class="next-previous-buttons">
+    <input type="button" value="Previous">
+    <input type="button" value="Next">
+  </div>
   <div class="products-services">
     <ul>
       <li>
