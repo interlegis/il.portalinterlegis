@@ -24,7 +24,7 @@ class Carousel(BoxAware):
             template = get_template("%s.html" % self.kind)
         boxes = [(panel, Box(ICarouselItem, panel)) for panel in self.panels]
         return template.render(
-            carousel_edit_href=carousel_edit_href(self.number),
+            carousel_edit_href=carousel_edit_href(self.kind, self.number),
             items=[(panel,
                     box.get_data(self.context),
                     box.edit_href) for panel, box in boxes])
@@ -76,27 +76,28 @@ class CarouselBox(BaseBox):
 
     @property
     def edit_href(self):
-        return carousel_edit_href(self.number)
+        return carousel_edit_href(self.kind, self.number)
 
 
-def carousel_edit_href(number):
-    return "carousel_edit_%s" % number
+def carousel_edit_href(kind, number):
+    return "carousel_edit_%s_%s" % (kind, number)
 
-def build_CarouselEditView(number):
+def build_CarouselEditView(kind, number):
 
     class CarouselEditView(grok.View):
-        grok.name(carousel_edit_href(number))
+        grok.name(carousel_edit_href(kind, number))
         grok.context(Interface)
         grok.require('cmf.ModifyPortalContent')
 
         template = ZopeTwoPageTemplate(filename="carouseledit.pt")
+        kind = kind
         number = number
 
         def carousel(self):
             return self._carousel.render(edit_mode=True)
 
         def update(self, **kwargs):
-            self._carousel = Carousel(self.number, self.context)
+            self._carousel = Carousel(self.kind, self.number, self.context)
             if 'add' in self.request:
                 self._carousel.add_item()
             elif 'remove' in self.request:
@@ -104,11 +105,13 @@ def build_CarouselEditView(number):
             elif 'reorder' in self.request:
                 self._carousel.reorder(self.request['reorder'])
 
-    globals()['CarouselEditView_%s' % number] = CarouselEditView
+    globals()['CarouselEditView_%s_%s' % (kind, number)] = CarouselEditView
 
-# XXX: one more elaborated POG, to avoid complex traversals
-for number in range(8):
-    build_CarouselEditView(number)
 
 class ProductsAndServices(CarouselBox):
     kind = 'products-and-services'
+
+# XXX: one more elaborated POG, to avoid complex traversals
+for kind in CarouselBox.kind, ProductsAndServices.kind:
+    for number in range(8):
+        build_CarouselEditView(kind, number)
