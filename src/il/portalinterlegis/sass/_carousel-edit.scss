@@ -4,10 +4,10 @@ $carousel-width: 600px - 20px;
 $carousel-height: 215px;
 
 #carousel-edit-panels {
-    width: 700px;
     float: left;
     padding-bottom: 100px;
     margin-top: 10px;
+    width: 700px;
 }
 .portlet {
     margin: 0 1em 1em 0;
@@ -29,13 +29,13 @@ $carousel-height: 215px;
 }
 .ui-sortable-placeholder {
     border: 1px dotted black;
-    visibility: visible !important;
     height: $carousel-height !important;
+    visibility: visible !important;
 }
 
 #carousel-add-form {
-    padding: 10px 0;
     font-size: 16px;
+    padding: 10px 0;
 }
 .carousel-add-button {
     font-size: 12px;
@@ -45,8 +45,8 @@ $carousel-height: 215px;
 }
 
 ul.instrucoes {
-    margin-left: 20px;
     list-style-type: square;
+    margin-left: 20px;
     li {
         display: list-item;
     }

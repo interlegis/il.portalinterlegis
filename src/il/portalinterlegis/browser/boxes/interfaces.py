@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import sys, inspect
+import sys
+import inspect
 
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform.interfaces import WIDGETS_KEY
@@ -13,6 +14,7 @@ class BoxSchema(form.Schema):
     """Marker interface for box schemas.
     """
 
+
 # decorator
 def rich(**kwargs):
     def f(cls):
@@ -22,13 +24,12 @@ def rich(**kwargs):
 
 
 # TODO: title in "almost" WysiwygFieldWidget... (just <b></b> allowed)... configure Tiny and filters
-@rich(text=WysiwygFieldWidget,
-      target=AutocompleteFieldWidget)
+@rich(text=WysiwygFieldWidget, target=AutocompleteFieldWidget)
 class IRelated(BoxSchema):
     target = schema.Choice(title=u"Conteúdo relacionado",
                            source=PathSourceBinder(),
                            required=False)
-    image = schema.TextLine(title=u"URL da imagem", required=False) # TODO: imagem de verdade !!!
+    image = schema.TextLine(title=u"URL da imagem", required=False)  # TODO: localizar ou subir imagem
     title = schema.TextLine(title=u"Título", required=True)
     text = schema.Text(title=u"Texto", required=False)
 

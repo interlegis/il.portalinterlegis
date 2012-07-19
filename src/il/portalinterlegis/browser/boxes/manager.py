@@ -92,7 +92,7 @@ class Box(BaseBox):
         super(Box, self).__init__(permission)
         self.schema = schema
         self.number = number
-        self.form_label = form_label or u'Edite os valores desta caixa'  # TODO: improve this text
+        self.form_label = form_label or u'Edite esta caixa'  # TODO: improve this text
 
     @property
     def id(self):

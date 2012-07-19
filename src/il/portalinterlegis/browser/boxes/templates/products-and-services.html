@@ -1,17 +1,17 @@
 <div class="products-services-container">
   <h2>Produtos e Serviços</h2>
   <div class="next-previous-buttons">
-    <input type="button" value="Previous">
-    <input type="button" value="Next">
+    <input type="button" value="Previous" />
+    <input type="button" value="Next" />
   </div>
   <div class="products-services">
     <ul>
       {%- for _, data, __ in items %}
       <li>
-        <a class="products-services-item" href="{{ data.target }}">
+        <a class="products-services-item" title="Saiba mais sobre {{ data.title }}" href="{{ data.target }}">
           <h3 class="icon-home">{{ data.title }}</h3>
-          {{ data.text }}
         </a>
+        {{ data.text }}
       </li>
       {%- endfor %}
     </ul>

@@ -4,15 +4,23 @@
 // ================================================================
 
 $footer-pad: 8px;
+$light-blue: #b1e1f0;
+
 
 @mixin footer-firstrow {
-    border-style: dotted;
+    border: 0 dotted $light-blue;
     float: left;
     height: 250px;
     padding-left: $footer-pad;
     li {
         display: block;
         padding-top: 13px;
+        a:link, a:visited {
+            color: $light-blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     }
 }
 
@@ -23,13 +31,11 @@ div.footer {
     font-family: Mako, sans-serif;
     font-size: 11px;
     margin-top: 50px;
-    padding: 40px 0 80px 0;
+    padding: 40px 0 80px;
     width: 100%;
 
     h2 {
-        font-family: Poly, serif;
-        font-style: italic;
-        font-size: 15px;
+        font: italic 16px/16px Poly, serif;
     }
     .left-box {
         @include footer-firstrow;
@@ -38,13 +44,13 @@ div.footer {
     }
     .right-box {
         @include footer-firstrow;
-        border-width: 0 0 1px 0;
+        border-bottom-width: 1px;
         width: ($width / 2) - $footer-pad;
     }
     em {
         font-style: normal;
-        font-weight: bold;
         text-transform: uppercase;
+        font-weight: normal;
     }
     .address {
         float: left;
@@ -55,7 +61,6 @@ div.footer {
 
         address {
             font-style: normal;
-            font-weight: bold;
         }
         p {
             padding-top: 10px;
@@ -63,7 +68,7 @@ div.footer {
     }
     .utils {
         $util-pad: 20px;
-        border-style: dotted;
+        border: 0 $light-blue dotted;
         border-width: 0 0 1px 1px;
         float: left;
         font-size: 9px;
@@ -78,7 +83,7 @@ div.footer {
             }
             li:before {
                 content: "|";
-                margin: 0 10px 0 10px;
+                margin: 0 10px;
             }
             li:first-child:before {
                 content: "";
@@ -87,8 +92,8 @@ div.footer {
         }
     }
     .partners {
-        border-style: dotted;
-        border-width: 0 0 0 1px;
+        border: 0 $light-blue dotted;
+        border-left-width: 1px;
         float: left;
         height: 70px;
         padding: 10px 0 0 20px;

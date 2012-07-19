@@ -28,9 +28,9 @@ $footer-blue: #25528c; // used only in the footer
 // ================================================================
 
 body {
+    background-image: url(../images/net-background.png);
     font-family: Mako, sans-serif;
-    font-size: 12px; //TODO rever este tamanho
-    background-image:url('../images/net-background.png');
+    font-size: 12px;  // TODO: rever este tamanho
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -58,6 +58,7 @@ div.middle-container {
 }
 
 // EDIT BAR
+
 #edit-bar {
     font-size: 100%;
     margin-top: 10px;
@@ -67,7 +68,7 @@ div.middle-container {
 }
 
 #portal-columns {
-    background: white;
+    background: #fff;
 }
 
 // HEADER
@@ -79,8 +80,8 @@ div.middle-container {
     margin: -14px 0 0 0;
     padding: 0;
     #personaltools-login, #user-name {
-        background: url("../images/icons/person.png") no-repeat right top transparent;
-        color: black;
+        background: url(../images/icons/person.png) no-repeat right top transparent;
+        color: #000;
         margin: 0;
         padding: 9px 25px 0 0;
     }
@@ -102,20 +103,21 @@ div.middle-container {
 }
 
 // BUSCA
+
 #portal-searchbox {
-    margin: 73px 0 30px 0;
+    margin: 73px 0 30px;
     input {
         border: 0;
         height: 30px;
         &[type="text"] {
-            background: url("../images/search-open-brace.png") no-repeat left top white;
-            font-family: Poly,serif;
+            background: url("../images/search-open-brace.png") no-repeat left top #fff;
+            font-family: Poly, serif;
             font-style: italic;
             padding-left: 10px;
             width: 272px;
         }
         &.searchButton {
-            background: url("../images/search-button.png") no-repeat left top white;
+            background: url("../images/search-button.png") no-repeat left top #fff;
             height: 30px;
             text-indent: -3000px;                 /* sends the text off-screen */
             width: 41px;
@@ -152,7 +154,7 @@ div.middle-container {
 }
 
 #portal-globalnav {
-    background: white;
+    background: #fff;
     border-style: dotted;
     border-width: 1px 1px 0 1px;
     font-size: 10px;
@@ -162,9 +164,9 @@ div.middle-container {
 
     li {
         display: inline-block;
-        margin:  0 0 0 10px;
+        margin: 0 0 0 10px;
         padding: 0;
-        width: $width/6 - 13px; //TODO rever isso
+        width: $width/6 - 13px;  // TODO: rever isso
         &#portaltab-index_html {
             margin-left: 8px;
         }
@@ -190,8 +192,9 @@ div.middle-container {
     }
 }
 
-// boxes
+// BOXES
 // ================================================================
+
 @mixin box-header {
     @include header-font;
     background: $blue;
@@ -243,7 +246,14 @@ div.middle-container {
     }
 }
 
-.box-header {@include box-header;}
+div {
+    .box-header {
+        @include box-header;
+    }
+    & > p > img {
+        margin-left: 8px;
+    }
+}
 
 @each $type in news, cases, contact, home {
     .icon-#{$type} {
