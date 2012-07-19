@@ -10,7 +10,8 @@ from manager import BoxAware, Box, NUMBER_OF_PRE_CREATED_BOXES, get_template, Ba
 
 
 class Carousel(BoxAware):
-    """General carousel manager, related to a context"""
+    """General carousel manager, related to a context
+    """
 
     def __init__(self, kind, number, context):
         self.kind = kind

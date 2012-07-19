@@ -1,16 +1,16 @@
 // based on http://css-tricks.com/tabs-with-round-out-borders/
 
 $tabs: informacao, capacitacao, tecnologia, comunicacao;
-$tabs-canvas-color: white;
+$tabs-canvas-color: #fff;
 $tabs-informacao-color: #68679b;
 $tabs-capacitacao-color: #6aa575;
 $tabs-tecnologia-color: #dd9f4b;
 $tabs-comunicacao-color: #e38064;
 
 // XXX: nao consigo avaliar uma variavel de nome dinamico
-@function -bg-tab-color($tab) {
-    @return '$tabs-' + $tab + '-color';
-}
+// @mixin bg-tab-color($tab) {
+//     background: '$tabs-' + $tab + '-color';
+// }
 
 .il-tabs > ul {
     list-style: none;
@@ -54,11 +54,11 @@ $tabs-comunicacao-color: #e38064;
         border-top-right-radius: 15px;
     }
     // XXX: nao consigo avaliar uma variavel de nome dinamico
-    @each $tab in $tabs {
-        > .tab-#{$tab} a, .active.tab-#{$tab} a {
-            background: -bg-tab-color($tab);
-        }
-    }
+    // @each $tab in $tabs {
+    //     > .tab-#{$tab} a, .active.tab-#{$tab} a {
+    //         @include bg-tab-color($tab);
+    //     }
+    // }
     .active {
         // Active tab is on top
         z-index: 3;
@@ -222,5 +222,5 @@ $shadow: 0;
 }
 
 .il-tabs > div > br {
-    clear:both;
+    clear: both;
 }

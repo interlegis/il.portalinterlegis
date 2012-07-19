@@ -84,7 +84,8 @@
     border: 0;
     cursor: pointer;
     display: inline-block;
-    line-height: 999px;
+    height: 20px;
+    line-height: 999px; // XXX: is this necessary?
     overflow: hidden;
     text-indent: -9999px;
     vertical-align: middle;
