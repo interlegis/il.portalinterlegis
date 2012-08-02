@@ -1,15 +1,8 @@
 // based on http://css-tricks.com/tabs-with-round-out-borders/
 
-$tabs: informacao, capacitacao, tecnologia, comunicacao;
-$tabs-canvas-color: #fff;
-$tabs-informacao-color: #68679b;
-$tabs-capacitacao-color: #6aa575;
-$tabs-tecnologia-color: #dd9f4b;
-$tabs-comunicacao-color: #e38064;
-
 // XXX: nao consigo avaliar uma variavel de nome dinamico
 // @mixin bg-tab-color($tab) {
-//     background: '$tabs-' + $tab + '-color';
+//     background: '$color-' + $tab;
 // }
 
 .il-tabs > ul {
@@ -53,27 +46,30 @@ $tabs-comunicacao-color: #e38064;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
+
     // XXX: nao consigo avaliar uma variavel de nome dinamico
+    // $tabs: informacao, capacitacao, tecnologia, comunicacao;
     // @each $tab in $tabs {
     //     > .tab-#{$tab} a, .active.tab-#{$tab} a {
     //         @include bg-tab-color($tab);
     //     }
     // }
+
     .active {
         // Active tab is on top
         z-index: 3;
     }
     .tab-informacao a, .active.tab-informacao a {
-        background: $tabs-informacao-color;
+        background: $color-informacao;
     }
     .tab-capacitacao a, .active.tab-capacitacao a {
-        background: $tabs-capacitacao-color;
+        background: $color-capacitacao;
     }
     .tab-tecnologia a, .active.tab-tecnologia a {
-        background: $tabs-tecnologia-color;
+        background: $color-tecnologia;
     }
     .tab-comunicacao a, .active.tab-comunicacao a {
-        background: $tabs-comunicacao-color;
+        background: $color-comunicacao;
     }
     li:before, li:after, li a:before, li a:after {
         // All pseudo elements are abs. positioned and on bottom
@@ -92,16 +88,16 @@ $tabs-comunicacao-color: #e38064;
         z-index: 1;
     }
     .active.tab-informacao:before, .active.tab-informacao:after {
-        background: $tabs-informacao-color;
+        background: $color-informacao;
     }
     .active.tab-capacitacao:before, .active-tab-capacitacao:after {
-        background: $tabs-capacitacao-color;
+        background: $color-capacitacao;
     }
     .active.tab-tecnologia:before, .active-tab-tecnologia:after {
-        background: $tabs-tecnologia-color;
+        background: $color-tecnologia;
     }
     .active.tab-comunicacao:before, .active-tab-comunicacao:after {
-        background: $tabs-comunicacao-color;
+        background: $color-comunicacao;
     }
     // Squares
     li:before, li:after {
@@ -109,16 +105,16 @@ $tabs-comunicacao-color: #e38064;
         width: 10px;
     }
     li.tab-informacao:before {
-        background: $tabs-informacao-color;
+        background: $color-informacao;
     }
     li.tab-capacitacao:after {
-        background: $tabs-capacitacao-color;
+        background: $color-capacitacao;
     }
     li.tab-tecnologia:after {
-        background: $tabs-tecnologia-color;
+        background: $color-tecnologia;
     }
     li.tab-comunicacao:after {
-        background: $tabs-comunicacao-color;
+        background: $color-comunicacao;
     }
     li:before {
         left: -10px;
@@ -134,32 +130,32 @@ $tabs-comunicacao-color: #e38064;
         -webkit-border-radius: 10px;
         -moz-border-radius:    10px;
         border-radius:         10px;
-        background: $tabs-canvas-color;
+        background: #fff;
         // Circles over squares
         z-index: 2;
     }
     .active.tab-informacao a:after {
-        background: $tabs-capacitacao-color;
+        background: $color-capacitacao;
     }
     .active.tab-capacitacao a:before {
-        background: $tabs-informacao-color;
+        background: $color-informacao;
     }
     .active.tab-capacitacao a:after {
-        background: $tabs-tecnologia-color;
+        background: $color-tecnologia;
     }
     .active.tab-tecnologia a:before {
-        background: $tabs-capacitacao-color;
+        background: $color-capacitacao;
     }
     .active.tab-tecnologia a:after {
-        background: $tabs-comunicacao-color;
+        background: $color-comunicacao;
     }
     .active.tab-comunicacao a:before {
-        background: $tabs-tecnologia-color;
+        background: $color-tecnologia;
     }
     // First and last tabs have different outside color needs
     li:first-child.active a:before,
     li:last-child.active a:after {
-        background: $tabs-canvas-color;
+        background: #fff;
     }
     li a:before {
         left: -20px;
@@ -193,27 +189,27 @@ $shadow: 0;
         padding-left: 35px;
     }
     > div.tab-informacao {
-        border-color: $tabs-informacao-color;
+        border-color: $color-informacao;
         div > h2 {
-           color: darken($tabs-informacao-color, 20);
+           color: darken($color-informacao, 20);
         }
     }
     > div.tab-capacitacao {
-        border-color: $tabs-capacitacao-color;
+        border-color: $color-capacitacao;
         div > h2 {
-           color: darken($tabs-capacitacao-color, 20);
+           color: darken($color-capacitacao, 20);
         }
     }
     > div.tab-tecnologia {
-        border-color: $tabs-tecnologia-color;
+        border-color: $color-tecnologia;
         div > h2 {
-           color: darken($tabs-tecnologia-color, 20);
+           color: darken($color-tecnologia, 20);
         }
     }
     > div.tab-comunicacao {
-        border-color: $tabs-comunicacao-color;
+        border-color: $color-comunicacao;
         div > h2 {
-           color: darken($tabs-comunicacao-color, 20);
+           color: darken($color-comunicacao, 20);
         }
     }
     .row {

@@ -1,7 +1,10 @@
 $(function() {
 
-    // initiate tabs plugin
+    // initiate main tabs
     $(".il-tabs > ul").tabs(".il-tabs > div > div");
+
+    // initiate Interlegis in action tabs
+    $("#ICalendar_0 > ul").tabs("#ICalendar_0 > div > div");
 
     // synchronize pane with current tab
     var current_tab = $(".il-tabs > ul > li > a.current").parent().attr("class");
