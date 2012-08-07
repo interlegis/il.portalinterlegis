@@ -1,0 +1,16 @@
+.last-news {
+    margin-left: 15px;
+    ul {
+        li a{
+            display: list-item;
+            list-style-type: none;
+            list-style-image: url("../images/icons/little-double-arrow.png");
+            margin-bottom: 10px;
+            color:black;
+            font-size: 8pt;
+            line-height: 150%;
+            }
+        }
+}
+
+
