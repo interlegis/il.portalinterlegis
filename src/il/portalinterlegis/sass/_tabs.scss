@@ -188,6 +188,25 @@ $shadow: 0;
         padding-left: 35px;
         text-transform: uppercase;
     }
+    .related {
+        p {
+            margin-top: 10px;
+            color:#000000;
+            font-size: 8pt;
+            line-height: 150%;
+        }
+        h3 {
+	        color:#dd9b3c;
+	        font-weight: normal;
+	        margin-top: 10px;
+	        line-height: 120%;
+            b {
+                color: #9e6305;
+                font-weight: normal;
+            }
+        }
+    }
+
     > div.tab-informacao {
         border-color: $color-informacao;
         div > h2 {
