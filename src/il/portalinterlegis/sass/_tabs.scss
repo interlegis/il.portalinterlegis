@@ -182,11 +182,11 @@ $shadow: 0;
         background: url("../images/icons/rss-big.png") no-repeat center left;
         font-weight: normal;
         margin: 0 10px;
-        text-transform: uppercase;
     }
     > div > div > h2 {
         margin: 15px 0;
         padding-left: 35px;
+        text-transform: uppercase;
     }
     > div.tab-informacao {
         border-color: $color-informacao;
