@@ -36,7 +36,7 @@ class TestUnitBoxes(DifferentTestCase):
 <div id="IStubBox_1" class ="editable-box" >
   XXXX
   <a class="editable-box-link-overlay" href="box_IStubBox_1">
-    <img src="pencil_icon.png" width="16" height="16" alt="Edite esta caixa"/>
+    <img src="pencil_icon.png" width="16" height="16" alt="Editar esta caixa" />
   </a>
 </div>
 '''.strip('\n'), box(context))

@@ -44,9 +44,7 @@ class TestCarousel(DifferentTestCase):
           <img src="IMG_1" width="340" height="215" />
           <div class="carousel-text">
             <h3>TITLE_1</h3>
-            <p>
-              TEXT_1
-            </p>
+            <p>TEXT_1</p>
           </div>
         </a>
       </li>
@@ -55,9 +53,7 @@ class TestCarousel(DifferentTestCase):
           <img src="IMG_2" width="340" height="215" />
           <div class="carousel-text">
             <h3>TITLE_2</h3>
-            <p>
-              TEXT_2
-            </p>
+            <p>TEXT_2</p>
           </div>
         </a>
       </li>

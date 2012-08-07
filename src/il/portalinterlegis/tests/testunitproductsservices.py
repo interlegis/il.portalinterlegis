@@ -38,22 +38,22 @@ class TestProductsServices(DifferentTestCase):
 <div class="products-services-container">
   <h2>Produtos e Serviços</h2>
   <div class="next-previous-buttons">
-    <input type="button" value="Previous">
-    <input type="button" value="Next">
+    <input type="button" value="Previous" />
+    <input type="button" value="Next" />
   </div>
   <div class="products-services">
     <ul>
       <li>
-        <a class="products-services-item" href="TARGET_1">
+        <a class="products-services-item" title="Saiba mais sobre TITLE_1" href="TARGET_1">
           <h3 class="icon-home">TITLE_1</h3>
-          TEXT_1
         </a>
+        TEXT_1
       </li>
       <li>
-        <a class="products-services-item" href="TARGET_2">
+        <a class="products-services-item" title="Saiba mais sobre TITLE_2" href="TARGET_2">
           <h3 class="icon-home">TITLE_2</h3>
-          TEXT_2
         </a>
+        TEXT_2
       </li>
     </ul>
   </div>
