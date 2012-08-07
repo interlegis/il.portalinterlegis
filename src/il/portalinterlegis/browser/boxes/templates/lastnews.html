@@ -1,0 +1,9 @@
+<div class="last-news {{ css_class }}">
+  <ul>
+    {%- for text, target in news %}
+    <li>
+      <a href="{{ target }}">{{ text }}</a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>

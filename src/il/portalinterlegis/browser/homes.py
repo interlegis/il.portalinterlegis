@@ -7,6 +7,7 @@ from five import grok
 
 from boxes.carousel import CarouselBox, ProductsAndServices
 from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight, IRelated
+from boxes.lastnews import LastNews
 from boxes.manager import DtRow, Box, GridView
 from boxes.tabs import Tab, TabbedPane
 from interfaces import \
@@ -34,7 +35,7 @@ class Home(GridView):
         ___((10, CarouselBox(0)), (6, _(ICalendar)),),
         ___((FULL, TabbedPane(
             Tab(u'Informação',  u'Informação',
-                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(0)),),
+                (4, _(IRelated)), (4, LastNews("informacao")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
             Tab(u'Capacitação', u'Capacitação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(1)),),
             Tab(u'Tecnologia',  u'Tecnologia',
