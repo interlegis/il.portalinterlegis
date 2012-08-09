@@ -282,9 +282,8 @@ div {
         margin-bottom: 12px;
         padding-bottom: 12px;
         > li {
-            border-bottom: 1px solid $color-divider-1;
-            display: block;
-            margin: 0 15px 12px 0;
+            display: inline;
+            margin: 0 8px 12px 0;
             > a {
                 color: $color-tab-link;
                 &.current {
@@ -308,10 +307,22 @@ div {
 }
 
 #agenda {
+
+        > div {
+        margin-top: 10px;
+            a {
+            font-size: 8pt;
+            }
+        }
     li {
         clear: both;
         float: none;
-    }
+        display: table;
+        margin-top:10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #d1d3d4;
+        width: 340px;
+      }
     h4 {
         color: #fff;
         float: left;
@@ -338,7 +349,9 @@ div {
         }
     }
     p {
-        float: left;
+        float: none;
         margin-left: 60px;
+        font-size: 8pt;
+        line-height:150%;
     }
 }
