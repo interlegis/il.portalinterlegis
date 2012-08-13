@@ -5,15 +5,15 @@ from itertools import count
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
+from boxes import colab, LastNews
 from boxes.carousel import CarouselBox, ProductsAndServices
 from boxes.interfaces import ISuperTitleBox, ICalendar, IHighlight, IRelated
-from boxes.lastnews import LastNews
 from boxes.manager import DtRow, Box, GridView
+from boxes.simplerow import SimpleRow
 from boxes.tabs import Tab, TabbedPane
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
-from boxes.simplerow import SimpleRow
-from boxes import colab
+
 
 # These are meant for more readable grid definitions. Do not overuse.
 
