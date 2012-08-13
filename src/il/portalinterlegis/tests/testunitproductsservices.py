@@ -48,12 +48,24 @@ class TestProductsServices(DifferentTestCase):
           <h3 class="icon-home">TITLE_1</h3>
         </a>
         TEXT_1
+        <a href="#" class="manuais-e-faqs">
+          Manuais e FAQs
+        </a>
+        <a href="#" class="saiba-mais">
+          Saiba mais
+        </a>
       </li>
       <li>
         <a class="products-services-item" title="Saiba mais sobre TITLE_2" href="TARGET_2">
           <h3 class="icon-home">TITLE_2</h3>
         </a>
         TEXT_2
+        <a href="#" class="manuais-e-faqs">
+          Manuais e FAQs
+        </a>
+        <a href="#" class="saiba-mais">
+          Saiba mais
+        </a>
       </li>
     </ul>
   </div>
