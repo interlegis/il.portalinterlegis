@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<site>
+ <property name="title">Portal Interlegis</property>
+ <property name="description">Portal Interlegis</property>
+ <property name="email_from_address" type="string">spdt@interlegis.leg.br</property>
+ <property name="email_from_name" type="string">Interlegis/SSTIN/SPDT</property>
+ <property name="validate_email" type="boolean">True</property>
+ <property name="email_charset" type="string">utf-8</property>
+ <property name="enable_permalink" type="boolean">False</property>
+</site>
