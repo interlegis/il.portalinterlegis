@@ -5,6 +5,9 @@ $(function() {
 
     // initiate Interlegis in action tabs
     $("#ICalendar_0 > ul").tabs("#ICalendar_0 > div > div");
+    
+    // initiate Interlegis in action gray tabs
+    $(".standard-tabs > ul").tabs(".standard-tabs > div");
 
     // synchronize pane with current tab
     var current_tab = $(".il-tabs > ul > li > a.current").parent().attr("class");
