@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from manager import BoxAware, get_template
+from manager import get_template
 
 
-class LastNews(BoxAware):
+class LastNews(object):
 
     def __init__(self, kind):
         self.kind = kind
