@@ -49,10 +49,6 @@ class ICalendar(BoxSchema):
     pass
 
 
-class IAcompanheOInterlegis(BoxSchema):
-    pass
-
-
 class IHighlight(BoxSchema):
     pass
 

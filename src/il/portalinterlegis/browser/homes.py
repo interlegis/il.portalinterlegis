@@ -6,13 +6,14 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
 from boxes.carousel import CarouselBox, ProductsAndServices
-from boxes.interfaces import ISuperTitleBox, ICalendar, IAcompanheOInterlegis, IHighlight, IRelated
+from boxes.interfaces import ISuperTitleBox, ICalendar, IHighlight, IRelated
 from boxes.lastnews import LastNews
 from boxes.manager import DtRow, Box, GridView
 from boxes.tabs import Tab, TabbedPane
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
-
+from boxes.simplerow import SimpleRow
+from boxes import colab
 
 # These are meant for more readable grid definitions. Do not overuse.
 
@@ -43,7 +44,8 @@ class Home(GridView):
             Tab(u'Comunicação', u'Comunicação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(3)),),
             ))),
-        ___((FULL, _(IAcompanheOInterlegis)), ),
+        ___((FULL, SimpleRow(u'Acompanhe o Interlegis',
+                            (5, colab), ))),
         ___((4, _(IHighlight)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)),),
     ]
 
