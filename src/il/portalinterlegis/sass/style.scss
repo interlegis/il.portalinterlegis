@@ -212,14 +212,37 @@ div.middle-container {
 
 // BOXES
 // ================================================================
-
-@mixin box-header {
+@mixin box-header-base {
     @include header-font;
     background: $blue;
     height: 26px;
     line-height: 26px;
     margin-bottom: 10px;
     padding-left: 4px;
+}
+
+.box-header-base {
+    @include box-header-base;
+}
+
+@mixin box-header {
+    @include box-header-base;
+    &:before {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $blue;
+        content: "";
+        height: 0;
+        margin-right: -10px;
+        position: relative;
+        top: 26px;
+        left: 8px;
+        width: 0;
+    }
+}
+
+.box-header {
+    @include box-header;
 }
 
 // uso de "b": vide http://html5doctor.com/i-b-em-strong-element/
@@ -253,9 +276,6 @@ div.middle-container {
 }
 
 div {
-    .box-header {
-        @include box-header;
-    }
     & > p > img {
         margin-left: 8px;
     }
