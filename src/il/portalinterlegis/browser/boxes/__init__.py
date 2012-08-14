@@ -22,3 +22,6 @@ class LastNews(object):
 
 def colab(context):
     return get_template('colab.html').render()
+
+def socialnetworks(context):
+    return get_template('socialnetworks.html').render()
