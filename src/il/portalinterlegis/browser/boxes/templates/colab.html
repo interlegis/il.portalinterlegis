@@ -6,95 +6,40 @@
     <li class="standard-tabs-colaboracoes">
       <a href="#colab-discussoes">DISCUSSÕES</a>
     </li>
-    <li class="standard-tabs-colaboracoes">
-      <a href="#colab-participe">PARTICIPE</a>
-    </li>
   </ul>
   <!-- Bloco de código COLABORAÇÕES -->
   <div class="colab">
     <h3><b>Últimas</b><br>Colaborações</h3>
     <a class="rss-colab" href="http://colab.interlegis.leg.br/"> </a>
     <ul>
+      {%- for entry in colaboracoes %}
       <li>
-        <a class="colab-titulo" href="TODO">Design do box listagem de notícias</a><br>
+        <a class="colab-titulo" href="{{ entry.link }}">{{ entry.title }}</a><br>
         <span class="colab-autor">
-          <a href="/user/marcospaulosp">por Marcos Paulo Santos Pinto,</a>
+          <a href="/user/marcospaulosp">por TODO...,</a>
         </span>
-        <span class="colab-tempo"> 23 minutos atrás</span>
+        <span class="colab-tempo"> TODO... minutos atrás</span>
       </li>
-      <li>
-        <a class="colab-titulo" href="TODO">SPDO versão 1.0 Final</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">por Celso Magela de Almeida,</a>
-        </span>
-        <span class="colab-tempo"> 23 minutos atrás</span>
-      </li>
-      <li>
-        <a class="colab-titulo" href="TODO">Design do box listagem de notícias</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">por Marcos Paulo Santos Pinto,</a>
-        </span>
-        <span class="colab-tempo"> 23 minutos atrás </span>
-      </li>
+      {%- endfor %}
     </ul>
   </div>
   <!-- Fim do bloco de código COLABORAÇÕES -->
+
   <!-- Bloco de código DISCUSSOES -->
   <div class="colab-discussoes">
-    <h3><b>Últimas</b><br>Colaborações</h3>
+    <h3><b>Últimas</b><br>Discussões</h3>
     <a class="rss-colab" href="http://colab.interlegis.leg.br/"> </a>
     <ul>
+      {%- for entry in discussoes %}
       <li>
-        <a class="colab-titulo" href="TODO">discussoes discussoes discussoes discussoes</a><br>
+        <a class="colab-titulo" href="{{ entry.link }}">{{ entry.title }}</a><br>
         <span class="colab-autor">
-          <a href="/user/marcospaulosp">discussoes discussoes,</a>
+          <a href="/user/marcospaulosp">por TODO...,</a>
         </span>
-        <span class="colab-tempo"> discussoes </span>
+        <span class="colab-tempo"> TODO... minutos atrás</span>
       </li>
-      <li>
-        <a class="colab-titulo" href="TODO">discussoes discussoes discussoes discussoes</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">discussoes discussoes,</a>
-        </span>
-        <span class="colab-tempo">discussoes</span>
-      </li>
-      <li>
-        <a class="colab-titulo" href="TODO">Design do box listagem de notícias</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">por Marcos Paulo Santos Pinto,</a>
-        </span>
-        <span class="colab-tempo"> 23 minutos atrás </span>
-      </li>
+      {%- endfor %}
     </ul>
   </div>
   <!-- Fim do bloco de código DISCUSSOES -->
-  <!-- Bloco de código PARTICIPE -->
-  <div class="colab-participe">
-    <h3><b>Últimas</b><br>Colaborações</h3>
-    <a class="rss-colab" href="http://colab.interlegis.leg.br/"> </a>
-    <ul>
-      <li>
-        <a class="colab-titulo" href="TODO">participe participe participe</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp">participeparticipeparticipe,</a>
-        </span>
-        <span class="colab-tempo"> participe participe</span>
-      </li>
-      <li>
-        <a class="colab-titulo" href="TODO">participe participe participe</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">por Celso Magela de Almeida,</a>
-        </span>
-        <span class="colab-tempo"> 23 minutos atrás</span>
-      </li>
-      <li>
-        <a class="colab-titulo" href="TODO">participe participe participe</a><br>
-        <span class="colab-autor">
-          <a href="/user/marcospaulosp10">participe participe participe,</a>
-        </span>
-        <span class="colab-tempo"> participe </span>
-      </li>
-    </ul>
-  </div>
-  <!-- Fim do bloco de código PARTICIPE -->
 </div>

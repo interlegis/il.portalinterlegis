@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from manager import get_template
-
+import feedparser
 
 class LastNews(object):
 
@@ -21,7 +21,12 @@ class LastNews(object):
         return template.render(news=news, css_class=self.kind)
 
 def colab(context):
-    return get_template('colab.html').render()
+    def feed(url):
+        feed = feedparser.parse(url)
+        return feed['entries'][:3]
+    return get_template('colab.html').render(
+        colaboracoes=feed('http://colab.interlegis.leg.br/rss/colab/latest/'),
+        discussoes=feed('http://colab.interlegis.leg.br/rss/threads/hottest/'))
 
 def socialnetworks(context):
     return get_template('socialnetworks.html').render()
