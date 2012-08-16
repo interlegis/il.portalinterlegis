@@ -30,3 +30,6 @@ def colab(context):
 
 def socialnetworks(context):
     return get_template('socialnetworks.html').render()
+
+def video(context):
+    return get_template('boxvideos.html').render()
