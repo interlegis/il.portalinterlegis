@@ -1,0 +1,179 @@
+// based on http://css-tricks.com/tabs-with-round-out-borders/
+
+$tabs-canvas-color: white;
+$tabs-background-color: #ffffff;
+$tabs-color: #747474;
+$tabs-active-background-color: #ffffff;
+$tabs-current-background-color: #e6e7e8;
+$width-tabs: 126px;
+
+.uf4mfq_1.fbConnectWidgetTopmost{
+    
+    border-style: none;
+
+
+}
+
+.tabs-twitter-face > ul {
+    list-style: none;
+    padding: 0 0px;
+
+    // correspondent to the original "group" class from the article
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    zoom: 1;
+
+    li {
+	    /* Makes a horizontal row */
+	    float: left;
+
+	    /* So the psueudo elements can be
+	       abs. positioned inside */
+	    position: relative;
+        @include header-font;
+    }
+    a {
+	    /* Make them block level
+	       and only as wide as they need */
+	    float: left;
+	    padding: 5px 3px 5px 5px;
+        width: $width-tabs;
+        text-align: left;
+        font-size: 6.5pt;
+        font-family:mako;
+        
+	    /* Default colors */
+	    color: $tabs-color;
+	    background: $tabs-background-color;
+
+	    /* Only round the top corners */
+	    -webkit-border-top-left-radius: 15px;
+	    -webkit-border-top-right-radius: 15px;
+	    -moz-border-radius-topleft: 15px;
+	    -moz-border-radius-topright: 15px;
+	    border-top-left-radius: 15px;
+	    border-top-right-radius: 15px;
+        border: 1px solid #e6e7e8;
+    }
+    
+    .current {
+	    /* Make them block level
+	    and only as wide as they need */
+	    float: left;
+	    padding: 5px 3px 5px 5px;
+        width: $width-tabs;
+        text-align: left;
+        font-size: 6.5pt;
+        font-family:mako;
+
+        
+	    /* Default colors */
+	    color: $tabs-color;
+	    background: $tabs-current-background-color;
+
+	    /* Only round the top corners */
+	    -webkit-border-top-left-radius: 15px;
+	    -webkit-border-top-right-radius: 15px;
+	    -moz-border-radius-topleft: 15px;
+	    -moz-border-radius-topright: 15px;
+	    border-top-left-radius: 15px;
+	    border-top-right-radius: 15px;
+    }
+    
+    
+    .active {
+	    /* Highest, active tab is on top */
+	    z-index: 3;
+    }
+    .active a {
+	    /* Colors when tab is active */
+	    background: $tabs-active-background-color;
+	    color: $tabs-color;
+    }
+    li:before, li:after, li a:before, li a:after {
+	    /* All pseudo elements are
+	       abs. positioned and on bottom */
+	    position: absolute;
+	    bottom: 0;
+    }
+    /* Only the first, last, and active
+    tabs need pseudo elements at all */
+    li:last-child:after,   li:last-child a:after,
+    li:first-child:before, li:first-child a:before,
+    .active:after,   .active:before,
+    .active a:after, .active a:before {
+	    content: "";
+    }
+    .active:before, .active:after {
+	    background: $tabs-active-background-color;
+
+	    /* Squares below circles */
+	    z-index: 1;
+    }
+    /* Squares */
+    li:before, li:after {
+	    background: $tabs-background-color;
+	    width: 0px;
+	    height: 0px;
+    }
+    li:before {
+	    left: 0px;
+    }
+    li:after {
+	    right: 0px;
+    }
+    /* Circles */
+    li a:after, li a:before {
+	    width: 0px;
+	    height: 0px;
+	    /* Circles are circular */
+	    -webkit-border-radius: 5px;
+	    -moz-border-radius:    5px;
+	    border-radius:         5px;
+	    background: $tabs-canvas-color;
+
+	    /* Circles over squares */
+	    z-index: 2;
+    }
+    .active a:after, .active a:before {
+	    background: $tabs-background-color;
+    }
+    /* First and last tabs have different
+    outside color needs */
+    li:first-child.active a:before,
+    li:last-child.active a:after {
+	    background: $tabs-canvas-color;
+    }
+    li a:before {
+	    left: 0px;
+    }
+    li a:after {
+	    right: 0px;
+    }
+}
+
+.tabs-twitter-face > div {
+    border-style: solid;
+    border-width: 0px;
+    border-color: $tabs-active-background-color;
+    min-height: 200px;
+}
+
+.tabs-twitter-face > div > div > h2 {
+    margin: 20px 10px;
+    padding-left: 35px;
+    background: url("../images/icons/rss-big.png") no-repeat left top transparent;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.tabs-twitter-face .row {
+    padding-bottom: 10px;
+}
+.tabs-twitter-face > div > br {
+    clear:both;
+}
