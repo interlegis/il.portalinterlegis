@@ -1,13 +1,11 @@
-// based on http://css-tricks.com/tabs-with-round-out-borders/
-
 $tabs-canvas-color: white;
 $tabs-background-color: #ffffff;
 $tabs-color: #747474;
 $tabs-active-background-color: #ffffff;
 $tabs-current-background-color: #e6e7e8;
-$width-tabs: 126px;
+$width-tabs: 58px;
 
-.tabs-twitter-face > ul {
+.boxvideos-tabs > ul {
     list-style: none;
     padding: 0 0px;
 
@@ -148,25 +146,53 @@ $width-tabs: 126px;
     li a:after {
 	    right: 0px;
     }
+    
+    .img-tv{
+    
+    width:25px;
+    height:13px;
+    background: no-repeat right url("../images/icons/tv.png");
+    }
+    
+    .img-radio{
+    
+    width:25px;
+    height:13px;
+    background: no-repeat right url("../images/icons/radio.png");
+    }
+    
+    .img-imagens{
+    
+    width:25px;
+    height:13px;
+    background: no-repeat right url("../images/icons/imagens.png");
+    }
+    
+    .img-jornal{
+    
+    width:25px;
+    height:13px;
+    background: no-repeat right url("../images/icons/jornal.png");
+    }
 }
 
-.tabs-twitter-face > div {
+.boxvideos-tabs > div {
     border-style: solid;
     border-width: 0px;
     border-color: $tabs-active-background-color;
     min-height: 200px;
 }
 
-.tabs-twitter-face > div > div > h2 {
+.boxvideos-tabs > div > div > h2 {
     margin: 20px 10px;
     padding-left: 35px;
     background: url("../images/icons/rss-big.png") no-repeat left top transparent;
     text-transform: uppercase;
     font-weight: normal;
 }
-.tabs-twitter-face .row {
+.boxvideos-tabs .row {
     padding-bottom: 10px;
 }
-.tabs-twitter-face > div > br {
+.boxvideos-tabs > div > br {
     clear:both;
 }
