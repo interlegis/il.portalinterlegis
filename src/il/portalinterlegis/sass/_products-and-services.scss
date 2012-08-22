@@ -11,40 +11,40 @@
         padding-bottom: 6px;
     }
     h3 {
+        color: #dd9b3c;
+        height: 41px;
         line-height: 42px;
+        line-height: 100%;
         margin-bottom: 10px;
         padding-left: 50px;
-        line-height: 100%;
-        color:#dd9b3c;
-        height: 41px;
-        padding-top:15px;
+        padding-top: 15px;
             b {
-              color:#9e6305;
+                color: #9e6305;
             }
     }
     p {
-      font-size:8pt;
+      font-size: 8pt;
       line-height: 160%;
     }
     .manuais-e-faqs {
-    margin-top: 20px;
-    float: left;
-    left: 0px;
-    color:#ffbe08;
-    font-size: 6pt;
-    background: url("../images/icons/little-double-arrow.png") no-repeat scroll right center transparent;
-    margin-left: 0px;
-    padding-right:12px;
+        background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
+        color: #ffbe08;
+        float: left;
+        font-size: 6pt;
+        left: 0px;
+        margin-top: 20px;
+        margin-left: 0;
+        padding-right: 12px;
     }
     .saiba-mais {
-    margin-top: 20px;
-    float: right;
-    right: 0px;
-    color:#ffbe08;
-    font-size: 6pt;
-    background: url("../images/icons/little-double-arrow.png") no-repeat scroll right center transparent;
-    margin-left: 0px;
-    padding-right:12px;
+        background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
+        color: #ffbe08;
+        float: right;
+        font-size: 6pt;
+        margin-top: 20px;
+        margin-left: 0;
+        padding-right: 12px;
+        right: 0;
     }
 }
 
