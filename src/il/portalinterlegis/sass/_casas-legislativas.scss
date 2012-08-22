@@ -1,19 +1,16 @@
 .casas-legislativas {
-    
+
     form {
-    height:100px;
-    }
-    
-    .municipio {
-    width:340px;
-    }
-    
-    .submit {
-    position:absolute;
-    bottom:90px;
-    float:left;
-    left:85px;
+        text-align: center;
     }
 
+    .municipio {
+        width: 75%;
+    }
+
+    .submit {
+        font-size: 15px;
+        margin-top: 1em;
+    }
 
 }

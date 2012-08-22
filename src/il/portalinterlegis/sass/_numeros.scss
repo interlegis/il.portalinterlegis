@@ -1,20 +1,24 @@
 .numeros {
-
-    padding-top:0px;
-    
+    padding-top: 0;
+    text-align: center;
+    li {
+        float: left;
+        width: 25%;
+    }
     p {
-    font-size:8pt;
+        font-size: 11px;
     }
-    
     h4 {
-    font-size:10pt;
+        font-size: 25px;
     }
-    
     a {
-    position:absolute;
-    bottom:10px;
-    left:10px;
-    font-size:8pt;
+        bottom: 10px;
+        left: 10px;
+        font-size: 11px;
+        position: absolute;
     }
-
+    > div {
+        clear: both;
+        float: none;
+    }
 }
