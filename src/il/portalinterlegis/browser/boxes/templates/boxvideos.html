@@ -1,3 +1,6 @@
+<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/c/video.js"></script>
+
 <div class="boxvideos-tabs">
   <ul>
     <li>
@@ -14,11 +17,16 @@
     </li>
   </ul>
 
-  <!-- Bloco de código Videos -->
-  <div id="videos">
-   <iframe width="290" height="250" src="http://www.youtube.com/embed/srHZoj3ASmk" frameborder="0" allowfullscreen></iframe>
-   </div>
-   <!--Fim Bloco de código Videos -->
+	<!-- Bloco de código Videos -->
+	<div id="videos">
+		<video id="video" class="video-js vjs-default-skin" controls
+			preload="auto" width="272" height="244" poster="my_video_poster.png" data-setup="{}">
+			<source src="http://ftp.interlegis.leg.br/interlegis/video/Institucional_v2.mp4"
+				type='video/mp4'></source>
+    
+		</video>
+	</div>
+	<!--Fim Bloco de código Videos -->
    
   <!-- Bloco de código radio -->
   <div id="radio">
