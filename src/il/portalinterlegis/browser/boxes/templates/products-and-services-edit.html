@@ -1,1 +1,28 @@
-{% extends "carousel-edit.html" %}
+<div id="carousel-edit-panels-products-and-services">
+  {%- for panel, data, edit_href in items %}
+  <div class="portlet-products-and-services" id="carousel_item_{{ panel }}">
+    <div class="portlet-header-products-and-services">Arraste e solte para reordenar os painéis</div>
+    <div class="portlet-content-products-and-services editable-box">
+      <a href="{{ data.target }}">
+        <img src="{{ data.image }}" class="carosel-image" width="340" height="215" />
+        <div class="carousel-text-products-and-services">
+          <h3>{{ data.title }}</h3>
+          <p>
+            {{ data.text }}
+          </p>
+        </div>
+        <a href="#" class="carosel-link1">Manuais e FAQs</a>
+        <a href="#" class="carosel-link2">Saiba Mais</a>
+      </a>
+      <a class="editable-box-link-overlay" href="{{ edit_href }}">
+        <img src="pencil_icon.png" width="16" height="16" alt="Editar esta caixa" />
+      </a>
+    </div>
+  </div>
+  {%- endfor %}
+</div>
+<form id="carousel-add-form-products-and-services" method="post" action="{{ carousel_edit_href }}">
+  <button id="carousel-add-button-products-and-services" type="submit" name="add" value="_">
+    Adicionar um novo painel
+  </button>
+</form>
