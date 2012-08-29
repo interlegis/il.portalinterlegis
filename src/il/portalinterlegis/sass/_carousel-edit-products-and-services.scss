@@ -1,0 +1,100 @@
+// TODO: reescrever completamente isso para alinhar-se com o carousel.scss !!!!
+// TODO: simplificar o javascript para simplesmente usar templates e scss
+$carousel-width-products-and-services: 220px - 20px;
+$carousel-height: 215px;
+
+#carousel-edit-panels-products-and-services {
+    float: left;
+    padding-bottom: 100px;
+    margin-top: 10px;
+    width: 700px;
+
+    h3 {
+        color: #dd9b3c;
+        height: 41px;
+        line-height: 42px;
+        line-height: 100%;
+        margin-bottom: 10px;
+        padding-left: 50px;
+        padding-top: 15px;
+            b {
+                color: #9e6305;
+            }
+    }
+   
+    .carosel-link1 {
+        background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
+        color: #ffbe08;
+        float: left;
+        font-size: 6pt;
+        left: 0px;
+        margin-top: 20px;
+        margin-left: 0;
+        padding-right: 12px;
+    }
+    .carosel-link2 {
+        background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
+        color: #ffbe08;
+        float: right;
+        font-size: 6pt;
+        margin-top: 20px;
+        margin-left: 0;
+        padding-right: 12px;
+        right: 0;
+    }
+
+
+}
+
+.portlet-products-and-services {
+    margin: 0 1em 1em 0;
+    width: $carousel-width-products-and-services;
+    .editable-box {
+        min-height: $carousel-height;
+    }
+}
+
+.carosel-image{
+
+        height: 41px;
+        width: 41px;
+        vertical-align: baseline;
+        float:left;
+
+
+}
+.portlet-header-products-and-services {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    .ui-icon {
+        float: right;
+    }
+}
+.portlet-content-products-and-services {
+    padding: 0.4em;
+    position: relative;
+}
+.ui-sortable-placeholder-products-and-services {
+    border: 1px dotted black;
+    height: $carousel-height !important;
+    visibility: visible !important;
+}
+
+#carousel-add-form-products-and-services {
+    font-size: 16px;
+    padding: 10px 0;
+}
+.carousel-add-button-products-and-services {
+    font-size: 12px;
+}
+.ui-sortable-placeholder * {
+    visibility: hidden;
+}
+
+ul.instrucoes{
+    list-style-type: square;
+    margin-left: 20px;
+    li {
+        display: list-item;
+    }
+}
