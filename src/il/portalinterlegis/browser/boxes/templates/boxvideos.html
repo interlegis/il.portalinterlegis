@@ -2,48 +2,40 @@
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 <div class="boxvideos-tabs">
-  <ul>
-    <li>
-      <a href="#videos" class="current"><div class="img-tv"> </div></a>
-    </li>
-     <li>
-      <a href="#radio"><div class="img-radio"> </div></a>
-    </li>
-     <li>
-      <a href="#imagens"><div class="img-imagens"> </div></a>
-    </li>
-     <li>
-      <a href="#jornal"><div class="img-jornal"> </div></a>
-    </li>
-  </ul>
+	<ul>
+		<li><a href="#videos" class="current"><div class="img-tv">
+				</div></a></li>
+		<li><a href="#radio"><div class="img-radio"></div></a></li>
+		<li><a href="#imagens"><div class="img-imagens"></div></a></li>
+		<li><a href="#jornal"><div class="img-jornal"></div></a></li>
+	</ul>
 
 	<!-- Bloco de código Videos -->
 	<div id="videos">
-		<video id="video" class="video-js vjs-default-skin" controls
-			preload="auto" width="272" height="244" poster="my_video_poster.png" data-setup="{}">
-			<source src="http://ftp.interlegis.leg.br/interlegis/video/Institucional_v2.mp4"
-				type='video/mp4'></source>
-    
-		</video>
+		
+		<object width="272" height="244">
+			<param name="movie"
+				value="https://www.youtube.com/v/u1zgFlCw8Aw?version=3&autoplay=1"></param>
+			<param name="allowScriptAccess" value="always"></param>
+			<embed
+				src="https://www.youtube.com/v/u1zgFlCw8Aw?version=3&autoplay=1"
+				type="application/x-shockwave-flash" allowscriptaccess="always"
+				width="272" height="244"></embed>
+		</object>
+
 	</div>
 	<!--Fim Bloco de código Videos -->
-   
-  <!-- Bloco de código radio -->
-  <div id="radio">
-radio
-   </div>
-   <!--Fim Bloco de código radio -->
-   
-  <!-- Bloco de código imagens -->
-  <div id="imagens">
-imagens
-   </div>
-   <!--Fim Bloco de código imagens -->
-   
-   <!-- Bloco de código jornal -->
-  <div id="jornal">
-jornal
-   </div>
-   <!--Fim Bloco de código jornal -->
+
+	<!-- Bloco de código radio -->
+	<div id="radio">radio</div>
+	<!--Fim Bloco de código radio -->
+
+	<!-- Bloco de código imagens -->
+	<div id="imagens">imagens</div>
+	<!--Fim Bloco de código imagens -->
+
+	<!-- Bloco de código jornal -->
+	<div id="jornal">jornal</div>
+	<!--Fim Bloco de código jornal -->
 
 </div>
