@@ -10,7 +10,8 @@ class LastNews(object):
     def __call__(self, context):
         template = get_template("lastnews.html")
         # TODO: fazer busca no catalogo por tag
-        busca = context.portal_catalog(portal_type="News Item")[:5]
+        busca = context.portal_catalog(portal_type="News Item",
+                                       sort_on='Date',sort_order='reverse')[:5]
         news = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
         # TODO: traduzir kind de tag para class css
         return template.render(news=news, css_class=self.kind)
