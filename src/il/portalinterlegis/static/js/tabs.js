@@ -28,4 +28,27 @@ $(function() {
         $(".il-tabs > div").attr("class", $(this).attr("class"));
     });
 
+    $(".socialnetworks-tabs > ul > li").click(function(e) {
+        e.preventDefault();
+        $("li").removeClass("active");
+        $(this).addClass("active");
+        // synchronize tab pane with current tab's class
+        $(".socialnetworks-tabs > div").attr("class", $(this).attr("class"));
+    });
+    
+        $(".boxvideos-tabs > ul > li").click(function(e) {
+        e.preventDefault();
+        $("li").removeClass("active2");
+        $(this).addClass("active2");
+        // synchronize tab pane with current tab's class
+        $(".boxvideos-tabs > div").attr("class", $(this).attr("class"));
+    });
+    
+        $(".standard-tabs > ul > li").click(function(e) {
+        e.preventDefault();
+        $("li").removeClass("active3");
+        $(this).addClass("active3");
+        // synchronize tab pane with current tab's class
+    });
+
 });
