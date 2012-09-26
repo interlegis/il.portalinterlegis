@@ -47,6 +47,7 @@ $width-tabs: 110px;
         margin-left: 0px;
         margin-right: 0px;
         color:gray;
+        font-size: 6.5pt;
 
     }
     
@@ -73,7 +74,7 @@ $width-tabs: 110px;
 .standard-tabs > div {
     border-style: solid;
     border-width: 0px;
-    min-height: 440px;
+    min-height: 200px;
 }
 
 .standard-tabs > div > div > h2 {

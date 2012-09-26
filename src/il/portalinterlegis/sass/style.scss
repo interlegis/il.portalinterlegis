@@ -55,7 +55,7 @@ $footer-blue: #25528c; // used only in the footer
 body {
     background-image: url(../images/net-background.png);
     font-family: Mako, sans-serif;
-    font-size: 12px;  // TODO: rever este tamanho
+    font-size: 10pt;  // TODO: rever este tamanho
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -182,10 +182,10 @@ div.middle-container {
     background: #fff;
     border-style: dotted;
     border-width: 1px 1px 0 1px;
-    font-size: 10px;
+    font-size: 8pt;
     margin: 0;
     padding: 10px 8px 10px 0px;
-    width: $width - 8px;
+    width: $width - 6px;
 
     li {
         display: inline-block;
@@ -339,7 +339,7 @@ div {
         > div {
         margin-top: 10px;
             a {
-            font-size: 8pt;
+            font-size: 10pt;
             }
         }
     li {
@@ -379,7 +379,7 @@ div {
     p {
         float: none;
         margin-left: 60px;
-        font-size: 8pt;
+        font-size: 10pt;
         line-height:150%;
     }
 }
