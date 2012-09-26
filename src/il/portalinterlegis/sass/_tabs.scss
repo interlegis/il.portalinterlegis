@@ -88,6 +88,7 @@ $shadow: 0;
         box-shadow: $shadow;
         min-height: 200px;
         position: relative;
+        height: 340px;
     }
     > div > div {
         background: url("../images/icons/rss-big.png") no-repeat center left;
@@ -145,10 +146,6 @@ $shadow: 0;
     .row {
         padding-bottom: 10px;
     }
-}
-
-.il-tabs > div {
-    height: 85%;
 }
 
 .il-tabs > div > br {
