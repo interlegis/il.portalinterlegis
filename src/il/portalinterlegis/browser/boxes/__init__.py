@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from manager import get_template
 import feedparser
+import urllib2, urllib
+from zope.app.component.hooks import getSite
 
 class LastNews(object):
 
@@ -17,8 +19,17 @@ class LastNews(object):
         return template.render(news=news, css_class=self.kind)
 
 def colab(context):
+
+    # from http://stackoverflow.com/a/34116
+    proxy = getSite().getProperty('proxy')
+    proxy_handler = urllib2.ProxyHandler({'http': proxy})
+    auth = urllib2.HTTPBasicAuthHandler()
+    opener = urllib2.build_opener(proxy_handler, auth, urllib2.HTTPHandler)
+    urllib2.install_opener(opener)
+
     def feed(url):
-        feed = feedparser.parse(url)
+        conn = urllib2.urlopen(url)
+        feed = feedparser.parse(conn.read())
         return feed['entries'][:3]
     return get_template('colab.html').render(
         colaboracoes=feed('http://colab.interlegis.leg.br/rss/colab/latest/'),
