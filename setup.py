@@ -38,6 +38,7 @@ setup(name='il.portalinterlegis',
           'collective.js.jqueryui',
           'feedparser',
           'sc.contentrules.groupbydate',
+          'plone.formwidget.captcha',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""
