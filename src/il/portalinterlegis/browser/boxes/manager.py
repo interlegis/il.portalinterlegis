@@ -71,6 +71,8 @@ class BaseBox(BoxAware):
             inner=self.inner_render(context))
 
     def has_permission(self, context):
+        if hasattr(self, 'base_context'):
+            context = context[self.base_context]
         return getSecurityManager().checkPermission(self.permission, context)
 
     @property
