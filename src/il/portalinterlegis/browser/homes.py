@@ -33,7 +33,7 @@ class Home(GridView):
     grok.require('zope2.View')
 
     grid = [
-        ___((10, CarouselBox(0)), (6, _(ICalendar)),),
+        ___((10, CarouselBox(0)), (6, Events()),),
         ___((FULL, TabbedPane(
             Tab('informacao', u'Informação', u'Informação',
                 (4, _(IRelated)), (4, LastNews("informacao")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
