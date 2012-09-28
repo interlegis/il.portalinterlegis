@@ -6,7 +6,7 @@ function unifyHeights(row_sel, cell_sel) {
             var height = $(this).height();
             if ( height > max ) { max = height; }
         });
-        children.css('height', max);
+        childrencss('height', max);
     });
 };
 
