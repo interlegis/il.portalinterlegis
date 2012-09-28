@@ -52,7 +52,9 @@ def colab(context):
         try:
             conn = urllib2.urlopen(url)
             feed = feedparser.parse(conn.read())
-            return feed['entries'][:3]
+            entries = filter(lambda e: 'Merge branch' not in e['title'],
+                             feed['entries'])
+            return entries[:3]
         except:
             # pode haver problema com proxy.
             # Não podemos quebrar tudo por conta disso.
