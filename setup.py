@@ -37,6 +37,8 @@ setup(name='il.portalinterlegis',
           'Jinja2', # This one is not neurotic about missing values. We need this.
           'collective.js.jqueryui',
           'feedparser',
+          'sc.contentrules.groupbydate',
+          'plone.formwidget.captcha',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""

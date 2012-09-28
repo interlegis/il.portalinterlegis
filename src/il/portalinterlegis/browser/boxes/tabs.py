@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
-from manager import get_template, Row
-
-from zope.component import queryUtility
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from zope.component import queryUtility
+
+from manager import get_template, Row
 
 
 class Tab(Row):
 
     template_name = 'tab.html'
 
-    def __init__(self, title, inner_title, *row_spec):
+    def __init__(self, base_context, title, inner_title, *row_spec):
         self.title = title
         self.inner_title = inner_title
         self.row_spec = row_spec
+        for (width, renderable) in row_spec:
+            renderable.base_context = base_context
         super(Tab, self).__init__(*row_spec)
 
     def __call__(self, context):

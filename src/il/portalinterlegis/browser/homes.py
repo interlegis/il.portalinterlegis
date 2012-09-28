@@ -33,15 +33,15 @@ class Home(GridView):
     grok.require('zope2.View')
 
     grid = [
-        ___((10, CarouselBox(0)), (6, _(ICalendar)),),
+        ___((10, CarouselBox(0)), (6, Events()),),
         ___((FULL, TabbedPane(
-            Tab(u'Informação',  u'Informação',
+            Tab('informacao', u'Informação', u'Informação',
                 (4, _(IRelated)), (4, LastNews("informacao")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
-            Tab(u'Capacitação', u'Capacitação',
+            Tab('capacitacao', u'Capacitação', u'Capacitação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(1)),),
-            Tab(u'Tecnologia',  u'Tecnologia',
+            Tab('tecnologia', u'Tecnologia', u'Tecnologia',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(2)),),
-            Tab(u'Comunicação', u'Comunicação',
+            Tab('comunicacao', u'Comunicação', u'Comunicação',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(3)),),
             ))),
         ___((FULL, SimpleRow(u'Acompanhe o Interlegis',
