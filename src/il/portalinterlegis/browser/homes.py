@@ -5,9 +5,9 @@ from itertools import count
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
-from boxes import colab, LastNews, socialnetworks, video
+from boxes import colab, LastNews, socialnetworks, video, Events
 from boxes.carousel import CarouselBox, ProductsAndServices
-from boxes.interfaces import ISuperTitleBox, ICalendar, IHighlight, IRelated
+from boxes.interfaces import ISuperTitleBox, IHighlight, IRelated
 from boxes.manager import DtRow, Box, GridView
 from boxes.simplerow import SimpleRow
 from boxes.tabs import Tab, TabbedPane

@@ -19,7 +19,7 @@ class LastNews(object):
         return template.render(news=news, css_class=self.kind)
 
 class Events(object):
-    
+
     def kind(self, event):
         # TODO ...
         return "comunicacao"
@@ -29,9 +29,14 @@ class Events(object):
         # TODO: fazer busca no catalogo por tag
         busca = context.portal_catalog(portal_type="Event",
                                        sort_on='Date',sort_order='reverse')[:2]
-        events = [(event.getObject().title, event.getURL(), self.kind(event)) for event in busca]
+        events = [(event.title,
+                   event.absolute_url(),
+                   event.startDate.day(),
+                   event.startDate.Mon(),
+                   self.kind(event), ) for event in [brain.getObject()
+                                                     for brain in busca]]
         # TODO: traduzir kind de tag para class css
-        return template.render(events=events) 
+        return template.render(events=events)
 
 def colab(context):
 
