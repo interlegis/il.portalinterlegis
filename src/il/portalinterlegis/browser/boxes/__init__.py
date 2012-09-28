@@ -40,20 +40,28 @@ class Events(object):
 
 def colab(context):
 
-    # from http://stackoverflow.com/a/34116
     proxy = getSite().getProperty('proxy')
-    proxy_handler = urllib2.ProxyHandler({'http': proxy})
-    auth = urllib2.HTTPBasicAuthHandler()
-    opener = urllib2.build_opener(proxy_handler, auth, urllib2.HTTPHandler)
-    urllib2.install_opener(opener)
+    if proxy:
+        # from http://stackoverflow.com/a/34116
+        proxy_handler = urllib2.ProxyHandler({'http': proxy})
+        auth = urllib2.HTTPBasicAuthHandler()
+        opener = urllib2.build_opener(proxy_handler, auth, urllib2.HTTPHandler)
+        urllib2.install_opener(opener)
 
     def feed(url):
-        conn = urllib2.urlopen(url)
-        feed = feedparser.parse(conn.read())
-        return feed['entries'][:3]
+        try:
+            conn = urllib2.urlopen(url)
+            feed = feedparser.parse(conn.read())
+            return feed['entries'][:3]
+        except:
+            # pode haver problema com proxy.
+            # Não podemos quebrar tudo por conta disso.
+            return []
+    # TODO: usar: http://colab.interlegis.leg.br/rss/threads/hottest/
+    # mas o RSS está com problema
     return get_template('colab.html').render(
         colaboracoes=feed('http://colab.interlegis.leg.br/rss/colab/latest/'),
-        discussoes=feed('http://colab.interlegis.leg.br/rss/threads/hottest/'))
+        discussoes=feed('http://colab.interlegis.leg.br/rss/threads/latest/'))
 
 def socialnetworks(context):
     return get_template('socialnetworks.html').render()
