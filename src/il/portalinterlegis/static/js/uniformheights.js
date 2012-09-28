@@ -16,6 +16,5 @@ function unifyHeights(row_sel, cell_sel) {
 $(function() {
     $(document).ready(function(){
         unifyHeights('.dt-row', '.dt-cell')
-        unifyHeights('.row', '.cell')
     });
 });
