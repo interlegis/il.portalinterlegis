@@ -1,8 +1,8 @@
 <div id="carousel-edit-panels">
   {%- for panel, data, edit_href in items %}
-  <div class="portlet" id="carousel_item_{{ panel }}">
-    <div class="portlet-header">Arraste e solte para reordenar os painéis</div>
-    <div class="portlet-content editable-box">
+  <div class="framecarousel" id="carousel_item_{{ panel }}">
+    <div class="framecarousel-header">Arraste e solte para reordenar os painéis</div>
+    <div class="framecarousel-content editable-box">
       <a href="{{ data.target }}">
         <img src="{{ data.image }}" width="340" height="215" />
         <div class="carousel-text">

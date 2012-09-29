@@ -47,7 +47,7 @@ $carousel-height: 215px;
 
 }
 
-.portlet-products-and-services {
+.framecarousel-products-and-services {
     margin: 0 1em 1em 0;
     width: $carousel-width-products-and-services;
     .editable-box {
@@ -64,14 +64,14 @@ $carousel-height: 215px;
 
 
 }
-.portlet-header-products-and-services {
+.framecarousel-header-products-and-services {
     margin: 0.5em;
     padding: 0.5em 1em;
     .ui-icon {
         float: right;
     }
 }
-.portlet-content-products-and-services {
+.framecarousel-content-products-and-services {
     padding: 0.4em;
     position: relative;
 }

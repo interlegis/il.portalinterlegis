@@ -7,17 +7,17 @@ $(function() {
         }
     });
     $( "#carousel-edit-panels" ).disableSelection();
-    $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-        .find( ".portlet-header" )
+    $( ".framecarousel" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+        .find( ".framecarousel-header" )
         .addClass( "ui-widget-header ui-corner-all" )
         .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
         .end()
-        .find( ".portlet-content" );
+        .find( ".framecarousel-content" );
 
-    $( ".portlet-header .ui-icon" ).click(function() {
+    $( ".framecarousel-header .ui-icon" ).click(function() {
         var answer = confirm("Quer apagar esse painel?")
         if (answer){
-            var panel = $(this).parents(".portlet:first");
+            var panel = $(this).parents(".framecarousel:first");
             $.post(location.pathname, {remove:panel.attr('id')});
             panel.fadeOut(300, function() {
                 $(this).remove();
@@ -38,17 +38,17 @@ $(function() {
         }
     });
     $( "#carousel-edit-panels-products-and-services" ).disableSelection();
-    $( ".portlet-products-and-services" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-        .find( ".portlet-header-products-and-services" )
+    $( ".framecarousel-products-and-services" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+        .find( ".framecarousel-header-products-and-services" )
         .addClass( "ui-widget-header ui-corner-all" )
         .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
         .end()
-        .find( ".portlet-content-products-and-services" );
+        .find( ".framecarousel-content-products-and-services" );
 
-    $( ".portlet-header .ui-icon" ).click(function() {
+    $( ".framecarousel-header .ui-icon" ).click(function() {
         var answer = confirm("Quer apagar esse painel?")
         if (answer){
-            var panel = $(this).parents(".portlet:first");
+            var panel = $(this).parents(".framecarousel:first");
             $.post(location.pathname, {remove:panel.attr('id')});
             panel.fadeOut(300, function() {
                 $(this).remove();

@@ -9,21 +9,21 @@ $carousel-height: 215px;
     margin-top: 10px;
     width: 700px;
 }
-.portlet {
+.framecarousel {
     margin: 0 1em 1em 0;
     width: $carousel-width;
     .editable-box {
         min-height: $carousel-height;
     }
 }
-.portlet-header {
+.framecarousel-header {
     margin: 0.5em;
     padding: 0.5em 1em;
     .ui-icon {
         float: right;
     }
 }
-.portlet-content {
+.framecarousel-content {
     padding: 0.4em;
     position: relative;
 }
