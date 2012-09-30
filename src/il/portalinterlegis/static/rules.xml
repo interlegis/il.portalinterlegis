@@ -41,7 +41,6 @@
       <replace css:theme-children="#portal-columns" css:content-children="#bigbox" />
     </rules>
     <replace css:theme-children="#portal-columns" css:content-children="#portal-columns" css:if-not-content="#bigbox" />
-    <drop css:content="#viewlet-above-content" />
 
     <!-- CAROUSEL -->
     <replace css:theme="#carousel-1" css:content="#carousel-1" />
