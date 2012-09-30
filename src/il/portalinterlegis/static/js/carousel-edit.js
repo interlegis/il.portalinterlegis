@@ -45,7 +45,7 @@ $(function() {
         .end()
         .find( ".framecarousel-content-products-and-services" );
 
-    $( ".framecarousel-header .ui-icon" ).click(function() {
+    $( ".framecarousel-header-products-and-services .ui-icon" ).click(function() {
         var answer = confirm("Quer apagar esse painel?")
         if (answer){
             var panel = $(this).parents(".framecarousel:first");
