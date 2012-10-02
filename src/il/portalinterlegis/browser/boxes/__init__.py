@@ -25,7 +25,7 @@ class Events(object):
         return "comunicacao"
 
     def __call__(self, context):
-        template = get_template("icalendar.html")
+        template = get_template("events.html")
         # TODO: fazer busca no catalogo por tag
         busca = context.portal_catalog(portal_type="Event",
                                        sort_on='Date',sort_order='reverse')[:2]

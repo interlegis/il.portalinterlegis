@@ -13,8 +13,10 @@
                 <ul>
 			      {%- for text, target, day, month, kind in events %}
                     <li>
+                      <a href="{{ target }}">
                         <h4 class="{{ kind }}"><div>{{ day }}</div>{{ month }}</h4>
                         <p>{{ text }}</p>
+                      </a>
                     </li>
 			      {%- endfor %}
                 </ul>
