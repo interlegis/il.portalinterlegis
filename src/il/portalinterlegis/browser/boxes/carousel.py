@@ -27,7 +27,7 @@ class Carousel(BoxAware):
         return template.render(
             carousel_edit_href=carousel_edit_href(self.kind, self.number),
             items=[(panel,
-                    box.get_data(self.context),
+                    box.get_render_data(self.context),
                     box.edit_href) for panel, box in boxes])
 
     @property

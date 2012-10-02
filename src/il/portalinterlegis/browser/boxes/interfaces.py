@@ -29,7 +29,7 @@ class IRelated(BoxSchema):
     target = schema.Choice(title=u"Conteúdo relacionado",
                            source=PathSourceBinder(),
                            required=False)
-    image = schema.TextLine(title=u"URL da imagem", required=False)  # TODO: localizar ou subir imagem
+    # image = schema.TextLine(title=u"URL da imagem", required=False)  # TODO: localizar ou subir imagem
     title = schema.TextLine(title=u"Título", required=True)
     text = schema.Text(title=u"Texto", required=False)
 

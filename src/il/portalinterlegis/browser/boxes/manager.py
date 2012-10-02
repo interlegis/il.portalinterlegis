@@ -102,10 +102,18 @@ class Box(BaseBox):
 
     def inner_render(self, context):
         templ = get_template(self.schema.__name__.lower() + '.html')
-        return templ.render(self.get_data(context))
+        return templ.render(self.get_render_data(context))
 
     def get_data(self, context):
         return self.get_box_data(context, self.id)
+
+    # XXX
+    def get_render_data(self, context):
+        data = self.get_data(context).copy()
+        if 'target' in data:
+            data['target'] = context.portal_url() + data['target']
+            data['image'] = data['target'] + '/image_mini'
+        return data
 
     def erase_data(self, context):
         self.erase_box_data(context, self.id)
