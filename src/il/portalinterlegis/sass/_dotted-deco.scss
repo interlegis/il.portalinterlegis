@@ -5,6 +5,7 @@ div.dt-row {
     @include deco-row;
     border-style: dotted;
     border-width: 0 0 1px 0;
+    width: 960px;
 }
 
 div.dt-cell {
