@@ -49,7 +49,6 @@ $footer-blue: #25528c; // used only in the footer
 @import "carousel-edit-products-and-services";
 @import "portal-column-one";
 @import "portlet";
-@import "breadcrumb";
 
 // GENERAL
 // ================================================================
@@ -385,4 +384,8 @@ div {
         font-size: 10pt;
         line-height:150%;
     }
+}
+//correção do breadcrumbs
+#portal-breadcrumbs{
+    margin-top: 6px;
 }
