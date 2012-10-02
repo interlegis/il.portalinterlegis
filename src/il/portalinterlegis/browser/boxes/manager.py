@@ -110,7 +110,6 @@ class Box(BaseBox):
     # XXX
     def get_render_data(self, context):
         data = self.get_data(context).copy()
-        data['target'] = None
         if 'target' in data:
             if data['target']:
                 data['target'] = context.portal_url() + data['target']
