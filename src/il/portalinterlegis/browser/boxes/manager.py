@@ -111,8 +111,11 @@ class Box(BaseBox):
     def get_render_data(self, context):
         data = self.get_data(context).copy()
         if 'target' in data:
-            data['target'] = context.portal_url() + data['target']
-            data['image'] = data['target'] + '/image_mini'
+            if data['target']:
+                data['target'] = context.portal_url() + data['target']
+                data['image'] = data['target'] + '/image_mini'
+            else:
+                data['target'] = data['image'] = '#'
         return data
 
     def erase_data(self, context):
