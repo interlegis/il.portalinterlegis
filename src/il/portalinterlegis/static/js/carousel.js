@@ -5,7 +5,7 @@ $(function() {
                    nextBtn: '',
                    prevBtn: '',
                    autoSlide: true,
-                   autoSlideInterval: 5000});
+                   autoSlideInterval: 8000});
     function next_previous_buttons(elts) {
         return elts.carousel.parent().children('.next-previous-buttons');
     };
