@@ -65,15 +65,20 @@ class BaseBox(BoxAware):
         self.permission = permission
 
     def __call__(self, context):
+        context = self.origin_context(context)
         return get_template('basebox.html').render(
             box=self,
             has_permission=self.has_permission(context),
             inner=self.inner_render(context))
 
     def has_permission(self, context):
-        if hasattr(self, 'base_context'):
-            context = context[self.base_context]
         return getSecurityManager().checkPermission(self.permission, context)
+
+    def origin_context(self, context):
+        if hasattr(self, 'base_context'):
+            return context[self.base_context]
+        else:
+            return context
 
     @property
     def id(self):
@@ -130,7 +135,12 @@ class Box(BaseBox):
         """
         return 'box_%s' % self.id
 
-    edit_href = form_name  # To be overridden independently
+    @property
+    def edit_href(self):
+        if hasattr(self, 'base_context'):
+            return "%s/%s" % (self.base_context, self.form_name)
+        else:
+            return self.form_name
 
 
 def build_box_form(box):
