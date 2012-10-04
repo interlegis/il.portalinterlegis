@@ -51,5 +51,6 @@
 
     <!-- KSS -->
     <append theme="/html/body" content="//*[@id='kss-spinner']" />
+    <append theme="/html/body" content="/html/body/div/div/div/script" />
 
 </rules>
