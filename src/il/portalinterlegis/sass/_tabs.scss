@@ -123,10 +123,16 @@ $shadow: 0;
         div > h2 {
            color: darken($color-informacao, 20);
         }
+        div > div > div > div > a > h3 {
+           color: darken($color-informacao, 20);
+        }
     }
     > div.tab-capacitacao {
         border-color: $color-capacitacao;
         div > h2 {
+           color: darken($color-capacitacao, 20);
+        }
+        div > div > div > div > a > h3 {
            color: darken($color-capacitacao, 20);
         }
     }
@@ -135,10 +141,16 @@ $shadow: 0;
         div > h2 {
            color: darken($color-tecnologia, 20);
         }
+        div > div > div > div > a > h3 {
+           color: darken($color-tecnologia, 20);
+        }
     }
     > div.tab-comunicacao {
         border-color: $color-comunicacao;
         div > h2 {
+           color: darken($color-comunicacao, 20);
+        }
+        div > div > div > div > a > h3 {
            color: darken($color-comunicacao, 20);
         }
     }
