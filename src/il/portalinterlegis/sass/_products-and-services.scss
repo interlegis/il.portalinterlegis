@@ -30,7 +30,7 @@
         background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
         color: #ffbe08;
         float: left;
-        font-size: 6pt;
+        font-size: 7pt;
         left: 0px;
         margin-top: 20px;
         margin-left: 0;
@@ -42,7 +42,7 @@
         background: url(../images/icons/little-double-arrow.png) no-repeat scroll right center transparent;
         color: #ffbe08;
         float: right;
-        font-size: 6pt;
+        font-size: 7pt;
         margin-top: 20px;
         margin-left: 0;
         padding-right: 12px;
@@ -54,4 +54,8 @@
 
 .products-services-container .products-services {
     margin-top: 20px;
+}
+
+.products-services-container h3 {
+    display: inline-table;
 }
