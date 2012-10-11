@@ -120,37 +120,37 @@ $shadow: 0;
 
     > div.tab-informacao {
         border-color: $color-informacao;
-        div > h2 {
+        div > h2 > a {
            color: darken($color-informacao, 20);
         }
-        div > div > div > div > a > h3 > a{
+        div > div > div > div > a > h3 {
            color: darken($color-informacao, 20);
         }
     }
     > div.tab-capacitacao {
         border-color: $color-capacitacao;
-        div > h2 {
+        div > h2 > a {
            color: darken($color-capacitacao, 20);
         }
-        div > div > div > div > a > h3 > a{
+        div > div > div > div > a > h3 {
            color: darken($color-capacitacao, 20);
         }
     }
     > div.tab-tecnologia {
         border-color: $color-tecnologia;
-        div > h2 {
+        div > h2 > a {
            color: darken($color-tecnologia, 20);
         }
-        div > div > div > div > a > h3 > a{
+        div > div > div > div > a > h3 {
            color: darken($color-tecnologia, 20);
         }
     }
     > div.tab-comunicacao {
         border-color: $color-comunicacao;
-        div > h2 {
+        div > h2 > a {
            color: darken($color-comunicacao, 20);
         }
-        div > div > div > div > a > h3 > a{
+        div > div > div > div > a > h3 {
            color: darken($color-comunicacao, 20);
         }
     }
