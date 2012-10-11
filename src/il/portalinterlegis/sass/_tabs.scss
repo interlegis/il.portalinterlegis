@@ -123,7 +123,7 @@ $shadow: 0;
         div > h2 {
            color: darken($color-informacao, 20);
         }
-        div > div > div > div > a > h3 {
+        div > div > div > div > a > h3 > a{
            color: darken($color-informacao, 20);
         }
     }
@@ -132,7 +132,7 @@ $shadow: 0;
         div > h2 {
            color: darken($color-capacitacao, 20);
         }
-        div > div > div > div > a > h3 {
+        div > div > div > div > a > h3 > a{
            color: darken($color-capacitacao, 20);
         }
     }
@@ -141,7 +141,7 @@ $shadow: 0;
         div > h2 {
            color: darken($color-tecnologia, 20);
         }
-        div > div > div > div > a > h3 {
+        div > div > div > div > a > h3 > a{
            color: darken($color-tecnologia, 20);
         }
     }
@@ -150,7 +150,7 @@ $shadow: 0;
         div > h2 {
            color: darken($color-comunicacao, 20);
         }
-        div > div > div > div > a > h3 {
+        div > div > div > div > a > h3 > a{
            color: darken($color-comunicacao, 20);
         }
     }
