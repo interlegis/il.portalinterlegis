@@ -80,6 +80,16 @@
     @include carousel-container-mixin();
 }
 
+.mais-noticias{
+  float: right;
+  margin-right: 10px;
+  color: #205C90;
+  border-top: 1px solid #D1D3D4;
+  width:100%;
+  text-align:right;
+  margin: 5px 0 0 5px;
+}
+
 .carousel-control {
     border: 0;
     cursor: pointer;
