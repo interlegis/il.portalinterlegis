@@ -120,8 +120,16 @@ $shadow: 0;
 
     > div.tab-informacao {
         border-color: $color-informacao;
-        div > h2 > a {
+        div > h2 > a.tabs-rss-icon {
+           left: -35px;
+           position:relative;
+           content: ' ';
+           padding: 0px 15px 0px 15px;
+        }
+        div > h2 > a.tab-link-informacao {
            color: darken($color-informacao, 20);
+           left: -35px;
+           position:relative;
         }
         div > div > div > div > a > h3 {
            color: darken($color-informacao, 20);
@@ -129,29 +137,62 @@ $shadow: 0;
     }
     > div.tab-capacitacao {
         border-color: $color-capacitacao;
-        div > h2 > a {
+        div > h2 > a.tabs-rss-icon {
+           left: -35px;
+           position:relative;
+           content: ' ';
+           padding: 0px 15px 0px 15px;
+        }
+        div > h2 > a.tab-link-capacitacao {
            color: darken($color-capacitacao, 20);
+           left: -35px;
+           position:relative;
         }
         div > div > div > div > a > h3 {
            color: darken($color-capacitacao, 20);
+        }
+        div > h2  {
+        padding-left: 0px;
         }
     }
     > div.tab-tecnologia {
         border-color: $color-tecnologia;
-        div > h2 > a {
+        div > h2 > a.tabs-rss-icon {
+           left: -35px;
+           position:relative;
+           content: ' ';
+           padding: 0px 15px 0px 15px;
+        }
+        div > h2 > a.tab-link-tecnologia {
            color: darken($color-tecnologia, 20);
+           left: -35px;
+           position:relative;
         }
         div > div > div > div > a > h3 {
            color: darken($color-tecnologia, 20);
+        }
+        div > h2  {
+        padding-left: 0px;
         }
     }
     > div.tab-comunicacao {
         border-color: $color-comunicacao;
-        div > h2 > a {
+        div > h2 > a.tabs-rss-icon {
+           left: -35px;
+           position:relative;
+           content: ' ';
+           padding: 0px 15px 0px 15px;
+        }
+        div > h2 > a.tab-link-comunicacao {
            color: darken($color-comunicacao, 20);
+           left: -35px;
+           position:relative;
         }
         div > div > div > div > a > h3 {
            color: darken($color-comunicacao, 20);
+        }
+        div > h2  {
+        padding-left: 0px;
         }
     }
     .row {
