@@ -35,13 +35,13 @@ class Home(GridView):
     grid = [
         ___((10, CarouselBox(0)), (6, Events()),),
         ___((FULL, TabbedPane(
-            Tab('informacao', u'Informação', u'Informação',
+            Tab('informacao', u'Informação', u'<a href="/portal/informacao">Informação</a>',
                 (4, _(IRelated)), (4, LastNews("informacao")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
-            Tab('capacitacao', u'Capacitação', u'Capacitação',
+            Tab('capacitacao', u'Capacitação', u'<a href="/portal/capacitacao">Capacitação</a>',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(1)),),
-            Tab('tecnologia', u'Tecnologia', u'Tecnologia',
+            Tab('tecnologia', u'Tecnologia', u'<a href="/portal/tecnologia">Tecnologia</a>',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(2)),),
-            Tab('comunicacao', u'Comunicação', u'Comunicação',
+            Tab('comunicacao', u'Comunicação', u'<a href="/portal/comunicacao">Comunicação</a>',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(3)),),
             ))),
         ___((FULL, SimpleRow(u'Acompanhe o Interlegis',
