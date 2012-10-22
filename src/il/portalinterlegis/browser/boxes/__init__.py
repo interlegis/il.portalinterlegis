@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
-from manager import get_template
+import re
+import urllib2
+
 import feedparser
-import urllib2, urllib
 from zope.app.component.hooks import getSite
+
+from manager import get_template
+
 
 class LastNews(object):
 
@@ -38,6 +42,11 @@ class Events(object):
         # TODO: traduzir kind de tag para class css
         return template.render(events=events)
 
+colab_filter_entries_res = (
+    (re.compile('changeset: \[.*\] - (.*)'), u'código'),
+    (re.compile('ticket: [^-]+ - (.*)'), u'tíquete'),
+    )
+
 def colab(context):
 
     proxy = getSite().getProperty('proxy')
@@ -52,13 +61,23 @@ def colab(context):
         try:
             conn = urllib2.urlopen(url)
             feed = feedparser.parse(conn.read())
-            entries = filter(lambda e: 'Merge branch' not in e['title'],
-                             feed['entries'])
+            entries = filter_entries(feed)
             return entries[:3]
         except:
             # pode haver problema com proxy.
             # Não podemos quebrar tudo por conta disso.
             return []
+
+    def filter_entries(feed):
+        entries = filter(lambda e: 'Merge branch' not in e['title'],
+                         feed['entries'])
+        for entry in entries:
+            for (pattern, prefix) in colab_filter_entries_res:
+                m = pattern.match(entry['title'])
+                if m:
+                    entry['title'] = "%s: %s" % (prefix, m.group(1))
+        return entries
+
     # TODO: usar: http://colab.interlegis.leg.br/rss/threads/hottest/
     # mas o RSS está com problema
     return get_template('colab.html').render(
