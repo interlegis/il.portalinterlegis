@@ -118,7 +118,7 @@ class Box(BaseBox):
         if 'target' in data:
             if data['target']:
                 data['target'] = context.portal_url() + data['target']
-                data['image'] = data['target'] + '/image_mini'
+                data['image'] = data['target'] + '/image_carousel'
             else:
                 data['target'] = data['image'] = '#'
         return data
