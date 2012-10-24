@@ -23,7 +23,7 @@ $width-tabs: 186px;
         font-size: 6.5pt;
         font-family:mako;
             a {
-                  background-image: url("../images/tab-face-twitter.png");
+                  background-image: url("../images/tab-colab.png");
             }
     }
     
@@ -31,7 +31,7 @@ $width-tabs: 186px;
     left: -3px;
     }
     .tab-twitter{
-    left: -100px;
+    left: -20px;
     }
     
     a {
@@ -43,7 +43,7 @@ $width-tabs: 186px;
         text-indent:30px;
         padding-top:7px;
         vertical-align:middle;
-        width: 186px;
+        width: 110px;
         margin-left: 0px;
         margin-right: 0px;
         color:gray;
@@ -63,7 +63,7 @@ $width-tabs: 186px;
     }
     .active a {
 	    /* Colors when tab is active */
-        background-image: url("../images/tab-face-twitter-active.png");
+        background-image: url("../images/tab-colab-active.png");
     }
     /* Only the first, last, and active
     tabs need pseudo elements at all */
