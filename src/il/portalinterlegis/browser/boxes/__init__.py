@@ -22,6 +22,9 @@ class LastNews(object):
         # TODO: traduzir kind de tag para class css
         return template.render(news=news, css_class=self.kind)
 
+meses = ['', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+         'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',]
+
 class Events(object):
 
     def kind(self, event):
@@ -36,7 +39,7 @@ class Events(object):
         events = [(event.title,
                    event.absolute_url(),
                    event.startDate.day(),
-                   event.startDate.Mon(),
+                   meses[event.startDate.month()],
                    self.kind(event), ) for event in [brain.getObject()
                                                      for brain in busca]]
         # TODO: traduzir kind de tag para class css
