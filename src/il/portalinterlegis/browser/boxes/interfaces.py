@@ -8,6 +8,7 @@ from plone.directives import form
 from plone.formwidget.autocomplete import AutocompleteFieldWidget
 from plone.formwidget.contenttree import PathSourceBinder
 from zope import schema
+from plone.namedfile.field import NamedImage
 
 
 class BoxSchema(form.Schema):
@@ -50,8 +51,10 @@ class ICalendar(BoxSchema):
 
 
 class IHighlight(BoxSchema):
-    pass
-
+    picture = NamedImage(title=u"Imagem de destaque",
+                         description=
+                         u"""Escolha uma imagem para ser exibida no destaque.
+    Prefira uma imagem de largura 200px e altura 150px, ou nesta proporção""")
 
 def box_schemas():
     """Returns all the BoxSchema's in this module.

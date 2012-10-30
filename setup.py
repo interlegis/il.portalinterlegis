@@ -39,6 +39,8 @@ setup(name='il.portalinterlegis',
           'feedparser',
           'sc.contentrules.groupbydate',
           'plone.formwidget.captcha',
+          'plone.namedfile[blobs]',
+          'plone.formwidget.namedfile',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""

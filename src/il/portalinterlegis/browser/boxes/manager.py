@@ -112,7 +112,7 @@ class Box(BaseBox):
     def get_data(self, context):
         return self.get_box_data(context, self.id)
 
-    # XXX
+    # FIXME
     def get_render_data(self, context):
         data = self.get_data(context).copy()
         if 'target' in data:
@@ -121,6 +121,8 @@ class Box(BaseBox):
                 data['image'] = data['target'] + '/image_carousel'
             else:
                 data['target'] = data['image'] = '#'
+        # view field available in the template
+        data['view'] = self
         return data
 
     def erase_data(self, context):
