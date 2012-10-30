@@ -120,7 +120,8 @@ class Box(BaseBox):
                 data['target'] = context.portal_url() + data['target']
                 data['image'] = data['target'] + '/image_carousel'
             else:
-                data['target'] = data['image'] = '#'
+                data['target'] = '#'
+                data['image'] = ''
         # view field available in the template
         data['view'] = self
         return data

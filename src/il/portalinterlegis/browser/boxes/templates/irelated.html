@@ -1,5 +1,7 @@
 <a class="related" href="{{ target }}">
+  {%- if image %}
   <img src="{{ image }}" width="210" height="120" />
+  {%- endif %}
   <h3>{{ title }}</h3>
   <p>
     {{ text }}
