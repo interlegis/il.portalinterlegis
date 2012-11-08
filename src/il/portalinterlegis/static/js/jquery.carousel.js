@@ -137,6 +137,10 @@ This software is licensed under the CC-GNU LGPL <http://creativecommons.org/lice
 			
 			// Address plugin
 			initAddress(env);
+
+            // Stop carousel on hover
+            $(this).hover(function(){stopAutoSlide(env);},
+                          function(){initAutoSlide(env);});
 			
 			// On document load...
 			$(function(){
