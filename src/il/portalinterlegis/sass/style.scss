@@ -349,6 +349,11 @@ div {
 
 #agenda {
 
+        .evento-destaque{
+        border-bottom:1px #a1a3a4 solid;
+        padding-bottom:5px;
+        margin-bottom:5px;
+        }
         > div {
         margin-top: 10px;
             a {
@@ -362,20 +367,21 @@ div {
         display: table;
         margin-top: 5px;
         padding-bottom: 5px;
-        border-bottom: 1px solid #d1d3d4;
+       /* border-bottom: 1px solid #d1d3d4; */
         width: 340px;
       }
     h4 {
         color: #fff;
         float: left;
-        font-weight: normal;
-        height: 37px;
+        font-weight: bold;
+        height: 15px;
         padding: 4px;
-        padding-top:7px;
+        padding-top:10px;
         text-align: center;
-        text-transform: uppercase;
-        width: 40px;
-        font-size:10pt;
+        width: 44px;
+        font-size:5pt;
+        
+        
         > div {
             font-size: 2em;
         }
@@ -396,7 +402,7 @@ div {
         float: none;
         margin-left: 60px;
         font-size: 10pt;
-        line-height:150%;
+        line-height:110%;
     }
 }
 //correção do breadcrumbs

@@ -1,24 +1,53 @@
    <div id="ICalendar_0">
-      <h2 class="box-header-base">Ações do Interlegis</h2>
+      <h2 class="box-header-base">Agenda de eventos</h2>
+{#
         <ul>
             <li><a title="Agenda Interlegis" href="#agenda">Agenda</a></li>
-{#
             <li><a title="Projeto de Modernização do Legislativo" href="#pml">Modernização</li>
             <li><a title="Números Interlegis" href="#numeros">Números</a></li>
             <li><a title="Localize uma Casa" href="#casas-legislativas">Localize uma Casa</a></li>
-#}
         </ul>
+#}
         <div>
             <div id="agenda">
+              {#
                 <ul>
 			      {%- for text, target, day, month, kind in events %}
                     <li>
                       <a href="{{ target }}">
-                        <h4 class="{{ kind }}"><div>{{ day }}</div>{{ month }}</h4>
+                        <h4 class="{{ kind }}"><div>{{ day }}/{{ month }}</div></h4>
                         <p>{{ text }}</p>
                       </a>
                     </li>
 			      {%- endfor %}
+                </ul>
+                #}
+                
+                 <ul>
+                    <li class="evento-destaque">
+                      <a href="{{ target }}">
+                        <h4 class="comunicacao"><div>29/Out</div></h4>
+                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{ target }}">
+                        <h4 class="comunicacao"><div>29/Out</div></h4>
+                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{ target }}">
+                        <h4 class="comunicacao"><div>29/Out</div></h4>
+                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{ target }}">
+                        <h4 class="comunicacao"><div>29/Out</div></h4>
+                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
+                      </a>
+                    </li>
                 </ul>
                 <div>
                     <a href="eventos" title="Todos os eventos">Todos os eventos »</a>
