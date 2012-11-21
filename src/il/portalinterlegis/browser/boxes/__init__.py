@@ -51,6 +51,7 @@ class Events(object):
         for e in important_events:
             if e in events:
                 events.remove(e)
+        events = events[:3]
 
         template = get_template("events.html")
         return template.render(important_events=important_events,
