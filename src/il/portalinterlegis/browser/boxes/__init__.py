@@ -22,9 +22,6 @@ class LastNews(object):
         # TODO: traduzir kind de tag para class css
         return template.render(news=news, css_class=self.kind)
 
-meses = ['', 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-         'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez',]
-
 class Events(object):
 
     def kind(self, event):
@@ -37,19 +34,19 @@ class Events(object):
             return [(event.title,
                      event.absolute_url(),
                      event.startDate.day(),
-                     meses[event.startDate.month()],
+                     event.startDate.month(),
                      self.kind(event), ) for event in [brain.getObject()
                                                        for brain in results]]
 
         important_events = event_tuple(context.portal_catalog(
             {'start': {'query': DateTime(), 'range': 'min'}},
             portal_type="Event",
-            sort_on='Date',
+            sort_on='start',
             Subject=('evento importante'))[:1])
         events = event_tuple(context.portal_catalog(
             {'start': {'query': DateTime(), 'range': 'min'}},
             portal_type="Event",
-            sort_on='Date')[:4])
+            sort_on='start')[:4])
 
         for e in important_events:
             if e in events:
