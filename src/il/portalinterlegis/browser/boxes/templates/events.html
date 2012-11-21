@@ -10,8 +10,15 @@
 #}
         <div>
             <div id="agenda">
-              {#
                 <ul>
+			      {%- for text, target, day, month, kind in important_events %}
+                    <li class="evento-destaque">
+                      <a href="{{ target }}">
+                        <h4 class="{{ kind }}"><div>{{ day }}/{{ month }}</div></h4>
+                        <p>{{ text }}</p>
+                      </a>
+                    </li>
+			      {%- endfor %}
 			      {%- for text, target, day, month, kind in events %}
                     <li>
                       <a href="{{ target }}">
@@ -20,34 +27,6 @@
                       </a>
                     </li>
 			      {%- endfor %}
-                </ul>
-                #}
-                
-                 <ul>
-                    <li class="evento-destaque">
-                      <a href="{{ target }}">
-                        <h4 class="comunicacao"><div>29/Out</div></h4>
-                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
-                      </a>
-                    </li>
-                     <li>
-                      <a href="{{ target }}">
-                        <h4 class="comunicacao"><div>29/Out</div></h4>
-                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
-                      </a>
-                    </li>
-                     <li>
-                      <a href="{{ target }}">
-                        <h4 class="comunicacao"><div>29/Out</div></h4>
-                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
-                      </a>
-                    </li>
-                     <li>
-                      <a href="{{ target }}">
-                        <h4 class="comunicacao"><div>29/Out</div></h4>
-                        <p>teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste teste</p>
-                      </a>
-                    </li>
                 </ul>
                 <div>
                     <a href="eventos" title="Todos os eventos">Todos os eventos »</a>

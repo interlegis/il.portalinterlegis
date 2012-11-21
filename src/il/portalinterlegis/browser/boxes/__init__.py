@@ -3,9 +3,9 @@ import re
 import urllib2
 
 import feedparser
-from zope.app.component.hooks import getSite
-
+from DateTime import DateTime
 from manager import get_template
+from zope.app.component.hooks import getSite
 
 
 class LastNews(object):
@@ -32,18 +32,32 @@ class Events(object):
         return "comunicacao"
 
     def __call__(self, context):
+
+        def event_tuple(results):
+            return [(event.title,
+                     event.absolute_url(),
+                     event.startDate.day(),
+                     meses[event.startDate.month()],
+                     self.kind(event), ) for event in [brain.getObject()
+                                                       for brain in results]]
+
+        important_events = event_tuple(context.portal_catalog(
+            {'start': {'query': DateTime(), 'range': 'min'}},
+            portal_type="Event",
+            sort_on='Date',
+            Subject=('evento importante'))[:1])
+        events = event_tuple(context.portal_catalog(
+            {'start': {'query': DateTime(), 'range': 'min'}},
+            portal_type="Event",
+            sort_on='Date')[:4])
+
+        for e in important_events:
+            if e in events:
+                events.remove(e)
+
         template = get_template("events.html")
-        # TODO: fazer busca no catalogo por tag
-        busca = context.portal_catalog(portal_type="Event",
-                                       sort_on='Date',sort_order='reverse')[:2]
-        events = [(event.title,
-                   event.absolute_url(),
-                   event.startDate.day(),
-                   meses[event.startDate.month()],
-                   self.kind(event), ) for event in [brain.getObject()
-                                                     for brain in busca]]
-        # TODO: traduzir kind de tag para class css
-        return template.render(events=events)
+        return template.render(important_events=important_events,
+                               events=events)
 
 colab_filter_entries_res = (
     (re.compile('changeset: \[.*\] - (.*)'), u'código'),
