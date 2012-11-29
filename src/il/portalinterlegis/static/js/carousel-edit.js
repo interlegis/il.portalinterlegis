@@ -48,7 +48,7 @@ $(function() {
     $( ".framecarousel-header-products-and-services .ui-icon" ).click(function() {
         var answer = confirm("Quer apagar esse painel?")
         if (answer){
-            var panel = $(this).parents(".framecarousel:first");
+            var panel = $(this).parents(".framecarousel-products-and-services:first");
             $.post(location.pathname, {remove:panel.attr('id')});
             panel.fadeOut(300, function() {
                 $(this).remove();
