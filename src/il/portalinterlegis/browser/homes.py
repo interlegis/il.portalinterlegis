@@ -46,7 +46,8 @@ class Home(GridView):
             ))),
         ___((FULL, SimpleRow(u'Acompanhe o Interlegis',
                             (5, colab), (5, socialnetworks), (5, video)))),
-        ___((4, _(IHighlight)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)),),
+        #TODO linha tirada por falta de uso. Sera trocada por um linha com info do SIGI
+        # ___((4, _(IHighlight)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)),),
     ]
 
 
