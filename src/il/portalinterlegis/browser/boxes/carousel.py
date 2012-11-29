@@ -77,7 +77,11 @@ class CarouselBox(BaseBox):
 
     @property
     def edit_href(self):
-        return carousel_edit_href(self.kind, self.number)
+        href = carousel_edit_href(self.kind, self.number)
+        if hasattr(self, 'base_context'):
+            return "%s/%s" % (self.base_context, href)
+        else:
+            return href
 
 
 def carousel_edit_href(kind, number):
