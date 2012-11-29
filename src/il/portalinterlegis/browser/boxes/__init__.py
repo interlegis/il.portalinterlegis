@@ -39,12 +39,12 @@ class Events(object):
                                                        for brain in results]]
 
         important_events = event_tuple(context.portal_catalog(
-            {'start': {'query': DateTime(), 'range': 'min'}},
+            {'end': {'query': DateTime(), 'range': 'min'}},
             portal_type="Event",
             sort_on='start',
             Subject=('evento importante'))[:1])
         events = event_tuple(context.portal_catalog(
-            {'start': {'query': DateTime(), 'range': 'min'}},
+            {'end': {'query': DateTime(), 'range': 'min'}},
             portal_type="Event",
             sort_on='start')[:4])
 
