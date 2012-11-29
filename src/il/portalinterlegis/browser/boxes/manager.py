@@ -85,6 +85,7 @@ class BaseBox(BoxAware):
         "id of the box. Used in the template. Must be unique on a page."
         raise NotImplementedError
 
+    #XXX the logic about base_context prefix in href should be in this class, because of the origin_context logic
     @property
     def edit_href(self):
         raise NotImplementedError
