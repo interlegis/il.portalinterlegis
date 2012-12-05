@@ -3,6 +3,7 @@ pilares = {
     u'INFORMAÇÃO' : [u'INFORMAÇÃO'],
     u'CAPACITAÇÃO': [u'CAPACITAÇÃO', u'CAPACITAÇÂO'],
     u'TECNOLOGIA': [u'TECNOLOGIA'],
+    u'COMUNICAÇÃO': [u'COMUNICAÇÃO']
     }
 separador = ' - '
 agrupados = {cat: [] for cat in pilares}
