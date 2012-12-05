@@ -6,6 +6,9 @@ import feedparser
 from DateTime import DateTime
 from manager import get_template
 from zope.app.component.hooks import getSite
+from zeitgeist.datamodel import Subject
+import ipdb
+from plone.app.search.browser import Search
 
 
 class LastNews(object):
@@ -15,9 +18,8 @@ class LastNews(object):
 
     def __call__(self, context):
         template = get_template("lastnews.html")
-        # TODO: fazer busca no catalogo por tag
-        busca = context.portal_catalog(portal_type="News Item",
-                                       sort_on='Date',sort_order='reverse')[:5]
+        busca = context.portal_catalog.searchResults(portal_type="News Item",
+                                       sort_on='Date', sort_order='reverse', Subject=(self.kind))[:5]
         news = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
         # TODO: traduzir kind de tag para class css
         return template.render(news=news, css_class=self.kind)
@@ -35,7 +37,7 @@ class Events(object):
                      event.absolute_url(),
                      event.startDate.day(),
                      event.startDate.month(),
-                     self.kind(event), ) for event in [brain.getObject()
+                     self.kind(event),) for event in [brain.getObject()
                                                        for brain in results]]
 
         important_events = event_tuple(context.portal_catalog(
@@ -104,3 +106,4 @@ def socialnetworks(context):
 
 def video(context):
     return get_template('boxvideos.html').render()
+
