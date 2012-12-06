@@ -187,6 +187,44 @@ margin-bottom: 10px;
     }
 }
 
+
+
+#header-menu-bar {
+    font-size: 16pt;
+    margin: 8px 0 0 0;
+    padding: 0;
+    right: 120px;
+    position:absolute;
+    top: -8px;
+    text-align: left;
+    text-transform: none;
+    li #header-menu-bar-colab, li #header-menu-bar-saberes, li #header-menu-bar-intranet {
+        margin-right: 10px;  
+        padding-left:20px;
+        padding-right:20px;
+        border-right: 2px #b8b8b8 solid;
+        line-height:10px;
+    }
+    
+    a {
+        color: #a4a19c;
+        vertical-align:middle;
+    }
+    #header-menu-bar-colab{
+        color: #6AA575;
+    }
+    #header-menu-bar-saberes{
+        color: #114a81;
+    }
+    #header-menu-bar-intranet{
+        color: #f19e1c;
+    }
+    #header-menu-bar-portal{
+        color: #555160;
+    }
+    
+}
+
 #portal-logo {
     margin: 15px 0 15px 0;
 }
