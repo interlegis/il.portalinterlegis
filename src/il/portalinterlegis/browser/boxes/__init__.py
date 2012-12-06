@@ -6,9 +6,6 @@ import feedparser
 from DateTime import DateTime
 from manager import get_template
 from zope.app.component.hooks import getSite
-from zeitgeist.datamodel import Subject
-import ipdb
-from plone.app.search.browser import Search
 
 
 class LastNews(object):
@@ -18,8 +15,11 @@ class LastNews(object):
 
     def __call__(self, context):
         template = get_template("lastnews.html")
-        busca = context.portal_catalog.searchResults(portal_type="News Item",
-                                       sort_on='Date', sort_order='reverse', Subject=(self.kind))[:5]
+        busca = context.portal_catalog.searchResults(
+            portal_type="News Item",
+            sort_on='Date',
+            sort_order='reverse',
+            Subject=(self.kind.encode('utf-8')))[:5]
         news = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
         # TODO: traduzir kind de tag para class css
         return template.render(news=news, css_class=self.kind)
