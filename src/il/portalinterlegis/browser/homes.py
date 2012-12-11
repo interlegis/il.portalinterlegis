@@ -39,7 +39,7 @@ class Home(GridView):
                 (4, _(IRelated)), (4, LastNews(u"informação")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
             Tab('capacitacao', u'Capacitação', u'<a href="/portal/capacitacao/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/capacitacao" class="tab-link-capacitacao">Capacitação</a>',
                 (4, _(IRelated)), (4, LastNews(u"capacitação")), (4, _(IRelated)), (4, ProductsAndServices(1)),),
-            Tab('tecnologia', u'Tecnologia', u'<a href="/portal/tecnologia/RSS<" class="tabs-rss-icon">&nbsp; </a><a href="/portal/tecnologia" class="tab-link-tecnologia">Tecnologia</a>',
+            Tab('tecnologia', u'Tecnologia', u'<a href="/portal/tecnologia/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/tecnologia" class="tab-link-tecnologia">Tecnologia</a>',
                 (4, _(IRelated)), (4, LastNews(u"tecnologia")), (4, _(IRelated)), (4, ProductsAndServices(2)),),
             Tab('comunicacao', u'Comunicação', u'<a href="/portal/comunicacao/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/comunicacao" class="tab-link-comunicacao">Comunicação</a>',
                 (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(3)),),
