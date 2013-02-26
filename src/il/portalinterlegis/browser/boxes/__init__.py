@@ -7,7 +7,6 @@ from DateTime import DateTime
 from manager import get_template
 from zope.app.component.hooks import getSite
 
-
 class LastNews(object):
 
     def __init__(self, kind):
@@ -61,7 +60,8 @@ class Events(object):
 
 colab_filter_entries_res = (
     (re.compile('changeset: \[.*\] - (.*)'), u'código'),
-    (re.compile('ticket: [^-]+ - (.*)'), u'tíquete'),
+    (re.compile('ticket: .+ - (.*)'), u'tíquete'),
+    (re.compile('thread: .+ - (.*)'), u'mensagem')
     )
 
 def colab(context):
@@ -86,6 +86,7 @@ def colab(context):
             return []
 
     def filter_entries(feed):
+
         entries = filter(lambda e: 'Merge branch' not in e['title'],
                          feed['entries'])
         for entry in entries:
