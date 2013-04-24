@@ -28,6 +28,7 @@ setup(name='il.portalinterlegis',
       install_requires=[
           'setuptools',
           'Plone',
+          'Pillow',
           'five.grok',
           'plone.app.theming',
           'plone.directives.form',
