@@ -43,6 +43,7 @@ setup(name='il.portalinterlegis',
           'plone.namedfile[blobs]',
           'plone.formwidget.namedfile',
           'psycopg2', # for ZPsycopgDA
+          'ZPsycopgDA',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""
