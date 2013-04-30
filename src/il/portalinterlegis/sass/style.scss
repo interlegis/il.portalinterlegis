@@ -50,6 +50,9 @@ $footer-blue: #25528c; // used only in the footer
 @import "portal-column-one";
 @import "portlet";
 @import "commenting";
+@import "interlegis-na-midia";
+@import "box-videos-redes-noticias";
+@import "produtos-e-servicos-interlegis";
 
 // GENERAL
 // ================================================================
@@ -235,7 +238,7 @@ margin-bottom: 10px;
 
 #portal-globalnav {
     background: #fff;
-    border-style: dotted;
+   // border-style: dotted;
     border-width: 1px 1px 0 1px;
     font-size: 8pt;
     margin: 0;
@@ -276,11 +279,26 @@ margin-bottom: 10px;
 // ================================================================
 @mixin box-header-base {
     @include header-font;
-    background: $blue;
-    height: 26px;
-    line-height: 26px;
-    margin-bottom: 10px;
-    padding-left: 4px;
+    background-color:#f5f5f5;
+    padding: 8px;
+    div{
+
+      border-bottom:solid 1px #0d2651;
+
+    }
+
+}
+
+.simplerow{
+
+
+   .row{
+
+      background-color:#f5f5f5;
+      padding-top:10px;
+
+   }
+
 }
 
 .box-header-base {
@@ -289,18 +307,6 @@ margin-bottom: 10px;
 
 @mixin box-header {
     @include box-header-base;
-    &:before {
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 6px solid $blue;
-        content: "";
-        height: 0;
-        margin-right: -10px;
-        position: relative;
-        top: 26px;
-        left: 8px;
-        width: 0;
-    }
 }
 
 .box-header {

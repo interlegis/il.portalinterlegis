@@ -1,5 +1,6 @@
 @mixin header-font {
-    color: white;
+    font-weight:bold;
+    color:#0d2651;
     font-size: 10pt; //TODO rever este tamanho
     text-transform: uppercase;
     font-family: Mako,vsans-serif;

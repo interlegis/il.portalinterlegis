@@ -5,7 +5,7 @@ from itertools import count
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
 
-from boxes import colab, LastNews, socialnetworks, video, Events
+from boxes import colab, LastNews, socialnetworks, video, Events, interlegis_na_midia, noticias_e_artigos_interlegis, consultoria_e_informacao, produtos_de_tecnologia, capacitacao_ilb, relacionamento
 from boxes.carousel import CarouselBox, ProductsAndServices
 from boxes.interfaces import ISuperTitleBox, IHighlight, IRelated
 from boxes.manager import DtRow, Box, GridView
@@ -34,22 +34,17 @@ class Home(GridView):
 
     grid = [
         ___((10, CarouselBox(0)), (6, Events()),),
-        ___((FULL, TabbedPane(
-            Tab('informacao', u'Informação', u'<a href="/portal/informacao/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/informacao" class="tab-link-informacao">Informação</a>',
-                (4, _(IRelated)), (4, LastNews(u"informação")), (4, _(IRelated)), (4, ProductsAndServices(0)),),
-            Tab('capacitacao', u'Capacitação', u'<a href="/portal/capacitacao/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/capacitacao" class="tab-link-capacitacao">Capacitação</a>',
-                (4, _(IRelated)), (4, LastNews(u"capacitação")), (4, _(IRelated)), (4, ProductsAndServices(1)),),
-            Tab('tecnologia', u'Tecnologia', u'<a href="/portal/tecnologia/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/tecnologia" class="tab-link-tecnologia">Tecnologia</a>',
-                (4, _(IRelated)), (4, LastNews(u"tecnologia")), (4, _(IRelated)), (4, ProductsAndServices(2)),),
-            Tab('comunicacao', u'Comunicação', u'<a href="/portal/comunicacao/RSS" class="tabs-rss-icon">&nbsp; </a><a href="/portal/comunicacao" class="tab-link-comunicacao">Comunicação</a>',
-                (4, _(IRelated)), (4, _(IRelated)), (4, _(IRelated)), (4, ProductsAndServices(3)),),
-            ))),
+
+        ___((8, interlegis_na_midia), (8, noticias_e_artigos_interlegis),),
+        ___((FULL, SimpleRow(u'Produtos e serviços interlegis',
+                            (4, consultoria_e_informacao), (4, produtos_de_tecnologia), (4, capacitacao_ilb), (4, relacionamento)))), 
+
         ___((FULL, SimpleRow(u'Acompanhe o Interlegis',
-                            (5, colab), (5, socialnetworks), (5, video)))),
+                            (6, colab), (5, socialnetworks), (5, video)))), 
+
         # TODO linha tirada por falta de uso. Sera trocada por um linha com info do SIGI
         # ___((4, _(IHighlight)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)), (4, _(ISuperTitleBox)),),
     ]
-
 
 class ComunidadeLegislativaHome(grok.View):
     grok.name('home')

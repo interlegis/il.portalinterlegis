@@ -105,6 +105,24 @@ def colab(context):
 def socialnetworks(context):
     return get_template('socialnetworks.html').render()
 
+def interlegis_na_midia(context):
+    return get_template('interlegis_na_midia.html').render()
+
+def consultoria_e_informacao(context):
+    return get_template('consultoria-e-informacao.html').render()
+
+def produtos_de_tecnologia(context):
+    return get_template('produtos-de-tecnologia.html').render()
+
+def capacitacao_ilb(context):
+    return get_template('capacitacao-ilb.html').render()
+
+def relacionamento(context):
+    return get_template('relacionamento.html').render()
+
+def noticias_e_artigos_interlegis(context):
+    return get_template('noticias-e-artigos-interlegis.html').render()
+
 def video(context):
     return get_template('boxvideos.html').render()
 

@@ -1,0 +1,44 @@
+.box-videos-redes-noticias{
+   
+   padding:10px;
+   background-color:#f5f5f5;
+   
+   .box-videos-redes-noticias-titulo{
+   
+      font-weight:bold;
+      color:#0d2651;
+      border-bottom:solid 1px #0d2651;
+      margin-bottom:8px;
+   }
+
+   ul{
+      
+      li{
+      
+         display:list-item;
+         list-style-image:url('../images/icons/double-arrow.png');
+         margin-left: 20px;
+         // text-align:justify;
+         margin-bottom:5px;
+            a{
+               color:#000000;
+            }
+
+        }
+   }
+
+   .clipping{
+   
+      text-align:right;
+
+      a{
+
+         color:#ffbe08;
+         font-weight:bold;
+         font-size:9pt;
+   
+      }
+   
+   }
+
+}
