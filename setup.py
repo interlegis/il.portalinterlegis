@@ -39,7 +39,6 @@ setup(name='il.portalinterlegis',
           'collective.js.jqueryui',
           'feedparser',
           'sc.contentrules.groupbydate',
-          'plone.formwidget.captcha',
           'plone.namedfile[blobs]',
           'plone.formwidget.namedfile',
           'psycopg2', # for ZPsycopgDA, that must be installed as an old style product
