@@ -361,7 +361,7 @@ div {
 // BOX INTERLEGIS IN ACTION
 
 .dt-row:first-child > div:nth-child(2) {
-    background: $blue-light;
+    //background: $blue-light;
     border-width: 0 1px;
     left: 99.9%;
 }
@@ -395,6 +395,14 @@ div {
         }
     }
 }
+
+.todos-os-eventos{
+
+      margin-right:10px;
+      margin-bottom:50px;
+
+}
+
 
 #agenda {
 
