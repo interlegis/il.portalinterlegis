@@ -1,12 +1,16 @@
-.consultoria-e-informacao{
+$altura-produtos_servicos: 480px;
+$altura-cabecalho-produtos-servicos: 120px;
 
+.consultoria-e-informacao {
+
+   height: $altura-produtos_servicos;
 
    .conteudo{
 
-     padding:10px;  
+     padding:10px;
 
    }
-   
+
 
    ul{
 
@@ -23,7 +27,7 @@
 
    }
 
-   
+
    background-color:#acacc8;
    .titulo{
 
@@ -42,11 +46,10 @@
       text-transform:uppercase;
       background-color:#67679b;
       padding-left:20px;
-      height:135px;
       font-size:13pt;
       font-weight:bold;
       color:#ffffff;
-      height:135px;
+      height:$altura-cabecalho-produtos-servicos;
 
    }
 
@@ -55,10 +58,12 @@
 
 
 .produtos-de-tecnologia{
-   
+
+   height: $altura-produtos_servicos;
+
    .conteudo{
 
-     padding:10px;  
+     padding:10px;
 
    }
 
@@ -78,7 +83,7 @@
 
    }
 
-   
+
    background-color:#b3d2ba;
    .titulo{
 
@@ -100,7 +105,7 @@
       font-size:13pt;
       font-weight:bold;
       color:#ffffff;
-      height:135px;
+      height:$altura-cabecalho-produtos-servicos;
 
    }
 
@@ -109,9 +114,11 @@
 
 .capacitacao-ilb{
 
+   height: $altura-produtos_servicos;
+
    .conteudo{
 
-     padding:10px;  
+     padding:10px;
 
    }
 
@@ -153,7 +160,7 @@
       font-size:13pt;
       font-weight:bold;
       color:#ffffff;
-      height:135px;
+      height:$altura-cabecalho-produtos-servicos;
 
    }
 
@@ -164,9 +171,11 @@
 
 .relacionamento{
 
+   height: $altura-produtos_servicos;
+
    .conteudo{
 
-     padding:10px;  
+     padding:10px;
 
    }
 
@@ -208,7 +217,7 @@
       font-size:13pt;
       font-weight:bold;
       color:#ffffff;
-      height:135px;
+      height:$altura-cabecalho-produtos-servicos;
 
    }
 
