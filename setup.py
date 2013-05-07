@@ -42,6 +42,7 @@ setup(name='il.portalinterlegis',
           'plone.namedfile[blobs]',
           'plone.formwidget.namedfile',
           'psycopg2', # for ZPsycopgDA, that must be installed as an old style product
+          'sc.social.like',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""
