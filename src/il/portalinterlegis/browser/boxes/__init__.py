@@ -7,22 +7,6 @@ from DateTime import DateTime
 from manager import get_template
 from zope.app.component.hooks import getSite
 
-class LastNews(object):
-
-    def __init__(self, kind):
-        self.kind = kind
-
-    def __call__(self, context):
-        template = get_template("lastnews.html")
-        busca = context.portal_catalog.searchResults(
-            portal_type="News Item",
-            sort_on='Date',
-            sort_order='reverse',
-            Subject=(self.kind.encode('utf-8')))[:5]
-        news = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
-        # TODO: traduzir kind de tag para class css
-        return template.render(news=news, css_class=self.kind)
-
 class Events(object):
 
     def kind(self, event):
@@ -106,7 +90,24 @@ def socialnetworks(context):
     return get_template('socialnetworks.html').render()
 
 def interlegis_na_midia(context):
-    return get_template('interlegis_na_midia.html').render()
+    path = '/'.join(context['interlegisnamidia'].getPhysicalPath())
+    busca = context.portal_catalog.searchResults(
+        path={"query": path, "depth": 1},
+        sort_on='Date',
+        sort_order='reverse',
+        )[:3]
+    entries = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
+    return get_template('interlegis_na_midia.html').render(entries=entries)
+
+def noticias_e_artigos_interlegis(context):
+    template = get_template('noticias-e-artigos-interlegis.html')
+    busca = context.portal_catalog.searchResults(
+        portal_type="News Item",
+        sort_on='Date',
+        sort_order='reverse',)[:3]
+    entries = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
+    # TODO: traduzir kind de tag para class css
+    return template.render(entries=entries)
 
 def consultoria_e_informacao(context):
     return get_template('consultoria-e-informacao.html').render()
@@ -119,9 +120,6 @@ def capacitacao_ilb(context):
 
 def relacionamento(context):
     return get_template('relacionamento.html').render()
-
-def noticias_e_artigos_interlegis(context):
-    return get_template('noticias-e-artigos-interlegis.html').render()
 
 def video(context):
     return get_template('boxvideos.html').render()

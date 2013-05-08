@@ -4,15 +4,13 @@ from itertools import count
 
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from five import grok
-
-from boxes import colab, LastNews, socialnetworks, video, Events, interlegis_na_midia, noticias_e_artigos_interlegis, consultoria_e_informacao, produtos_de_tecnologia, capacitacao_ilb, relacionamento
-from boxes.carousel import CarouselBox, ProductsAndServices
-from boxes.interfaces import ISuperTitleBox, IHighlight, IRelated
-from boxes.manager import DtRow, Box, GridView
-from boxes.simplerow import SimpleRow
-from boxes.tabs import Tab, TabbedPane
 from interfaces import \
      IComunidadeLegislativa, IInformacao, ICapacitacao, ITecnologia, IComunicacao
+
+from boxes import colab, socialnetworks, video, Events, interlegis_na_midia, noticias_e_artigos_interlegis, consultoria_e_informacao, produtos_de_tecnologia, capacitacao_ilb, relacionamento
+from boxes.carousel import CarouselBox
+from boxes.manager import DtRow, Box, GridView
+from boxes.simplerow import SimpleRow
 
 
 # These are meant for more readable grid definitions. Do not overuse.
