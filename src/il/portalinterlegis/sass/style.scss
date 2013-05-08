@@ -202,17 +202,17 @@ margin-bottom: 10px;
     text-align: left;
     text-transform: none;
     li #header-menu-bar-colab, li #header-menu-bar-saberes, li #header-menu-bar-intranet {
-        margin-right: 10px;  
+        margin-right: 10px;
         padding-left:20px;
         padding-right:20px;
         border-right: 2px #b8b8b8 solid;
     }
-    
+
     li #header-menu-bar-portal {
         padding-left:20px;
         padding-right:20px;
     }
-    
+
     a {
         color: #a4a19c;
         vertical-align:middle;
@@ -229,7 +229,7 @@ margin-bottom: 10px;
     #header-menu-bar-portal{
         color: #555160;
     }
-    
+
 }
 
 #portal-logo {
@@ -407,7 +407,7 @@ div {
         margin-top: 10px;
             a {
             font-size: 10pt;
-            float: right;         
+            float: right;
             }
         }
     li {
@@ -429,8 +429,8 @@ div {
         text-align: center;
         width: 44px;
         font-size:5pt;
-        
-        
+
+
         > div {
             font-size: 2em;
         }
@@ -457,4 +457,9 @@ div {
 //correção do breadcrumbs
 #portal-breadcrumbs{
     margin-top: 6px;
+}
+
+//TODO: remover essa POG (ajuste da margem direita da agenda na home)
+div.dt-width-6 {
+    padding-right: inherit;
 }
