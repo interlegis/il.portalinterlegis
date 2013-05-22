@@ -96,7 +96,8 @@ def interlegis_na_midia(context):
         sort_on='Date',
         sort_order='reverse',
         )[:3]
-    entries = [(noticia.getObject().title, noticia.getURL()) for noticia in busca]
+    entries = [(link.title, link.getRemoteUrl()) for link in
+               [b.getObject() for b in busca]]
     return get_template('interlegis_na_midia.html').render(entries=entries)
 
 def noticias_e_artigos_interlegis(context):
