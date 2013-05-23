@@ -93,6 +93,7 @@ def interlegis_na_midia(context):
     path = '/'.join(context['interlegisnamidia'].getPhysicalPath())
     busca = context.portal_catalog.searchResults(
         path={"query": path, "depth": 1},
+        portal_type="Link",
         sort_on='Date',
         sort_order='reverse',
         )[:3]
