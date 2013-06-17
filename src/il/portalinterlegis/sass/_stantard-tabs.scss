@@ -26,14 +26,14 @@ $width-tabs: 110px;
                   background-image: url("../images/tab-colab.png");
             }
     }
-    
-    .standard-tabs-colaboracoes{
+
+    .standard-tabs-discussoes{
     left:0;
     }
-    .standard-tabs-discussoes{
+    .standard-tabs-colaboracoes{
     left: -20px;
     }
-    
+
     a {
 	    /* Make them block level
 	       and only as wide as they need */
@@ -50,14 +50,14 @@ $width-tabs: 110px;
         font-size: 6.5pt;
 
     }
-    
+
     .current {
 	    /* Make them block level
 	    and only as wide as they need */
 	    float: left;
     }
-    
-    
+
+
     .active3 {
 	    /* Highest, active tab is on top */
 	    z-index: 3;
@@ -68,7 +68,7 @@ $width-tabs: 110px;
     }
     /* Only the first, last, and active
     tabs need pseudo elements at all */
- 
+
 }
 
 .standard-tabs > div {
