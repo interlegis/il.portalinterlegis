@@ -40,4 +40,6 @@
         handler="il.portalinterlegis.setuphandlers.setupVarious" />
         />
 
+    <adapter factory=".event.recurrence.InterlegisRecurrenceSupport" />
+
 </configure>
