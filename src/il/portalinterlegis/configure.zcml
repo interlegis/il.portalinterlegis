@@ -17,20 +17,11 @@
 
     <genericsetup:registerProfile
        name="default"
-       title="Portal Interlegis: produto de politicas"
+       title="Portal Interlegis"
        directory="profiles/default"
        description="Installs the il.portalinterlegis package"
        provides="Products.GenericSetup.interfaces.EXTENSION"
        />
-
-    <genericsetup:registerProfile
-       name="uninstall"
-       title="Portal Interlegis: desinstalacao"
-       directory="profiles/uninstall"
-       description="Installs the il.portalinterlegis package"
-       provides="Products.GenericSetup.interfaces.EXTENSION"
-       />
-
     <!-- -*- extra stuff goes here -*- -->
 
     <genericsetup:importStep

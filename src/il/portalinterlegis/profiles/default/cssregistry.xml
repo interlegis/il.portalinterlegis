@@ -3,10 +3,6 @@
 
  <stylesheet id="++resource++jquery-ui-themes/sunburst/jqueryui.css" rendering="link" />
 
- <stylesheet id="http://fonts.googleapis.com/css?family=Mako" rendering="link" />
-
- <stylesheet id="++theme++il.portalinterlegis/css/style.css" rendering="link"  />
-
 </object>
 
 
