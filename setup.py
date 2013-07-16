@@ -44,6 +44,7 @@ setup(name='il.portalinterlegis',
           'psycopg2', # for ZPsycopgDA, that must be installed as an old style product
           'sc.social.like',
           'Products.PloneFormGen',
+          'plonetheme.bootstrap',
       ],
       extras_require={'test': ['plone.app.testing', 'mock']},
       entry_points="""
