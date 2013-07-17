@@ -1,146 +1,94 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <head>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Mako" />
-  <script src="js/jquery.carousel.js"></script>
-  <script src="js/jquery.easing.js"></script>
-  <script src="js/carousel.js"></script>
-  <!-- TODO: colocar script abaixo somente para bundle de editores -->
-  <script src="js/carousel-edit.js"></script>
-  <script src="js/tabs.js"></script>
-  <!-- The next two scripts should generally be the last, in the same order -->
-  <script src="js/uniformheights.js"></script>
-  <script src="js/editable-box.js"></script>
-  <title>Portal</title>
 </head>
 <body>
+  <div id="visual-portal-wrapper">
 
-  <div id="visual-portal-wrapper" class="middle-container">
+    <header>
 
-    <div class="row" id="portal-top">
+      <!-- BARRA DO TOPO -->
 
+      <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <span class="brand">Interlegis</span>
+            <div id="main-menu" class="nav-collapse collapse">
+              <ul id="main-menu-left" class="nav">
+                <li><a href="http://www.interlegis.leg.br/">Portal</a></li>
+                <li><a href="https://intranet.interlegis.gov.br/">Intranet</a></li>
+                <li><a href="http://colab.interlegis.leg.br/">Colab</a></li>
+                <li><a href="http://saberes.interlegis.leg.br/">Saberes</a></li>
+              </ul>
 
-      <div id="portal-header">
-
-        <ul id="header-actions">
-          <li id="header-actions-accessibility">
-            <a href="#" title="Acessibilidade">Acessibilidade</a>
-          </li>
-        </ul>
-                <ul id="header-menu-bar">
-          <li>
-            <a href="http://colab.interlegis.leg.br/" title="Colab" id="header-menu-bar-colab">Colab</a>
-          </li>
-          <li>
-            <a href="http://saberes.interlegis.leg.br/" title="Saberes" id="header-menu-bar-saberes">Saberes</a>
-          </li>
-          <li>
-            <a href="https://intranet.interlegis.gov.br/" title="Intranet" id="header-menu-bar-intranet">Intranet</a>
-          </li>
-          <li>
-            <a href="http://www.interlegis.leg.br/" title="Portal" id="header-menu-bar-portal">Portal</a>
-          </li>
-        </ul>
-        <div id="portal-personaltools-wrapper" />
-
-        <div id="portal-searchbox" />
-
-        <a id="portal-logo">
-          <img width="443" height="83" title="Interlegis" alt="Logo Interlegis" src="images/logo.png" />
-       </a>
-
-        <h5 class="hiddenStructure">Sections</h5>
-
-        <ul id="portal-globalnav">
-          <li id="portaltab-menu"><div>.</div></li>
-        </ul>
-
+              <!-- menu da direita -->
+              <ul id="main-menu-right" class="nav pull-right">
+                <li id="portal-personaltools-wrapper" class="dropdown">
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
+
+      <div id="portal-header-wrapper" class="container">
+        <div id="portal-header">
+
+          <p class="hiddenStructure">
+            <a accesskey="2" href="http://127.0.0.1:8080/portal/interlegisnamidia#content">Ir para o conteúdo.</a> |
+            <a accesskey="6" href="http://127.0.0.1:8080/portal/interlegisnamidia#portal-globalnav">Ir para a navegação</a>
+          </p>
+
+          <form class="form-search">
+          </form>
+
+          <a id="portal-logo">
+            <img width="443" height="83" title="Interlegis" alt="Logo Interlegis" src="images/logo.png" />
+          </a>
+
+          <h5 class="hiddenStructure">Seções</h5>
+          <nav class="navbar">
+            <div class="navbar-inner">
+              <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                <a class="brand hidden-desktop" href="http://127.0.0.1:8080/portal">Portal Interlegis</a>
+                <div class="nav-collapse collapse">
+                  <ul class="nav" id="navigation">
+                    <li id="portaltab-index_html" class="">
+                      <a href="http://127.0.0.1:8080/portal">O Interlegis</a>
+                    </li>
+                    <li id="portaltab-interlegisnamidia" class="active">
+                      <a href="http://127.0.0.1:8080/portal/interlegisnamidia">Interlegis na Mídia</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+
+    <div id="portal-columns" class="container">
     </div>
 
-    <div class="row">
-      <div id="carousel-1" />
-    </div>
 
-    <div class="dt-row-only-one" id="portal-columns">
-      Conteúdo
-    </div>
-
+    <footer>
+      ################################################################
+    </footer>
   </div>
-
-  <div class="portal-footer">
-    <div class="middle-container">
-      <div class="row">
-      <div class="left-box">
-          <h2><a href="http://www.interlegis.leg.br/informacoes_institucionais/">O Interlegis</a></h2>
-          <ul>
-             <li><a href="http://www.interlegis.leg.br/produtos_servicos/publicacoes">Publicações</a></li>
-             <li><a href="http://www.interlegis.leg.br/informacoes_institucionais/perguntas-frequentes">Perguntas Frequentes</a></li>
-             <li><a href="http://www.interlegis.leg.br/processo_legislativo">Informação</a></li>
-             <li><a href="http://www.interlegis.leg.br/capacitacao">Capacitação</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia">Tecnologia</a></li>
-             <li><a href="http://www.interlegis.leg.br/comunidade">Comunidade</a></li>
-          </ul>
-        </div>
-      <div class="left-box">
-          <h2><a href="http://www.interlegis.leg.br/comunidade">Comunidade</a></h2>
-          <ul>
-             <li><a href="http://colab.interlegis.leg.br/">Espaço Colab</a></li>
-             <li><a href="http://www.interlegis.leg.br/comunidade/casas_legislativas">Casas Legislativas</a></li>
-             <li><a href="http://www.interlegis.leg.br/comunidade/comunidade-gial">Comunidade GIAL</a></li>
-             <li><a href="http://www.interlegis.leg.br/comunidade/comunidade-gicom">Comunidade GICOM</a></li>
-             <li><a href="http://www.interlegis.leg.br/comunidade/comunidade-gitec">Comunidade GITEC</a></li>
-          </ul>
-        </div>
-      <div class="left-box">
-        <h2><a href="http://www.interlegis.leg.br/produtos_servicos">Produtos<br/> e Serviços</a></h2>
-          <ul>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/portal-modelo">Portal Modelo</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/sapl">SAPL</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/spdo">SPDO</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/saap">SAAP</a></li>
-             <li><a href="http://saberes.interlegis.leg.br/">Saberes</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/registro-leg.br">leg.br</a></li>
-             <li><a href="http://www.interlegis.leg.br/tecnologia/produtos/lexml">LexML</a></li>
-          </ul>
-        </div>
-      <div class="right-box">
-          <h2><a href="http://www.interlegis.leg.br/informacoes_institucionais/quem-e-quem">Contatos</a></h2>
-          <ul>
-             <li><a href="http://www.interlegis.leg.br/institucional/sinter">SINTER - Secretaria Especial do Interlegis</a></li>
-             <li><a href="http://www.interlegis.leg.br/institucional/ssadm">SSADM - Subsecretaria de Administração</a></li>
-             <li><a href="http://www.interlegis.leg.br/institucional/ssatr">SSATR - Subsecretaria de Apoio Técnico e Relações Intitucionais</a></li>
-             <li><a href="http://www.interlegis.leg.br/institucional/ssfac">SSFAC - Subsecretaria de Atendimento e Formação da Comunidade Legislativa</a></li>
-             <li><a href="http://www.interlegis.leg.br/institucional/ssplf">SSPLF - Subsecretaria de Planejamento e Fomento</a></li>
-             <li><a href="http://www.interlegis.leg.br/institucional/sstin">SSTIN - Subsecretaria de Tecnologia da Informação</a></li>
-          </ul>
-        </div>
-      <div class="address">
-          <address>
-            <em>Secretaria Especial do Interlegis</em><br/>
-            Av. N2, Anexo E do Senado Federal, Brasília/DF - CEP:70165-900
-          </address>
-          <p>O conteúdo deste site está publicado sob a licença
-            <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/br/">Creative Commons<br/> "atribuição e não-comercial"</a></p>
-        </div>
-      <div class="utils">
-          <em>
-            <ul id="portal-siteactions" />
-          </em>
-      </div>
-      <div class="partners">
-          <ul>
-            <li><a href="http://www.senado.leg.br"><img title="Senado Federal" alt="Senado Federal" src="images/senado.png" /></a></li>
-            <li><a href="http://www.camara.leg.br"><img title="Câmara dos Deputados" alt="Câmara dos Deputados" src="images/camara.png" /></a></li>
-            <li><a href="http://www.iadb.org/pt"><img title="Banco Interamericano de Desenvolvimento" alt="Banco Interamericano de Desenvolvimento" src="images/bid.png" /></a></li>
-            <li><a href="http://www.tcu.leg.br"><img class="last" title="Tribunal de Contas da União" alt="Tribunal de Contas da União" src="images/tcu.png" /></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>

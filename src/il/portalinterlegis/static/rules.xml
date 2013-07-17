@@ -20,30 +20,31 @@
     <!-- HEADER -->
     <drop attributes="id" css:content="#siteaction-accessibility" />
     <replace css:theme="#header-actions-accessibility" css:content="#siteaction-accessibility" />
-    <replace css:theme="#portal-personaltools-wrapper" css:content="#portal-personaltools-wrapper" />
+    <!-- personaltools -->
+    <replace css:theme-children="#portal-personaltools-wrapper" css:content-children="#portal-personaltools-wrapper" />
+    <xsl:template match="//a[@id='user-name']/@class">
+        <xsl:attribute name="class">dropdown-toggle</xsl:attribute>
+    </xsl:template>
+    <xsl:template match="//a[@id='personaltools-login']/@class">
+        <xsl:attribute name="class">dropdown-toggle</xsl:attribute>
+    </xsl:template>
+    <!-- logo -->
     <copy attributes="*" css:theme="#portal-logo" css:content="#portal-logo" />
 
     <!-- SEARCH -->
-    <replace css:theme="#portal-searchbox" css:content="#portal-searchbox" />
-    <drop css:content="#portal-searchbox .searchSection" />
+    <replace css:theme="form.form-search" css:content="form.form-search" />
+    <drop css:content="form.form-search .searchSection" />
     <xsl:template match="//input[@id='searchGadget']/@placeholder">
         <xsl:attribute name="placeholder">O que você procura?</xsl:attribute>
     </xsl:template>
+    <drop attributes="class" css:content="#searchGadget" />
+    <drop attributes="class" css:content=".LSBox button" />
 
     <!-- MAIN MENU -->
     <before css:theme-children="#portal-globalnav" css:content-children="#portal-globalnav" />
 
     <!-- CONTENT -->
-    <rules css:if-content="#bigbox">
-      <copy attributes="class" css:theme="#portal-columns" css:content="#bigbox" />
-      <!-- Isto aqui foi simplesmente para que mudar o atributo class de portal-columns. Deveria ser mais direto -->
-      <replace css:theme-children="#portal-columns" css:content-children="#bigbox" />
-    </rules>
-    <replace css:theme-children="#portal-columns" css:content-children="#portal-columns" css:if-not-content="#bigbox" />
-    <drop css:content="#portal-footer-wrapper" />
-
-    <!-- CAROUSEL -->
-    <replace css:theme="#carousel-1" css:content="#carousel-1" />
+    <replace css:theme-children="#portal-columns" css:content-children="#portal-columns"/>
 
     <!-- FOOTER -->
     <!-- para deixar o id para o link acessibilidade no rodape, que foi tirado para o link no topo => method="raw" -->

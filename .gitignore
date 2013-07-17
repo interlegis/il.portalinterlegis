@@ -42,6 +42,12 @@ nosetests.xml
 ipython_log.py
 
 mr.developer.src
-src/il/portalinterlegis/static/css/style.css
 temp.cfg
 products
+
+# MR.DEVELOPER SOURCES
+src/collective.js.bootstrap
+
+# GENERATE FILES
+src/il/portalinterlegis/static/bootstrap
+src/il/portalinterlegis/static/css/style.css

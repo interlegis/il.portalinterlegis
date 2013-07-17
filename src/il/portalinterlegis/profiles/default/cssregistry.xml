@@ -3,6 +3,14 @@
 
  <stylesheet id="++resource++jquery-ui-themes/sunburst/jqueryui.css" rendering="link" />
 
+ <!-- Deactivate bootstrap stylesheets that come with collective.js.bootstrap -->
+ <stylesheet
+    id="++resource++collective.js.bootstrap/css/bootstrap.min.css"
+    enabled="0"/>
+ <stylesheet
+    id="++resource++collective.js.bootstrap/css/bootstrap-responsive.min.css"
+    enabled="0"/>
+
 </object>
 
 

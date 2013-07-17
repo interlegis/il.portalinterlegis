@@ -2,6 +2,7 @@
 <metadata>
   <version>0001</version>
   <dependencies>
+    <dependency>profile-plonetheme.bootstrap:default</dependency>
     <dependency>profile-plone.app.theming:default</dependency>
     <dependency>profile-plone.formwidget.contenttree:default</dependency>
     <dependency>profile-plone.formwidget.autocomplete:default</dependency>
