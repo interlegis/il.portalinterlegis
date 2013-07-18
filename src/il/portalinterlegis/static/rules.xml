@@ -16,6 +16,7 @@
     <before css:theme-children="head" css:content-children="head" />
     <copy attributes="*" css:theme="html" css:content="html" />
     <copy attributes="*" css:theme="body" css:content="body" />
+    <drop css:theme="#head-link-bootstrap" />
 
     <!-- HEADER -->
     <drop attributes="id" css:content="#siteaction-accessibility" />
