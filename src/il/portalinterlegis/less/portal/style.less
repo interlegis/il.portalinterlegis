@@ -2,3 +2,39 @@
 body {
     background-image: url(../images/net-background.png);
 }
+
+// BUSCA
+
+@search-height : 30px;
+.form-search {
+    margin: 68px 0 0 0;
+    button {
+        background: url("../images/search-button.png") no-repeat left top #fff;
+        height: @search-height;
+        text-indent: -10000px;                 /* sends the text off-screen */
+        width: 41px;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        margin-left: -40px;
+    }
+}
+#searchGadget {
+    background: url("../images/search-open-brace.png") no-repeat left top #fff;
+    border: 0;
+    height: @search-height;
+    border-radius: 0;
+    padding: 0 50px 0 10px;
+    font-family: Poly, serif;
+    font-style: italic;
+    width: 270px;
+}
+
+#LSResult {
+    background: transparent;
+    margin-top: -4px;
+    .livesearchContainer {
+        background: #fff;
+    }
+}
+
