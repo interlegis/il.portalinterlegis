@@ -6,11 +6,8 @@
     css:if-content="#visual-portal-wrapper">
 
     <!-- THEME SELECTION -->
-    <theme href="box_form.html" css:if-content="#box-preview" />
+    <theme href="box_form.html" css:if-content="#box-preview" /> <!-- #### TODO #### rever -->
     <theme href="index.html" />
-
-    <!-- TEMP DEBUG -->
-    <xsl:output indent="yes" />
 
     <!-- HTML, HEAD & BODY -->
     <before css:theme-children="head" css:content-children="head" />
@@ -19,9 +16,9 @@
     <drop css:theme="#head-link-bootstrap" />
 
     <!-- HEADER -->
-    <drop attributes="id" css:content="#siteaction-accessibility" />
-    <replace css:theme="#header-actions-accessibility" css:content="#siteaction-accessibility" />
+    <replace css:theme-children="#portal-header-wrapper" css:content-children="#portal-header-wrapper" />
     <!-- personaltools -->
+    <drop css:content="#portal-personaltools-wrapper" />
     <replace css:theme-children="#portal-personaltools-wrapper" css:content-children="#portal-personaltools-wrapper" />
     <xsl:template match="//a[@id='user-name']/@class">
         <xsl:attribute name="class">dropdown-toggle</xsl:attribute>
@@ -30,7 +27,11 @@
         <xsl:attribute name="class">dropdown-toggle</xsl:attribute>
     </xsl:template>
     <!-- logo -->
-    <copy attributes="*" css:theme="#portal-logo" css:content="#portal-logo" />
+    <xsl:template match="//a[@id='portal-logo']/img/@src">
+        <xsl:attribute name="src">/++theme++il.portalinterlegis/images/logo.png</xsl:attribute>
+    </xsl:template>
+    <drop attributes="width" css:content="#portal-logo img" />
+    <drop attributes="height" css:content="#portal-logo img" />
 
     <!-- SEARCH -->
     <replace css:theme="form.form-search" css:content="form.form-search" />
@@ -48,8 +49,7 @@
     <replace css:theme-children="#portal-columns" css:content-children="#portal-columns"/>
 
     <!-- FOOTER -->
-    <!-- para deixar o id para o link acessibilidade no rodape, que foi tirado para o link no topo => method="raw" -->
-    <replace css:theme="#portal-siteactions" css:content="#portal-siteactions" method="raw" />
+    <replace css:theme="#portal-siteactions" css:content="#portal-siteactions" />
 
     <!-- KSS -->
     <append theme="/html/body" content="//*[@id='kss-spinner']" />
