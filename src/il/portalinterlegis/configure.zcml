@@ -22,6 +22,14 @@
        description="Installs the il.portalinterlegis package"
        provides="Products.GenericSetup.interfaces.EXTENSION"
        />
+
+    <genericsetup:registerProfile
+       name="uninstall"
+       title="Portal Interlegis UNINSTALL"
+       directory="profiles/uninstall"
+       description="Uninstalls the il.portalinterlegis package"
+       provides="Products.GenericSetup.interfaces.EXTENSION"
+       />
     <!-- -*- extra stuff goes here -*- -->
 
     <genericsetup:importStep
