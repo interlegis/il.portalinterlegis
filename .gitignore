@@ -43,5 +43,6 @@ ipython_log.py
 
 mr.developer.src
 src/il/portalinterlegis/static/css/style.css
+src/il/portalinterlegis/static/css/style.css.map
 temp.cfg
 products
