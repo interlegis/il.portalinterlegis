@@ -31,12 +31,12 @@ class Events(object):
         events = event_tuple(context.portal_catalog(
             {'end': {'query': DateTime(), 'range': 'min'}},
             portal_type="Event",
-            sort_on='start')[:4])
+            sort_on='start')[:5])
 
         for e in important_events:
             if e in events:
                 events.remove(e)
-        events = events[:3]
+        events = events[:4]
 
         template = get_template("events.html")
         return template.render(important_events=important_events,
